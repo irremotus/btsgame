@@ -1,0 +1,6 @@
+c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.exe
+c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.pdb
+c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.csprojResolveAssemblyReference.cache
+c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
+c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
