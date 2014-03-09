@@ -8,82 +8,110 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using JigLibX.Physics;
+using JigLibX.Geometry;
+using JigLibX.Collision;
 
 namespace dreidengine
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
+  
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        KeyboardState keys, oldKeys;
+        BoxActor fallingBox;
+        BoxActor immovableBox;
+
+    
+
+        private Matrix _view;
+        public Matrix View
+        {
+            get { return _view; }
+        }
+
+        private Matrix _projection;
+        public Matrix Projection
+        {
+            get { return _projection; }
+        }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            InitializePhyics();
+
+            _projection = Matrix.CreatePerspectiveFieldOfView(
+                MathHelper.ToRadians(45.0f),
+                (float)graphics.PreferredBackBufferWidth / (float)graphics.PreferredBackBufferHeight,
+                0.1f,
+                1000.0f
+                );
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+        private void InitializePhyics()
+        {
+            PhysicsSystem world = new PhysicsSystem();
+            world.CollisionSystem = new CollisionSystemSAP();
+
+            fallingBox = new BoxActor(this, new Vector3(0, 50, 0), new Vector3(1, 1, 1));
+            immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
+
+            immovableBox.Body.Immovable = true;
+            Components.Add(fallingBox);
+            Components.Add(immovableBox);
+        }
+
+        
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            
 
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+        
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            spriteBatch = new SpriteBatch(GraphicsDevice);            
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
+        
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+                        
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            keys = Keyboard.GetState();
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            // TODO: Add your update logic here
+            float timeStep = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+            PhysicsSystem.CurrentPhysicsSystem.Integrate(timeStep);
 
+
+            _view = Matrix.CreateLookAt(
+                new Vector3(0, 5, 20),
+                fallingBox.Body.Position,
+                Vector3.Up
+                );
+
+            oldKeys = keys;
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
