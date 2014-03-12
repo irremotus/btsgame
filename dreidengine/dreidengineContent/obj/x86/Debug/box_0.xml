@@ -3,7 +3,11 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Cube</Name>
     <Identity>
+<<<<<<< HEAD
       <SourceFilename>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
+=======
+      <SourceFilename>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
+>>>>>>> added camera class
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>3.774895E-08 0 -0.5 0 -0.5 0 -3.774895E-08 0 0 0.5 0 0 0.0319407 -0.0557374954 0.03451109 1</Transform>
@@ -25,7 +29,11 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>unnamed</Name>
       <Identity>
+<<<<<<< HEAD
         <SourceFilename>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
+=======
+        <SourceFilename>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
+>>>>>>> added camera class
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
