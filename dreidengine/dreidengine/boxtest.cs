@@ -16,6 +16,7 @@ namespace dreidengine
             : base(game)
         {
             ModelName = name;
+            
         }
     }
 }

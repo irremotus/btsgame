@@ -17,9 +17,12 @@ namespace dreidengine
         private Model model;
         private float rotation;
 
+        private Box collisionPrimitive;
+
         public Vector3 Position
         {
             get { return position; }
+            set { position = value; updatePosition(); }
         }
         public float Rotation
         {
@@ -54,9 +57,9 @@ namespace dreidengine
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
             
-            Box box = new Box(position, Matrix.Identity, scale);
+            collisionPrimitive = new Box(position, Matrix.Identity, scale);
             
-            _skin.AddPrimitive(box, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
 
             Vector3 com = SetMass(1.0f);
 
@@ -68,6 +71,11 @@ namespace dreidengine
         protected override void LoadContent()
         {
             model = Game.Content.Load<Model>(_modelName);
+        }
+
+        void updatePosition()
+        {
+            _skin.ApplyLocalTransform(new JigLibX.Math.Transform(position, Matrix.CreateRotationY(rotation)));
         }
 
         private Vector3 SetMass(float mass)

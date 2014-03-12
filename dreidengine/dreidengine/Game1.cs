@@ -27,6 +27,10 @@ namespace dreidengine
         boxtest testBox;
 
         SpriteFont font;
+
+        SampleGrid grid;
+
+        debug d;
         /*
         private Matrix _view;
         public Matrix View
@@ -69,6 +73,15 @@ namespace dreidengine
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
+
+            grid = new SampleGrid();
+            grid.GridColor = Color.LimeGreen;
+            grid.GridScale = 1.0f;
+            grid.GridSize = 32;
+
+            grid.WorldMatrix = Matrix.Identity;
+
+
             fallingBox = new BoxActor(this, new Vector3(0, 50, 0.5f), new Vector3(1, 1, 1));
            // immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
 
@@ -79,6 +92,11 @@ namespace dreidengine
             //immovableBox.Body.Immovable = true;
             testBox.Body.Immovable = true;
             BoxActor ba = new BoxActor(this, new Vector3(0, 20, 0), new Vector3(2, 2, 2));
+
+//#if DEBUG
+            d = new debug(this);
+            Components.Add(d);
+//#endif
             Components.Add(ba);
             Components.Add(testBox);
             Components.Add(fallingBox);
@@ -97,6 +115,7 @@ namespace dreidengine
         
         protected override void LoadContent()
         {
+            grid.LoadGraphicsContent(graphics.GraphicsDevice);
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);            
         }
@@ -111,6 +130,9 @@ namespace dreidengine
         protected override void Update(GameTime gameTime)
         {
             keys = Keyboard.GetState();
+
+            grid.ViewMatrix = Camera.View;
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
             if (keys.IsKeyDown(Keys.OemPlus))
@@ -153,8 +175,9 @@ namespace dreidengine
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            grid.Draw();
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, _camera.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            spriteBatch.DrawString(font, d.j.ToString(), new Vector2(50, 50), Color.Red); 
             spriteBatch.End();
             base.Draw(gameTime);
         }
