@@ -1,3 +1,0 @@
-Content\box.xnb
-Content\cone.xnb
-Content\cone2.xnb

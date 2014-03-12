@@ -10,12 +10,21 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class RenderableObject : DrawableGameComponent
+    public class RenderableObject : DrawableGameComponent
     {
         private Vector3 position;
         private Vector3 scale;
         private Model model;
         private float rotation;
+
+        public Vector3 Position
+        {
+            get { return position; }
+        }
+        public float Rotation
+        {
+            get { return rotation; }
+        }
 
         private string _modelName;
         public string ModelName
@@ -39,14 +48,13 @@ namespace dreidengine
             : base(game)
         {
             //_modelName = "box";
-            position = new Vector3(0,0,1);
+            position = new Vector3(0,1,0);
             scale = new Vector3(0.5f, 0.5f, 0.5f);
             _body = new Body();
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
-
-            Box box = new Box(Vector3.Zero, Matrix.Identity, scale);
             
+            Box box = new Box(position, Matrix.Identity, scale);
             
             _skin.AddPrimitive(box, new MaterialProperties(0.8f, 0.8f, 0.7f));
 
@@ -105,8 +113,8 @@ namespace dreidengine
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = transforms[mesh.ParentBone.Index] * worldMatrix;
-                    effect.View = game.View;
-                    effect.Projection = game.Projection;
+                    effect.View = game.Camera.View;
+                    effect.Projection = game.Camera.Projection;
                 }
                 mesh.Draw();
             }
