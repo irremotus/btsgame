@@ -66,7 +66,7 @@ namespace dreidengine
             Box box = new Box(position, Matrix.Identity, 2*scale);
             
 
-            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.BouncySmooth);
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
 
             Vector3 com = SetMass(1.0f);
 

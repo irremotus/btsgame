@@ -72,7 +72,7 @@ namespace dreidengine
 
 
             testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(10,5,10));
-            fallBox = new boxtest(this, "box", new Vector3(0, 50, 0));
+            fallBox = new boxtest(this, "box", new Vector3(0, 150, 0));
             //fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
             //fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
             ///i hate my life so much
