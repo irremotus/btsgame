@@ -10,7 +10,7 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class BoxActor : DrawableGameComponent
+    public class BoxActor : DrawableGameComponent
     {
         private Vector3 position;
         private Vector3 scale;
@@ -96,8 +96,8 @@ namespace dreidengine
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = transforms[mesh.ParentBone.Index] * worldMatrix;
-                    effect.View = game.View;
-                    effect.Projection = game.Projection;
+                    effect.View = game.Camera.View;
+                    effect.Projection = game.Camera.Projection;
                 }
                 mesh.Draw();
             }

@@ -10,15 +10,27 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class Camera : GameComponent
+    public class Camera : GameComponent
     {
-        private Vector3 position;
-        private RenderableObject followObject;
+        //private RenderableObject followObject; /* for RenderableObject */
+        private BoxActor followObject;
         private float aspectRatio;
         private float nearClip;
         private float farClip;
-        private static Matrix _view;
-        public static Matrix View
+        private Vector3 _position;
+        public Vector3 Position
+        {
+            get { return _position; }
+        }
+        private Vector3 _positionOffset;
+        public Vector3 PositionOffset
+        {
+            get { return _positionOffset; }
+            set { _positionOffset = value; }
+        }
+        private Quaternion rotation;
+        private Matrix _view;
+        public Matrix View
         {
             get { return _view; }
         }
@@ -27,39 +39,45 @@ namespace dreidengine
         {
             get { return _projection; }
         }
-        private float _followDistance;
-        public float FollowDistance
+        private Vector3 _followDistance;
+        public Vector3 FollowDistance
         {
             get { return _followDistance; }
             set { _followDistance = value; }
         }
 
-        public Camera(Game game, RenderableObject followObject, float aspectRatio, float nearClip, float farClip)
+        public Camera(Game game, /*RenderableObject*//* for RenderableObject */ BoxActor followObject, Vector3 followDistance, float aspectRatio, float nearClip, float farClip)
             : base(game)
         {
             this.followObject = followObject;
+            this._followDistance = followDistance;
             this.aspectRatio = aspectRatio;
             this.nearClip = nearClip;
             this.farClip = farClip;
+
+            _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            Vector3 campos = _followDistance;
 
-            Vector3 campos = new Vector3(0, 0.0f, 0.6f);
-            Quaternion camrot = Quaternion.Identity;
-
-            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(camrot));
+            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(rotation));
+            //campos += followObject.Position; /* for RenderableObject */
             campos += followObject.Body.Position;
+            //_position += _positionOffset; /* to move the camera */
 
+            Quaternion objrot = Quaternion.CreateFromRotationMatrix(followObject.Body.Orientation);
+            
             Vector3 camup = Vector3.Up;
-            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(camrot));
+            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(rotation));
 
-            camrot = Quaternion.Lerp(camrot, followObject.Body.Rotation, 0.1f);
+            rotation = Quaternion.Lerp(rotation, objrot, 0.5f);
 
-            _view = Matrix.CreateLookAt(campos, followObject.Body.Position, camup);
-            _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
+            _view = Matrix.CreateLookAt(campos, /*followObject.Position*//* for RenderableObject */ followObject.Body.Position + new Vector3(0.0f, 0.0f, 0.0f), camup);
+            _position = campos;
+
+            base.Update(gameTime);
         }
     }
 }
