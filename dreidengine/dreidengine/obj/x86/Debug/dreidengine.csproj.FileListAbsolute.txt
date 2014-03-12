@@ -1,26 +1,11 @@
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.exe
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.pdb
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.csprojResolveAssemblyReference.cache
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
-C:\Users\Cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb
-<<<<<<< HEAD
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.exe
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.pdb
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.csprojResolveAssemblyReference.cache
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone.xnb
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone2.xnb
-=======
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.exe
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.pdb
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.csprojResolveAssemblyReference.cache
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
->>>>>>> added camera class
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.csprojResolveAssemblyReference.cache
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone.xnb
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone2.xnb
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.exe
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.pdb
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\JigLibX.dll
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\SpriteFont1.xnb

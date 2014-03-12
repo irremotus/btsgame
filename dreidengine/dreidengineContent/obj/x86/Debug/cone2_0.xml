@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Cone</Name>
     <Identity>
-      <SourceFilename>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\cone2.fbx</SourceFilename>
+      <SourceFilename>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\cone2.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>7.54979E-08 0 -1 0 -1 0 -7.54979E-08 0 0 1 0 0 0 0 0 1</Transform>
@@ -25,7 +25,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>unnamed</Name>
       <Identity>
-        <SourceFilename>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\cone2.fbx</SourceFilename>
+        <SourceFilename>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\cone2.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

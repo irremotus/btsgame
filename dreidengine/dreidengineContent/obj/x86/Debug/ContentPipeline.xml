@@ -7,28 +7,12 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-<<<<<<< HEAD
-      <Output>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb</Output>
-      <Time>2014-03-11T21:30:49.7121345-06:00</Time>
+      <Output>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb</Output>
+      <Time>2014-03-12T09:42:52.9009826-06:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\box_0.xml</Key>
-        <Value>2014-03-11T21:55:19.1265494-06:00</Value>
-=======
-      <Output>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb</Output>
-      <Time>2014-03-12T05:07:57.2110442-06:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\box_0.xml</Key>
-        <Value>2014-03-11T22:28:45.3095032-06:00</Value>
->>>>>>> added camera class
+        <Value>2014-03-12T09:44:49.085628-06:00</Value>
       </Dependency>
-    </Item>
-    <Item>
-      <Source>box.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\box_0.xml</Output>
-<<<<<<< HEAD
-      <Time>2014-03-11T21:30:49.7121345-06:00</Time>
     </Item>
     <Item>
       <Source>cone.fbx</Source>
@@ -36,19 +20,12 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone.xnb</Output>
-      <Time>2014-03-11T23:42:09.3801928-06:00</Time>
+      <Output>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone.xnb</Output>
+      <Time>2014-03-12T09:42:52.9019827-06:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\cone_0.xml</Key>
-        <Value>2014-03-11T23:42:25.7170364-06:00</Value>
+        <Value>2014-03-12T09:44:49.3526433-06:00</Value>
       </Dependency>
-    </Item>
-    <Item>
-      <Source>cone.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\cone_0.xml</Output>
-      <Time>2014-03-11T23:42:09.3801928-06:00</Time>
     </Item>
     <Item>
       <Source>cone2.fbx</Source>
@@ -56,22 +33,42 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone2.xnb</Output>
-      <Time>2014-03-11T23:47:19.0152946-06:00</Time>
+      <Output>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone2.xnb</Output>
+      <Time>2014-03-12T09:42:52.9029827-06:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\cone2_0.xml</Key>
-        <Value>2014-03-11T23:47:34.8985797-06:00</Value>
+        <Value>2014-03-12T09:44:49.4576493-06:00</Value>
       </Dependency>
+    </Item>
+    <Item>
+      <Source>box.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\box_0.xml</Output>
+      <Time>2014-03-12T09:42:52.9009826-06:00</Time>
+    </Item>
+    <Item>
+      <Source>cone.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\cone_0.xml</Output>
+      <Time>2014-03-12T09:42:52.9019827-06:00</Time>
     </Item>
     <Item>
       <Source>cone2.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\cone2_0.xml</Output>
-      <Time>2014-03-11T23:47:19.0152946-06:00</Time>
-=======
-      <Time>2014-03-12T05:07:57.2110442-06:00</Time>
->>>>>>> added camera class
+      <Time>2014-03-12T09:42:52.9029827-06:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2014-03-12T09:45:56.502484-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -79,17 +76,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-<<<<<<< HEAD
-      <RootDirectory>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\</OutputDirectory>
-=======
-      <RootDirectory>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\</OutputDirectory>
->>>>>>> added camera class
+      <RootDirectory>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -118,11 +108,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-<<<<<<< HEAD
-        <Value>2014-03-11T21:42:56.676305-06:00</Value>
-=======
-        <Value>2014-03-11T22:26:18.8545058-06:00</Value>
->>>>>>> added camera class
+        <Value>2013-11-01T20:47:31.8822636-06:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

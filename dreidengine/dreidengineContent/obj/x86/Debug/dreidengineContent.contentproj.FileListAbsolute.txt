@@ -1,6 +1,1 @@
-c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\dreidengineContent.contentprojResolveAssemblyReference.cache
-<<<<<<< HEAD
-C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\dreidengineContent.contentprojResolveAssemblyReference.cache
-=======
-C:\Users\Kevin Schmittle\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\dreidengineContent.contentprojResolveAssemblyReference.cache
->>>>>>> added camera class
+C:\Users\Cnidaria\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\dreidengineContent.contentprojResolveAssemblyReference.cache
