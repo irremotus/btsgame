@@ -68,7 +68,7 @@ namespace dreidengine
 
         private void InitializePhyics()
         {
-            this.IsMouseVisible = true;
+           
             
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
@@ -82,16 +82,21 @@ namespace dreidengine
             grid.WorldMatrix = Matrix.Identity;
 
 
-            fallingBox = new BoxActor(this, new Vector3(0, 50, 0.5f), new Vector3(1, 1, 1));
-           // immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
+            fallingBox = new BoxActor(this, new Vector3(0, 50, 0f), new Vector3(1, 1, 1));
+            immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
 
             
 
-            testBox = new boxtest(this, "cone2");
-            _camera = new Camera(this, fallingBox, new Vector3(5.0f, 5.0f, 5.0f), 6/8f, 0.1f, 10000.0f);
-            //immovableBox.Body.Immovable = true;
+            testBox = new boxtest(this, "box");
+            
+            immovableBox.Body.Immovable = true;
             testBox.Body.Immovable = true;
+
             BoxActor ba = new BoxActor(this, new Vector3(0, 20, 0), new Vector3(2, 2, 2));
+            
+
+
+            _camera = new Camera(this, testBox, new Vector3(0.0f, 0.0f, 50.0f), 6 / 8f, 0.1f, 10000.0f);
 
 //#if DEBUG
             d = new debug(this);
@@ -101,14 +106,14 @@ namespace dreidengine
             Components.Add(testBox);
             Components.Add(fallingBox);
             Components.Add(_camera);
-           // Components.Add(immovableBox);
+            Components.Add(immovableBox);
         }
 
         
         protected override void Initialize()
         {
-            
 
+            this.IsMouseVisible = false;
             base.Initialize();
         }
 
@@ -135,6 +140,10 @@ namespace dreidengine
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
+
+
+
+
             if (keys.IsKeyDown(Keys.OemPlus))
                 _camera.PositionOffset += new Vector3(0, 0, 1);
             if (keys.IsKeyDown(Keys.OemMinus))
