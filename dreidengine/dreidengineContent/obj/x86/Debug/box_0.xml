@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Cube</Name>
     <Identity>
-      <SourceFilename>C:\Users\Cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
+      <SourceFilename>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>3.774895E-08 0 -0.5 0 -0.5 0 -3.774895E-08 0 0 0.5 0 0 0.0319407 -0.0557374954 0.03451109 1</Transform>
@@ -25,7 +25,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>unnamed</Name>
       <Identity>
-        <SourceFilename>C:\Users\Cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
+        <SourceFilename>C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\box.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

@@ -24,7 +24,7 @@ namespace dreidengine
         KeyboardState keys, oldKeys;
         BoxActor fallingBox;
         BoxActor immovableBox;
-
+        boxtest testBox;
     
 
         private Matrix _view;
@@ -61,10 +61,14 @@ namespace dreidengine
 
             fallingBox = new BoxActor(this, new Vector3(0, 50, 0), new Vector3(1, 1, 1));
             immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
-
+            testBox = new boxtest(this, "cone2");
             immovableBox.Body.Immovable = true;
+            testBox.Body.Immovable = true;
+            BoxActor ba = new BoxActor(this, new Vector3(0, 20, 0), new Vector3(2, 2, 2));
+            Components.Add(ba);
+            Components.Add(testBox);
             Components.Add(fallingBox);
-            Components.Add(immovableBox);
+           // Components.Add(immovableBox);
         }
 
         

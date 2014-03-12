@@ -1,1 +1,2 @@
 c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\dreidengineContent.contentprojResolveAssemblyReference.cache
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengineContent\obj\x86\Debug\dreidengineContent.contentprojResolveAssemblyReference.cache

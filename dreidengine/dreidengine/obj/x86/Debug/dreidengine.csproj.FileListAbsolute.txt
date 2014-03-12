@@ -5,3 +5,12 @@ c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\
 c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
 c:\users\cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
 C:\Users\Cnidaria\documents\visual studio 2010\Projects\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\box.xnb
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.exe
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\dreidengine.pdb
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.csprojResolveAssemblyReference.cache
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.exe
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\obj\x86\Debug\dreidengine.pdb
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone.xnb
+C:\Users\Pascal\Documents\GitHub\dreidengine\dreidengine\dreidengine\bin\x86\Debug\Content\cone2.xnb
