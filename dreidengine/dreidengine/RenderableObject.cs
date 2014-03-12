@@ -12,10 +12,16 @@ namespace dreidengine
 {
     public class RenderableObject : DrawableGameComponent
     {
-        private Vector3 position;
-        private Vector3 scale;
+        private Vector3 position = Vector3.Zero;
+        private Vector3 scale = Vector3.One;
         private Model model;
         private float rotation;
+
+        public Vector3 Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
 
         public Vector3 Position
         {
@@ -48,21 +54,19 @@ namespace dreidengine
         public RenderableObject(Game game) 
             : base(game)
         {
-            //_modelName = "box";
-            //position = new Vector3(0,0,0);
             setBody(Vector3.Zero);  
         }
 
         public void setBody(Vector3 position)
         {
-            scale = new Vector3(1f, 1f, 1f);
             _body = new Body();
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
 
-            Box box = new Box(position, Matrix.Identity, scale);
+            Box box = new Box(position, Matrix.Identity, 2*scale);
+            
 
-            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NormalNormal);
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.BouncySmooth);
 
             Vector3 com = SetMass(1.0f);
 
@@ -108,6 +112,9 @@ namespace dreidengine
         {
             Game1 game = (Game1)Game;
 
+            RasterizerState rasterizerState = new RasterizerState();
+            rasterizerState.FillMode = FillMode.WireFrame;
+            GraphicsDevice.RasterizerState = rasterizerState;
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
 

@@ -71,10 +71,10 @@ namespace dreidengine
             world.CollisionSystem = new CollisionSystemSAP();
 
 
-            testBox = new boxtest(this, "box");
-            fallBox = new boxtest(this, "box", new Vector3(0, 70, 0));
-            fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
-            fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
+            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(10,5,10));
+            fallBox = new boxtest(this, "box", new Vector3(0, 50, 0));
+            //fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
+            //fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
             ///i hate my life so much
             _camera = new Camera(this, testBox, new Vector3(20.0f, 20.0f, 20.0f), 6/8f, 0.1f, 10000.0f);
 
@@ -83,8 +83,8 @@ namespace dreidengine
             
             Components.Add(testBox);
             Components.Add(fallBox);
-            Components.Add(fall2box);
-            Components.Add(fall3box);
+            //Components.Add(fall2box);
+            //Components.Add(fall3box);
             Components.Add(_camera);
         
         }
@@ -158,7 +158,7 @@ namespace dreidengine
             GraphicsDevice.Clear((flag)?Color.Green:Color.Red);
             //flag = (flag) ? false : true;
             spriteBatch.Begin();
-            //spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
             spriteBatch.End();
             base.Draw(gameTime);
         }
