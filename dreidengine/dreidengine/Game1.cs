@@ -22,9 +22,10 @@ namespace dreidengine
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
-        BoxActor fallingBox;
-        BoxActor immovableBox;
-        boxtest testBox;
+ 
+        boxtest testBox, fallBox;
+
+        bool flag = true;
 
         SpriteFont font;
         /*
@@ -69,28 +70,19 @@ namespace dreidengine
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
-<<<<<<< HEAD
-            fallingBox = new BoxActor(this, new Vector3(0, 50, 0), new Vector3(1, 1, 1));
-            immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
+
             testBox = new boxtest(this, "box");
-            immovableBox.Body.Immovable = true;
-=======
-            fallingBox = new BoxActor(this, new Vector3(0, 50, 0.5f), new Vector3(1, 1, 1));
-           // immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
+            fallBox = new boxtest(this, "box", new Vector3(0,50,0));
 
-            
+            _camera = new Camera(this, testBox, new Vector3(5.0f, 5.0f, 5.0f), 6/8f, 0.1f, 10000.0f);
 
-            testBox = new boxtest(this, "cone2");
-            _camera = new Camera(this, fallingBox, new Vector3(5.0f, 5.0f, 5.0f), 6/8f, 0.1f, 10000.0f);
-            //immovableBox.Body.Immovable = true;
->>>>>>> be6a6a3af88069643deaa0f6c1764364eaf935bf
             testBox.Body.Immovable = true;
-            BoxActor ba = new BoxActor(this, new Vector3(0, 20, 0), new Vector3(2, 2, 2));
-            Components.Add(ba);
+            fallBox.Body.Immovable = false;  
+            
             Components.Add(testBox);
-            Components.Add(fallingBox);
+            Components.Add(fallBox);
             Components.Add(_camera);
-           // Components.Add(immovableBox);
+        
         }
 
         
@@ -159,9 +151,10 @@ namespace dreidengine
         
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear((flag)?Color.Green:Color.Red);
+            flag = (flag) ? false : true;
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, _camera.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
             spriteBatch.End();
             base.Draw(gameTime);
         }

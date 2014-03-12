@@ -20,6 +20,7 @@ namespace dreidengine
         public Vector3 Position
         {
             get { return position; }
+            set { position = value; }
         }
         public float Rotation
         {
@@ -48,15 +49,20 @@ namespace dreidengine
             : base(game)
         {
             //_modelName = "box";
-            position = new Vector3(0,1,0);
-            scale = new Vector3(0.5f, 0.5f, 0.5f);
+            //position = new Vector3(0,0,0);
+            setBody(Vector3.Zero);  
+        }
+
+        public void setBody(Vector3 position)
+        {
+            scale = new Vector3(1f, 1f, 1f);
             _body = new Body();
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
-            
+
             Box box = new Box(position, Matrix.Identity, scale);
-            
-            _skin.AddPrimitive(box, new MaterialProperties(0.8f, 0.8f, 0.7f));
+
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.BouncySmooth);
 
             Vector3 com = SetMass(1.0f);
 
@@ -64,6 +70,7 @@ namespace dreidengine
             _skin.ApplyLocalTransform(new JigLibX.Math.Transform(-com, Matrix.Identity));
             _body.EnableBody();
         }
+
 
         protected override void LoadContent()
         {
