@@ -61,7 +61,7 @@ namespace dreidengine
 
             fallingBox = new BoxActor(this, new Vector3(0, 50, 0), new Vector3(1, 1, 1));
             immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
-            testBox = new boxtest(this, "cone2");
+            testBox = new boxtest(this, "box");
             immovableBox.Body.Immovable = true;
             testBox.Body.Immovable = true;
             BoxActor ba = new BoxActor(this, new Vector3(0, 20, 0), new Vector3(2, 2, 2));
