@@ -33,6 +33,8 @@ namespace dreidengine
 
         SampleGrid grid;
 
+        HeightmapObject heightmapObj;
+
         debug d;
         /*
         private Matrix _view;
@@ -116,7 +118,9 @@ namespace dreidengine
         {
             grid.LoadGraphicsContent(graphics.GraphicsDevice);
             terrainModel = Content.Load<Model>("terrain");
-            
+            heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
+            heightmapObj.PhysicsBody.Immovable = false;
+            this.Components.Add(heightmapObj);
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);            
         }
@@ -182,10 +186,11 @@ namespace dreidengine
         {
             GraphicsDevice.Clear((flag) ? Color.Black : Color.Red);
             //flag = (flag) ? false : true;
+            //heightmapObj.Visible = (heightmapObj.Visible) ? false : true;
             grid.Draw();
             spriteBatch.Begin();
        
-           // spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            spriteBatch.DrawString(font, heightmapObj.PhysicsBody.Position.ToString(), new Vector2(50, 50), Color.Red); 
 
             spriteBatch.End();
             base.Draw(gameTime);

@@ -75,12 +75,15 @@ namespace dreidengine
 
                 model.CopyAbsoluteBoneTransformsTo(boneTransforms);
 
+                RasterizerState r = new RasterizerState();
+                r.FillMode = FillMode.WireFrame;
+
                 Camera camera = ((Game1)this.Game).Camera;
+                this.Game.GraphicsDevice.RasterizerState = r;
                 foreach (ModelMesh mesh in model.Meshes)
                 {
                     foreach (BasicEffect effect in mesh.Effects)
                     {
-
                         // the body has an orientation but also the primitives in the collision skin
                         // owned by the body can be rotated!
                         if(body.CollisionSkin != null)
