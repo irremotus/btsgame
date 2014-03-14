@@ -19,6 +19,7 @@ namespace dreidengine
     {
         private bool flagMovable = false;
 
+        #region Constructors
         public boxtest(Game game, string name) 
             : base(game)
         {
@@ -49,8 +50,9 @@ namespace dreidengine
             flagMovable = movable;
             setBody(position);
         }
+        #endregion
 
-         public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
          {
              if (flagMovable)
              {
