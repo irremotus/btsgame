@@ -16,7 +16,6 @@ namespace dreidengine
             : base(game)
         {
             ModelName = name;
-            
         }
         public boxtest(Game game, string name, Vector3 position)
             : base(game)

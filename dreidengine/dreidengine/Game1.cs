@@ -12,6 +12,7 @@ using JigLibX.Physics;
 using JigLibX.Geometry;
 using JigLibX.Collision;
 
+
 namespace dreidengine
 {
   
@@ -79,25 +80,16 @@ namespace dreidengine
 
             grid.WorldMatrix = Matrix.Identity;
 
-            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(10,5,10));
-            fallBox = new boxtest(this, "box", new Vector3(0, 150, 0));
+            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1));
+            fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
+            //WTF IS THIS SHIT
             //fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
             //fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
             ///i hate my life so much
-            _camera = new Camera(this, testBox, new Vector3(20.0f, 20.0f, 20.0f), 6/8f, 0.1f, 10000.0f);
 
-            testBox = new boxtest(this, "box");
-            
-            testBox.Body.Immovable = true;
+            _camera = new Camera(this, testBox, new Vector3(0.0f, 0.0f, 30.0f), 6 / 8f, 0.1f, 10000.0f);
 
-            _camera = new Camera(this, testBox, new Vector3(0.0f, 0.0f, 50.0f), 6 / 8f, 0.1f, 10000.0f);
-
-//#if DEBUG
-            d = new debug(this);
-            Components.Add(d);
-//#endif
-
-            testBox.Body.Immovable = true;
+            testBox.Body.Immovable = true;            
             fallBox.Body.Immovable = false;  
             
             Components.Add(testBox);
@@ -135,6 +127,7 @@ namespace dreidengine
             keys = Keyboard.GetState();
 
             grid.ViewMatrix = Camera.View;
+            grid.ProjectionMatrix = Camera.Projection;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
@@ -181,7 +174,7 @@ namespace dreidengine
         
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear((flag) ? Color.Green : Color.Red);
+            GraphicsDevice.Clear((flag) ? Color.Black : Color.Red);
             //flag = (flag) ? false : true;
             grid.Draw();
             spriteBatch.Begin();

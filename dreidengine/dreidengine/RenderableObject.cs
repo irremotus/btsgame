@@ -69,7 +69,7 @@ namespace dreidengine
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
 
-            Box box = new Box(position, Matrix.Identity, 2*scale);
+            Box box = new Box(position, Matrix.Identity, scale);
  
             collisionPrimitive = new Box(position, Matrix.Identity, scale);
             
@@ -127,7 +127,7 @@ namespace dreidengine
             Game1 game = (Game1)Game;
 
             RasterizerState rasterizerState = new RasterizerState();
-            rasterizerState.FillMode = FillMode.WireFrame;
+            rasterizerState.FillMode = FillMode.Solid;
             GraphicsDevice.RasterizerState = rasterizerState;
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
