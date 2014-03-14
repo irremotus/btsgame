@@ -80,22 +80,25 @@ namespace dreidengine
 
             grid.WorldMatrix = Matrix.Identity;
 
-            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1));
+            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(10, 1, 10));
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
+     
             //WTF IS THIS SHIT
-            //fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
-            //fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
+            fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
+            fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
             ///i hate my life so much
 
-            _camera = new Camera(this, testBox, new Vector3(0.0f, 0.0f, 30.0f), 6 / 8f, 0.1f, 10000.0f);
+            _camera = new Camera(this, testBox, new Vector3(0.0f, 10.0f, 20.0f), 6 / 8f, 0.1f, 10000.0f);
 
             testBox.Body.Immovable = true;            
-            fallBox.Body.Immovable = false;  
-            
+            //fallBox.Body.Immovable = false;  
+
+            //Components.Add(a);
+            //Components.Add(b);
             Components.Add(testBox);
             Components.Add(fallBox);
-            //Components.Add(fall2box);
-            //Components.Add(fall3box);
+            Components.Add(fall2box);
+            Components.Add(fall3box);
             Components.Add(_camera);
         }
 
@@ -179,7 +182,7 @@ namespace dreidengine
             grid.Draw();
             spriteBatch.Begin();
        
-            spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+           // spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
 
             spriteBatch.End();
             base.Draw(gameTime);

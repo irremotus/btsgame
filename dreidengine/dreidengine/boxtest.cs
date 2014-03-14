@@ -30,6 +30,7 @@ namespace dreidengine
             ModelName = name;
             Position = position;
             Scale = scale;
+            setBody(position);
         }
     }
 }

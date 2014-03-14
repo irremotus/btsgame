@@ -16,8 +16,6 @@ namespace dreidengine
         private Vector3 scale = Vector3.One;
         private Model model;
         private float rotation;
-
-
         private Box collisionPrimitive;
 
         public Vector3 Scale
@@ -26,14 +24,12 @@ namespace dreidengine
             set { scale = value; }
         }
 
-
         public Vector3 Position
         {
             get { return position; }
-
             set { position = value; updatePosition(); }
-
         }
+
         public float Rotation
         {
             get { return rotation; }
@@ -60,7 +56,7 @@ namespace dreidengine
         public RenderableObject(Game game) 
             : base(game)
         {
-            setBody(Vector3.Zero);  
+            setBody(position);  
         }
 
         public void setBody(Vector3 position)
