@@ -17,24 +17,22 @@ namespace dreidengine
         private Model model;
         private float rotation;
 
-<<<<<<< HEAD
+
         private Box collisionPrimitive;
-=======
+
         public Vector3 Scale
         {
             get { return scale; }
             set { scale = value; }
         }
->>>>>>> origin/Testing-issues
+
 
         public Vector3 Position
         {
             get { return position; }
-<<<<<<< HEAD
+
             set { position = value; updatePosition(); }
-=======
-            set { position = value; }
->>>>>>> origin/Testing-issues
+
         }
         public float Rotation
         {
@@ -72,15 +70,12 @@ namespace dreidengine
             _body.CollisionSkin = _skin;
 
             Box box = new Box(position, Matrix.Identity, 2*scale);
-            
-<<<<<<< HEAD
+ 
             collisionPrimitive = new Box(position, Matrix.Identity, scale);
             
             _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
-=======
 
             _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
->>>>>>> origin/Testing-issues
 
             Vector3 com = SetMass(1.0f);
 
