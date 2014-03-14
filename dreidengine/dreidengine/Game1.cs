@@ -12,12 +12,13 @@ using JigLibX.Physics;
 using JigLibX.Geometry;
 using JigLibX.Collision;
 
-
 namespace dreidengine
 {
   
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+
+        Model terrainModel;
         
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -114,6 +115,8 @@ namespace dreidengine
         protected override void LoadContent()
         {
             grid.LoadGraphicsContent(graphics.GraphicsDevice);
+            terrainModel = Content.Load<Model>("terrain");
+            
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);            
         }
