@@ -22,9 +22,10 @@ namespace dreidengine
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
-        BoxActor fallingBox;
-        BoxActor immovableBox;
-        boxtest testBox;
+ 
+        boxtest testBox, fallBox, fall2box, fall3box;
+
+        bool flag = true;
 
         SpriteFont font;
 
@@ -68,11 +69,16 @@ namespace dreidengine
 
         private void InitializePhyics()
         {
+<<<<<<< HEAD
            
+=======
+            //this.IsMouseVisible = true;
+>>>>>>> origin/Testing-issues
             
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
+<<<<<<< HEAD
 
             grid = new SampleGrid();
             grid.GridColor = Color.LimeGreen;
@@ -84,9 +90,17 @@ namespace dreidengine
 
             fallingBox = new BoxActor(this, new Vector3(0, 50, 0f), new Vector3(1, 1, 1));
             immovableBox = new BoxActor(this, new Vector3(0, -5, 0), new Vector3(5, 5, 5));
+=======
+>>>>>>> origin/Testing-issues
 
-            
+            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(10,5,10));
+            fallBox = new boxtest(this, "box", new Vector3(0, 150, 0));
+            //fall2box = new boxtest(this, "box", new Vector3(0, 50, 0));
+            //fall3box = new boxtest(this, "box", new Vector3(0, 40, 0));
+            ///i hate my life so much
+            _camera = new Camera(this, testBox, new Vector3(20.0f, 20.0f, 20.0f), 6/8f, 0.1f, 10000.0f);
 
+<<<<<<< HEAD
             testBox = new boxtest(this, "box");
             
             immovableBox.Body.Immovable = true;
@@ -103,10 +117,21 @@ namespace dreidengine
             Components.Add(d);
 //#endif
             Components.Add(ba);
+=======
+            testBox.Body.Immovable = true;
+            fallBox.Body.Immovable = false;  
+            
+>>>>>>> origin/Testing-issues
             Components.Add(testBox);
-            Components.Add(fallingBox);
+            Components.Add(fallBox);
+            //Components.Add(fall2box);
+            //Components.Add(fall3box);
             Components.Add(_camera);
+<<<<<<< HEAD
             Components.Add(immovableBox);
+=======
+        
+>>>>>>> origin/Testing-issues
         }
 
         
@@ -183,10 +208,17 @@ namespace dreidengine
         
         protected override void Draw(GameTime gameTime)
         {
+<<<<<<< HEAD
             GraphicsDevice.Clear(Color.CornflowerBlue);
             grid.Draw();
             spriteBatch.Begin();
             spriteBatch.DrawString(font, d.j.ToString(), new Vector2(50, 50), Color.Red); 
+=======
+            GraphicsDevice.Clear((flag)?Color.Green:Color.Red);
+            //flag = (flag) ? false : true;
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+>>>>>>> origin/Testing-issues
             spriteBatch.End();
             base.Draw(gameTime);
         }

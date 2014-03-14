@@ -12,17 +12,29 @@ namespace dreidengine
 {
     public class RenderableObject : DrawableGameComponent
     {
-        private Vector3 position;
-        private Vector3 scale;
+        private Vector3 position = Vector3.Zero;
+        private Vector3 scale = Vector3.One;
         private Model model;
         private float rotation;
 
+<<<<<<< HEAD
         private Box collisionPrimitive;
+=======
+        public Vector3 Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+>>>>>>> origin/Testing-issues
 
         public Vector3 Position
         {
             get { return position; }
+<<<<<<< HEAD
             set { position = value; updatePosition(); }
+=======
+            set { position = value; }
+>>>>>>> origin/Testing-issues
         }
         public float Rotation
         {
@@ -50,16 +62,25 @@ namespace dreidengine
         public RenderableObject(Game game) 
             : base(game)
         {
-            //_modelName = "box";
-            position = new Vector3(0,1,0);
-            scale = new Vector3(0.5f, 0.5f, 0.5f);
+            setBody(Vector3.Zero);  
+        }
+
+        public void setBody(Vector3 position)
+        {
             _body = new Body();
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
+
+            Box box = new Box(position, Matrix.Identity, 2*scale);
             
+<<<<<<< HEAD
             collisionPrimitive = new Box(position, Matrix.Identity, scale);
             
             _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
+=======
+
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
+>>>>>>> origin/Testing-issues
 
             Vector3 com = SetMass(1.0f);
 
@@ -67,6 +88,7 @@ namespace dreidengine
             _skin.ApplyLocalTransform(new JigLibX.Math.Transform(-com, Matrix.Identity));
             _body.EnableBody();
         }
+
 
         protected override void LoadContent()
         {
@@ -109,6 +131,9 @@ namespace dreidengine
         {
             Game1 game = (Game1)Game;
 
+            RasterizerState rasterizerState = new RasterizerState();
+            rasterizerState.FillMode = FillMode.WireFrame;
+            GraphicsDevice.RasterizerState = rasterizerState;
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
 

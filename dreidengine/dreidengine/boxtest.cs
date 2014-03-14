@@ -18,5 +18,19 @@ namespace dreidengine
             ModelName = name;
             
         }
+        public boxtest(Game game, string name, Vector3 position)
+            : base(game)
+        {
+            ModelName = name;
+            Position = position;
+            setBody(position);
+        }
+        public boxtest(Game game, string name, Vector3 position, Vector3 scale)
+            : base(game)
+        {
+            ModelName = name;
+            Position = position;
+            Scale = scale;
+        }
     }
 }

@@ -12,7 +12,11 @@ namespace dreidengine
 {
     public class Camera : GameComponent
     {
+<<<<<<< HEAD
         private RenderableObject followObject; // for RenderableObject 
+=======
+        private RenderableObject followObject; /* for RenderableObject */
+>>>>>>> origin/Testing-issues
         //private BoxActor followObject;
         private float aspectRatio;
         private float nearClip;
@@ -46,7 +50,11 @@ namespace dreidengine
             set { _followDistance = value; }
         }
 
+<<<<<<< HEAD
         public Camera(Game game, RenderableObject /*for RenderableObject */ followObject, Vector3 followDistance, float aspectRatio, float nearClip, float farClip)
+=======
+        public Camera(Game game, RenderableObject/* for RenderableObject */  followObject, Vector3 followDistance, float aspectRatio, float nearClip, float farClip)
+>>>>>>> origin/Testing-issues
             : base(game)
         {
             this.followObject = followObject;
