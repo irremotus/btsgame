@@ -24,6 +24,15 @@ namespace dreidengine
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
+        
+        public KeyboardState Keysp
+        {
+            get { return keys; }
+        }
+        public KeyboardState OldKeysp
+        {
+            get { return oldKeys; }
+        }
  
         boxtest testBox, fallBox, fall2box, fall3box;
 
@@ -83,7 +92,7 @@ namespace dreidengine
 
             grid.WorldMatrix = Matrix.Identity;
 
-            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(10, 1, 10));
+            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true);
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
      
             //WTF IS THIS SHIT
@@ -93,7 +102,7 @@ namespace dreidengine
 
             _camera = new Camera(this, testBox, new Vector3(0.0f, 10.0f, 20.0f), 6 / 8f, 0.1f, 10000.0f);
 
-            testBox.Body.Immovable = true;            
+            testBox.Body.Immovable = false;            
             //fallBox.Body.Immovable = false;  
 
             //Components.Add(a);
@@ -143,7 +152,7 @@ namespace dreidengine
                 this.Exit();
 
 
-
+            #region SHITTY MOUSE STUFF THAT IISNT DOING ANYTHING
 
             if (keys.IsKeyDown(Keys.OemPlus))
                 _camera.PositionOffset += new Vector3(0, 0, 1);
@@ -174,6 +183,9 @@ namespace dreidengine
                 Mouse.SetPosition(mouse.X, y);
             }
 
+            #endregion
+
+
             float timeStep = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
             PhysicsSystem.CurrentPhysicsSystem.Integrate(timeStep);
 
@@ -190,7 +202,8 @@ namespace dreidengine
             grid.Draw();
             spriteBatch.Begin();
        
-            spriteBatch.DrawString(font, heightmapObj.PhysicsBody.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            
 
             spriteBatch.End();
             base.Draw(gameTime);

@@ -71,7 +71,7 @@ namespace dreidengine
             
             _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
 
-            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.BouncySmooth);
 
             Vector3 com = SetMass(1.0f);
 
