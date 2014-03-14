@@ -14,13 +14,18 @@ namespace dreidengine
 {
     public class HeightmapObject : PhysicObject
     {
+        HeightMapInfo heightMapInfo;
+        public HeightMapInfo HMI
+        {
+            get { return heightMapInfo; }
+        }
         public HeightmapObject(Game game, Model model,Vector2 shift)
             : base(game, model)
         {
             body = new Body(); // just a dummy. The PhysicObject uses its position to get the draw pos
             collision = new CollisionSkin(null);
 
-            HeightMapInfo heightMapInfo = model.Tag as HeightMapInfo;
+            heightMapInfo = model.Tag as HeightMapInfo;
             Array2D field = new Array2D(heightMapInfo.heights.GetUpperBound(0), heightMapInfo.heights.GetUpperBound(1));
 
             for (int x = 0; x < heightMapInfo.heights.GetUpperBound(0); x++)

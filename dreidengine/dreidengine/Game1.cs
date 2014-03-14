@@ -43,6 +43,10 @@ namespace dreidengine
         SampleGrid grid;
 
         HeightmapObject heightmapObj;
+        public HeightmapObject HeightMapObj
+        {
+            get { return heightmapObj; }
+        }
 
         debug d;
         /*
@@ -128,6 +132,7 @@ namespace dreidengine
             grid.LoadGraphicsContent(graphics.GraphicsDevice);
             terrainModel = Content.Load<Model>("terrain");
             heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
+            
             heightmapObj.PhysicsBody.Immovable = false;
             this.Components.Add(heightmapObj);
             font = Content.Load<SpriteFont>("SpriteFont1");

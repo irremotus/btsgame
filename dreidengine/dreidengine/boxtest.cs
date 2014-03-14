@@ -62,6 +62,9 @@ namespace dreidengine
                      Body.Position = new Vector3(Body.Position.X - 1, Body.Position.Y, Body.Position.Z);
                  if (((Game1)this.Game).Keysp.IsKeyDown(Keys.D))
                      Body.Position = new Vector3(Body.Position.X + 1, Body.Position.Y, Body.Position.Z);
+
+                 if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
+                     Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position), Body.Position.Z);
              }
 
              base.Update(gameTime);
