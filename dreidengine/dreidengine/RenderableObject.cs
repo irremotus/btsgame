@@ -15,7 +15,8 @@ namespace dreidengine
         private Vector3 position = Vector3.Zero;
         private Vector3 scale = Vector3.One;
         private Model model;
-        private float rotation;
+        private Vector3 rotation; //rotations radians stored in respective vector values
+        private Matrix rotMatrix;
         private Box collisionPrimitive;
 
         public Vector3 Scale
@@ -30,9 +31,10 @@ namespace dreidengine
             set { position = value; updatePosition(); }
         }
 
-        public float Rotation
+        public Vector3 Rotation
         {
             get { return rotation; }
+            set { rotation = value; }
         }
 
         private string _modelName;
@@ -64,10 +66,10 @@ namespace dreidengine
             _body = new Body();
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
-
-            Box box = new Box(position, Matrix.Identity, scale);
+            rotMatrix = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z);
+            Box box = new Box(position, rotMatrix, scale);
  
-            collisionPrimitive = new Box(position, Matrix.Identity, scale);
+            collisionPrimitive = new Box(position, rotMatrix, scale);
             
             _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
 
@@ -75,7 +77,7 @@ namespace dreidengine
 
             Vector3 com = SetMass(1.0f);
 
-            _body.MoveTo(position, Matrix.Identity);
+            _body.MoveTo(position, rotMatrix);
             _skin.ApplyLocalTransform(new JigLibX.Math.Transform(-com, Matrix.Identity));
             _body.EnableBody();
         }
@@ -88,7 +90,7 @@ namespace dreidengine
 
         void updatePosition()
         {
-            _skin.ApplyLocalTransform(new JigLibX.Math.Transform(position, Matrix.CreateRotationY(rotation)));
+            _skin.ApplyLocalTransform(new JigLibX.Math.Transform(position, rotMatrix));
         }
 
         private Vector3 SetMass(float mass)

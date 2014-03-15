@@ -96,7 +96,7 @@ namespace dreidengine
 
             grid.WorldMatrix = Matrix.Identity;
 
-            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true);
+            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
      
             //WTF IS THIS SHIT

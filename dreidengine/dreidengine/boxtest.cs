@@ -50,6 +50,17 @@ namespace dreidengine
             flagMovable = movable;
             setBody(position);
         }
+
+         public boxtest(Game game, string name, Vector3 position, Vector3 scale, bool movable, Vector3 rotation)
+             : base(game)
+         {
+             ModelName = name;
+             Position = position;
+             Scale = scale;
+             flagMovable = movable;
+             Rotation = rotation;
+             setBody(position);
+         }
         #endregion
 
         public override void Update(GameTime gameTime)
