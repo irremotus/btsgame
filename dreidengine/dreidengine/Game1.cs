@@ -22,8 +22,8 @@ namespace dreidengine
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
- 
-        boxtest testBox, fallBox;
+
+        boxtest testBox, fallBox, cambox;
 
         bool flag = true;
 
@@ -73,14 +73,17 @@ namespace dreidengine
 
             testBox = new boxtest(this, "box");
             fallBox = new boxtest(this, "box", new Vector3(0,50,0));
+            cambox = new boxtest(this, "box", new Vector3(20, 20, 20));
 
-            _camera = new Camera(this, testBox, new Vector3(5.0f, 5.0f, 5.0f), 6/8f, 0.1f, 10000.0f);
+            _camera = new Camera(this, cambox, new Vector3(5.0f, 5.0f, 5.0f), 6/8f);
 
             testBox.Body.Immovable = true;
-            fallBox.Body.Immovable = false;  
+            fallBox.Body.Immovable = false;
+            cambox.Body.Immovable = true;
             
             Components.Add(testBox);
             Components.Add(fallBox);
+            Components.Add(cambox);
             Components.Add(_camera);
         
         }

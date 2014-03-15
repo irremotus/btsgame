@@ -46,6 +46,18 @@ namespace dreidengine
             set { _followDistance = value; }
         }
 
+        public Camera(Game game, RenderableObject/* for RenderableObject */  followObject, Vector3 followDistance, float aspectRatio)
+            : base(game)
+        {
+            this.followObject = followObject;
+            this._followDistance = followDistance;
+            this.aspectRatio = aspectRatio;
+            this.nearClip = 0.1f;
+            this.farClip = 10000.0f;
+
+            _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
+        }
+        
         public Camera(Game game, RenderableObject/* for RenderableObject */  followObject, Vector3 followDistance, float aspectRatio, float nearClip, float farClip)
             : base(game)
         {
