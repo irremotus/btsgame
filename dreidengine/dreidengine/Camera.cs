@@ -84,9 +84,9 @@ namespace dreidengine
             Vector3 trans;
             lookatFromObj.Decompose(out scale, out rot, out trans);
             rotation = Quaternion.Lerp(rotation, rot, 0.5f);
-            Vector3 followVector = new Vector3(0.0f, -5.0f, _followDistance);
+            Vector3 followVector = new Vector3(0.0f, 0.0f, _followDistance);
             followVector = Vector3.Transform(followVector, rotation);
-            campos = followObject.Body.Position + new Vector3(-followVector.X, -followVector.Y, followVector.Z);
+            campos = followObject.Body.Position + new Vector3(-followVector.X, ((_lookat.Z < 0) ? -followVector.Y : followVector.Y), followVector.Z);
             _view = Matrix.CreateLookAt(campos, _lookat, camup);
             _position = campos;
 
@@ -96,6 +96,7 @@ namespace dreidengine
         public void ChangeLook(Vector3 angles)
         {
             Quaternion newlook = Quaternion.CreateFromYawPitchRoll(angles.X, angles.Y, angles.Z);
+            newlook.Normalize();
             _lookat = Vector3.Transform(_lookat, newlook);
         }
     }

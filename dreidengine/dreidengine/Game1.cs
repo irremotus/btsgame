@@ -169,7 +169,8 @@ namespace dreidengine
             //GraphicsDevice.Clear((flag)?Color.Green:Color.Red);
             //flag = (flag) ? false : true;
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            //spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red);
+            spriteBatch.DrawString(font, _camera.Lookat.ToString(), new Vector2(50, 50), Color.Red); 
             spriteBatch.End();
             base.Draw(gameTime);
         }
