@@ -128,7 +128,7 @@ namespace dreidengine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
             
-            bool lookAtFallingBox = true; // set this to false to control the view with the mouse!
+            bool lookAtFallingBox = false; // set this to false to control the view with the mouse!
             if (lookAtFallingBox)
                 _camera.Lookat = fallBox.Body.Position;
 
