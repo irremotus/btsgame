@@ -65,17 +65,29 @@ namespace dreidengine
 
         private void InitializePhyics()
         {
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
             
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
 
-            testBox = new boxtest(this, "box");
-            fallBox = new boxtest(this, "box", new Vector3(0,50,0));
-            cambox = new boxtest(this, "box", new Vector3(20, 20, 20));
+            testBox = new boxtest(this, "box", new Vector3(0, 0, -20));
+            fallBox = new boxtest(this, "cone", new Vector3(0, 50, -20));
+            cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
+            List<boxtest> boxes = new List<boxtest>();
+            int i = 0;
+            for (i = 0; i < 10; i++)
+            {
+                boxes.Add(new boxtest(this, "box", new Vector3(20, 0, i * 10)));
+            }
+            foreach (boxtest box in boxes)
+            {
+                box.Body.Immovable = true;
+                Components.Add(box);
+            }
 
-            _camera = new Camera(this, cambox, new Vector3(5.0f, 5.0f, 5.0f), 6/8f);
+            _camera = new Camera(this, cambox, 10.0f, 6/8f);
+            _camera.Lookat = fallBox.Body.Position;
 
             testBox.Body.Immovable = true;
             fallBox.Body.Immovable = false;
@@ -115,32 +127,32 @@ namespace dreidengine
             keys = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
-            if (keys.IsKeyDown(Keys.OemPlus))
-                _camera.PositionOffset += new Vector3(0, 0, 1);
-            if (keys.IsKeyDown(Keys.OemMinus))
-                _camera.PositionOffset += new Vector3(0, 0, -1);
+            
+            bool lookAtFallingBox = true; // set this to false to control the view with the mouse!
+            if (lookAtFallingBox)
+                _camera.Lookat = fallBox.Body.Position;
 
             MouseState mouse = Mouse.GetState();
             int x = graphics.PreferredBackBufferWidth / 2;
             int y = graphics.PreferredBackBufferHeight / 2;
-            if (mouse.X - x < -2)
+            if (mouse.X - x < -2 || keys.IsKeyDown(Keys.Left))
             {
-                _camera.PositionOffset += Vector3.Left;
+                _camera.ChangeLook(new Vector3(MathHelper.ToRadians(1.0f), 0, 0));
                 Mouse.SetPosition(x, mouse.Y);
             }
-            if (mouse.X - x > 2)
+            if (mouse.X - x > 2 || keys.IsKeyDown(Keys.Right))
             {
-                _camera.PositionOffset += Vector3.Right;
+                _camera.ChangeLook(new Vector3(-MathHelper.ToRadians(1.0f), 0, 0));
                 Mouse.SetPosition(x, mouse.Y);
             }
-            if (mouse.Y - y < -2)
+            if (mouse.Y - y < -2 || keys.IsKeyDown(Keys.Up))
             {
-                _camera.PositionOffset += Vector3.Up;
+                _camera.ChangeLook(new Vector3(0, MathHelper.ToRadians(1.0f), 0));
                 Mouse.SetPosition(mouse.X, y);
             }
-            if (mouse.Y - y > 2)
+            if (mouse.Y - y > 2 || keys.IsKeyDown(Keys.Down))
             {
-                _camera.PositionOffset += Vector3.Down;
+                _camera.ChangeLook(new Vector3(0, -MathHelper.ToRadians(1.0f), 0));
                 Mouse.SetPosition(mouse.X, y);
             }
 
@@ -154,8 +166,8 @@ namespace dreidengine
         
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear((flag)?Color.Green:Color.Red);
-            flag = (flag) ? false : true;
+            //GraphicsDevice.Clear((flag)?Color.Green:Color.Red);
+            //flag = (flag) ? false : true;
             spriteBatch.Begin();
             spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
             spriteBatch.End();
