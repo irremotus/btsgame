@@ -86,9 +86,10 @@ namespace dreidengine
                  addToPosition(moveVector * amount);
 
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
-                     Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position), Body.Position.Z);
+                     Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
+                 
              }
-
+               
              base.Update(gameTime);
          }
 

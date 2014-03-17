@@ -73,14 +73,17 @@ namespace dreidengine
             
             _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
 
-            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.BouncySmooth);
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
 
             Vector3 com = SetMass(1.0f);
 
             _body.MoveTo(position, rotMatrix);
             _skin.ApplyLocalTransform(new JigLibX.Math.Transform(-com, Matrix.Identity));
             _body.EnableBody();
+            //PhysicsSystem.CurrentPhysicsSystem.CollisionSystem.AddCollisionSkin(_skin);
+                    
         }
+
 
 
         protected override void LoadContent()
@@ -123,7 +126,7 @@ namespace dreidengine
         public override void Draw(GameTime gameTime)
         {
             Game1 game = (Game1)Game;
-
+            this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             RasterizerState rasterizerState = new RasterizerState();
             rasterizerState.FillMode = FillMode.Solid;
             GraphicsDevice.RasterizerState = rasterizerState;

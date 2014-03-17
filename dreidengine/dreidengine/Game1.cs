@@ -95,7 +95,7 @@ namespace dreidengine
             }
             foreach (boxtest box in boxes)
             {
-                box.Body.Immovable = true;
+                box.Body.Immovable = false;
                 Components.Add(box);
             }
 
@@ -198,7 +198,7 @@ namespace dreidengine
         
         protected override void Draw(GameTime gameTime)
         {
-
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.Clear((flag) ? Color.Black : Color.Red);
             grid.Draw();
             spriteBatch.Begin();
