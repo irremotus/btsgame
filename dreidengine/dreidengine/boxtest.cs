@@ -87,7 +87,9 @@ namespace dreidengine
 
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
-                 
+
+                 if (flagMovable == true)
+                     Body.Velocity = Vector3.Zero;
              }
                
              base.Update(gameTime);
@@ -97,7 +99,9 @@ namespace dreidengine
         {
             Matrix camRot = Matrix.CreateRotationX(((Game1)(this.Game)).Camera.RotX) * Matrix.CreateRotationY(((Game1)this.Game).Camera.RotY);
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
-            Body.Position += rotVector;
+            //Body.Position += rotVector;
+            //Body.ApplyBodyImpulse(rotVector);
+            Body.Velocity += rotVector;
         }
     }
 }

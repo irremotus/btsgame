@@ -67,11 +67,12 @@ namespace dreidengine
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
             rotMatrix = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z);
-            Box box = new Box(position, rotMatrix, scale);
+            //Box box = new Box(position, rotMatrix, scale);
+            Box box = new Box(position, Matrix.Identity, scale); // rotation is relative to body
  
-            collisionPrimitive = new Box(position, rotMatrix, scale);
+            //collisionPrimitive = new Box(position, rotMatrix, scale);
             
-            _skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            //_skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f)); // why 2 primitives?
 
             _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
 

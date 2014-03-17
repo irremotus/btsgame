@@ -151,7 +151,9 @@ namespace dreidengine
                 _position = followObject.Body.Position + headOffset;
                 Vector3 transRef = Vector3.Transform(camRef, rotMat);
                 _lookat = transRef + _position;
-                _view = Matrix.CreateLookAt(_position, _lookat, followObject.Body.Orientation.Up);
+                //Vector3 camup = followObject.Body.Orientation.Up;
+                Vector3 camup = Vector3.Up;
+                _view = Matrix.CreateLookAt(_position, _lookat, camup);
             }
             else if (_cameraMode == CameraModes.THIRD_PERSON)
             {
@@ -159,7 +161,9 @@ namespace dreidengine
                 Matrix rotMat = rotation;
                 Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
                 _position = transRef + followObject.Body.Position;
-                _view = Matrix.CreateLookAt(_position, followObject.Body.Position, followObject.Body.Orientation.Up);
+                //Vector3 camup = followObject.Body.Orientation.Up;
+                Vector3 camup = Vector3.Up;
+                _view = Matrix.CreateLookAt(_position, followObject.Body.Position, camup);
             }
 
             base.Update(gameTime);

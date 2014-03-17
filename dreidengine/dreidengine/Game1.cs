@@ -41,11 +41,10 @@ namespace dreidengine
  
 
         boxtest testBox, fallBox, cambox;
+        boxtest b1, b2;
 
 
         bool flag = true;
-
-        float camStepSize = 0.5f;
 
         SpriteFont font;
 
@@ -88,7 +87,7 @@ namespace dreidengine
 
             testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
-   
+
             cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
 
             List<boxtest> boxes = new List<boxtest>();
@@ -103,11 +102,18 @@ namespace dreidengine
                 Components.Add(box);
             }
 
+            //b1 = new boxtest(this, "box", new Vector3(0, 0, 0), Vector3.One, true);
+            //b1.Amount = 0.05f;
+            //b2 = new boxtest(this, "box", new Vector3(0, 10.0f, 0), Vector3.One);
+
+            //Components.Add(b1);
+            //Components.Add(b2);
+
             _camera = new Camera(this, testBox, 10.0f, 6/8f);
-            _camera.Lookat = fallBox.Body.Position;
+            _camera.Lookat = testBox.Body.Position;
             _camera.CameraMode = Camera.CameraModes.THIRD_PERSON;
 
-            testBox.Body.Immovable = true;
+            testBox.Body.Immovable = false;
             fallBox.Body.Immovable = false;
             cambox.Body.Immovable = true;
 
@@ -162,7 +168,7 @@ namespace dreidengine
             base.Update(gameTime);
         }
 
-        
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
@@ -170,12 +176,13 @@ namespace dreidengine
             grid.Draw();
             spriteBatch.Begin();
        
-            spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
+            //spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
 
 
             Vector3 newpos = _camera.Lookat - _camera.Position;
             newpos.Normalize();
-            spriteBatch.DrawString(font, "rotX: " + _camera.RotX.ToString() + "\nrotY: " + _camera.RotY.ToString(), new Vector2(50, 50), Color.Red); 
+            //spriteBatch.DrawString(font, "rotX: " + _camera.RotX.ToString() + "\nrotY: " + _camera.RotY.ToString(), new Vector2(50, 50), Color.Red); 
+            spriteBatch.DrawString(font, "", new Vector2(50, 50), Color.Red); 
 
             spriteBatch.End();
             base.Draw(gameTime);
