@@ -12,10 +12,14 @@ namespace dreidengine
 {
     public class Camera : GameComponent
     {
+<<<<<<< HEAD
 
         private RenderableObject followObject; // for RenderableObject 
 
         //private BoxActor followObject;
+=======
+        private RenderableObject followObject;
+>>>>>>> origin/3rd_person_camera
         private float aspectRatio;
         private float nearClip;
         private float farClip;
@@ -24,13 +28,29 @@ namespace dreidengine
         {
             get { return _position; }
         }
-        private Vector3 _positionOffset;
+        private Vector3 _lookat;
+        public Vector3 Lookat
+        {
+            get { return _lookat; }
+            set { _lookat = value; }
+        }
+        /*private Vector3 _positionOffset;
         public Vector3 PositionOffset
         {
             get { return _positionOffset; }
             set { _positionOffset = value; }
+        }*/
+        private Matrix rotation;
+        private float rotX;
+        public float RotX
+        {
+            get { return rotX; }
         }
-        private Quaternion rotation;
+        private float rotY;
+        public float RotY
+        {
+            get { return rotY; }
+        }
         private Matrix _view;
         public Matrix View
         {
@@ -41,15 +61,35 @@ namespace dreidengine
         {
             get { return _projection; }
         }
-        private Vector3 _followDistance;
-        public Vector3 FollowDistance
+        private float _followDistance;
+        public float FollowDistance
         {
             get { return _followDistance; }
             set { _followDistance = value; }
         }
+        public enum CameraModes
+        {
+            FIRST_PERSON, THIRD_PERSON
+        }
+        private CameraModes _cameraMode;
+        public CameraModes CameraMode
+        {
+            get { return _cameraMode; }
+            set { _cameraMode = value; }
+        }
 
+<<<<<<< HEAD
        
         public Camera(Game game, RenderableObject/* for RenderableObject */  followObject, Vector3 followDistance, float aspectRatio, float nearClip, float farClip)
+=======
+        public Camera(Game game, RenderableObject followObject, float followDistance, float aspectRatio)
+            : this(game, followObject, followDistance, aspectRatio, 0.1f, 10000.0f)
+        {
+            // calls Camera constructor with 0.1f and 10000.0f as clipping planes
+        }
+        
+        public Camera(Game game, RenderableObject followObject, float followDistance, float aspectRatio, float nearClip, float farClip)
+>>>>>>> origin/3rd_person_camera
             : base(game)
         {
             this.followObject = followObject;
@@ -58,29 +98,53 @@ namespace dreidengine
             this.nearClip = nearClip;
             this.farClip = farClip;
 
+            rotation = followObject.Body.Orientation;
+
             _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
         }
 
         public override void Update(GameTime gameTime)
         {
-            Vector3 campos = _followDistance;
-
-            campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(rotation));
-            //campos += followObject.Position; /* for RenderableObject */
-            campos += followObject.Body.Position;
-            //_position += _positionOffset; /* to move the camera */
-
-            Quaternion objrot = Quaternion.CreateFromRotationMatrix(followObject.Body.Orientation);
-            
-            Vector3 camup = Vector3.Up;
-            camup = Vector3.Transform(camup, Matrix.CreateFromQuaternion(rotation));
-
-            rotation = Quaternion.Lerp(rotation, objrot, 0.5f);
-
-            _view = Matrix.CreateLookAt(campos, /*followObject.Position*//* for RenderableObject */ followObject.Body.Position + new Vector3(0.0f, 0.0f, 0.0f), camup);
-            _position = campos;
+            if (_cameraMode == CameraModes.FIRST_PERSON)
+            {
+                Vector3 camRef = new Vector3(0, 0, -1);
+                Vector3 objHeadOffset = new Vector3(0, 5.0f, 0);
+                Matrix rotMat = rotation;
+                Vector3 headOffset = Vector3.Transform(objHeadOffset, rotMat);
+                _position = followObject.Body.Position + headOffset;
+                Vector3 transRef = Vector3.Transform(camRef, rotMat);
+                _lookat = transRef + _position;
+                _view = Matrix.CreateLookAt(_position, _lookat, followObject.Body.Orientation.Up);
+            }
+            else if (_cameraMode == CameraModes.THIRD_PERSON)
+            {
+                Vector3 thirdPRef = new Vector3(0, 10.0f, 20.0f);
+                Matrix rotMat = rotation;
+                Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
+                _position = transRef + followObject.Body.Position;
+                _view = Matrix.CreateLookAt(_position, followObject.Body.Position, followObject.Body.Orientation.Up);
+            }
 
             base.Update(gameTime);
+        }
+
+        public void ChangeLook(Vector3 angles)
+        {
+            if (_cameraMode == CameraModes.FIRST_PERSON || _cameraMode == CameraModes.THIRD_PERSON)
+            {
+                rotX += angles.X;
+                rotY += angles.Y;
+                //if (rotX >= Math.PI * 15 / 16)
+                //    rotX = (float)(Math.PI-Math.PI/16);
+                //if (rotX < -Math.PI * 15 / 16)
+                //    rotX = (float)(-Math.PI + Math.PI / 16);
+                //if (rotY > Math.PI * 15 / 16)
+                //    rotY = (float)(Math.PI - Math.PI / 16);
+                //if (rotY < -Math.PI * 15 / 16)
+                //    rotY = (float)(-Math.PI + Math.PI / 16);
+                Matrix newRot = Matrix.CreateRotationX(rotX) * Matrix.CreateRotationY(rotY) * followObject.Body.Orientation;
+                rotation = Matrix.Lerp(rotation, newRot, 0.5f);
+            }
         }
     }
 }
