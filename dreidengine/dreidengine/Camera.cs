@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using JigLibX.Physics;
 using JigLibX.Geometry;
 using JigLibX.Collision;
@@ -19,6 +20,12 @@ namespace dreidengine
         private float aspectRatio;
         private float nearClip;
         private float farClip;
+        private float _stepSize = 3.0f;
+        public float StepSize
+        {
+            get { return _stepSize; }
+            set { _stepSize = value; }
+        }
         private Vector3 _position;
         public Vector3 Position
         {
@@ -97,6 +104,44 @@ namespace dreidengine
 
         public override void Update(GameTime gameTime)
         {
+            MouseState mouse = Mouse.GetState();
+            GraphicsDeviceManager graphics = ((Game1)this.Game).Graphics;
+            int x = graphics.PreferredBackBufferWidth / 2;
+            int y = graphics.PreferredBackBufferHeight / 2;
+
+            KeyboardState keys = ((Game1)this.Game).Keysp;
+
+            if (keys.IsKeyDown(Keys.F))
+                _cameraMode = dreidengine.Camera.CameraModes.FIRST_PERSON;
+            if (keys.IsKeyDown(Keys.T))
+                _cameraMode = dreidengine.Camera.CameraModes.THIRD_PERSON;
+
+            if (keys.IsKeyDown(Keys.OemPlus))
+                _stepSize += 0.1f;
+            if (keys.IsKeyDown(Keys.OemMinus))
+                _stepSize -= 0.1f;
+
+            if (mouse.X - x < -2 || keys.IsKeyDown(Keys.Left))
+            {
+                this.ChangeLook(new Vector3(0, MathHelper.ToRadians(_stepSize), 0));
+                Mouse.SetPosition(x, mouse.Y);
+            }
+            if (mouse.X - x > 2 || keys.IsKeyDown(Keys.Right))
+            {
+                this.ChangeLook(new Vector3(0, -MathHelper.ToRadians(_stepSize), 0));
+                Mouse.SetPosition(x, mouse.Y);
+            }
+            if (mouse.Y - y < -2 || keys.IsKeyDown(Keys.Up))
+            {
+                this.ChangeLook(new Vector3(MathHelper.ToRadians(_stepSize), 0, 0));
+                Mouse.SetPosition(mouse.X, y);
+            }
+            if (mouse.Y - y > 2 || keys.IsKeyDown(Keys.Down))
+            {
+                this.ChangeLook(new Vector3(-MathHelper.ToRadians(_stepSize), 0, 0));
+                Mouse.SetPosition(mouse.X, y);
+            }
+            
             if (_cameraMode == CameraModes.FIRST_PERSON)
             {
                 Vector3 camRef = new Vector3(0, 0, -1);

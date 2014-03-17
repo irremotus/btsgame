@@ -21,6 +21,10 @@ namespace dreidengine
         Model terrainModel;
         
         GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager Graphics
+        {
+            get { return graphics; }
+        }
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
@@ -150,43 +154,6 @@ namespace dreidengine
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
-
-
-            if (keys.IsKeyDown(Keys.F))
-                _camera.CameraMode = dreidengine.Camera.CameraModes.FIRST_PERSON;
-            if (keys.IsKeyDown(Keys.T))
-                _camera.CameraMode = dreidengine.Camera.CameraModes.THIRD_PERSON;
-            if (keys.IsKeyDown(Keys.OemMinus))
-                camStepSize -= 0.1f;
-            if (keys.IsKeyDown(Keys.OemPlus))
-                camStepSize += 0.1f;
-            if (camStepSize <= 0)
-                camStepSize = 0.1f;
-            
-            MouseState mouse = Mouse.GetState();
-            int x = graphics.PreferredBackBufferWidth / 2;
-            int y = graphics.PreferredBackBufferHeight / 2;
-            if (mouse.X - x < -2 || keys.IsKeyDown(Keys.Left))
-            {
-                _camera.ChangeLook(new Vector3(0, MathHelper.ToRadians(camStepSize), 0));
-                Mouse.SetPosition(x, mouse.Y);
-            }
-            if (mouse.X - x > 2 || keys.IsKeyDown(Keys.Right))
-            {
-                _camera.ChangeLook(new Vector3(0, -MathHelper.ToRadians(camStepSize), 0));
-                Mouse.SetPosition(x, mouse.Y);
-            }
-            if (mouse.Y - y < -2 || keys.IsKeyDown(Keys.Up))
-            {
-                _camera.ChangeLook(new Vector3(MathHelper.ToRadians(camStepSize), 0, 0));
-                Mouse.SetPosition(mouse.X, y);
-            }
-            if (mouse.Y - y > 2 || keys.IsKeyDown(Keys.Down))
-            {
-                _camera.ChangeLook(new Vector3(-MathHelper.ToRadians(camStepSize), 0, 0));
-                Mouse.SetPosition(mouse.X, y);
-            }
-
 
             float timeStep = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
             PhysicsSystem.CurrentPhysicsSystem.Integrate(timeStep);
