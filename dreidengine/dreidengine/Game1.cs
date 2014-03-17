@@ -125,7 +125,7 @@ namespace dreidengine
         protected override void LoadContent()
         {
             grid.LoadGraphicsContent(graphics.GraphicsDevice);
-            terrainModel = Content.Load<Model>("world2");
+            terrainModel = Content.Load<Model>("terrain");
             heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
             
             heightmapObj.PhysicsBody.Immovable = false;

@@ -77,7 +77,9 @@ namespace dreidengine
 
                 RasterizerState r = new RasterizerState();
                 r.FillMode = FillMode.WireFrame;
-
+                this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
+                this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+                this.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
                 Camera camera = ((Game1)this.Game).Camera;
                 //this.Game.GraphicsDevice.RasterizerState = r;
                 foreach (ModelMesh mesh in model.Meshes)
