@@ -18,7 +18,13 @@ namespace dreidengine
     class boxtest : RenderableObject
     {
         private bool flagMovable = false;
-
+        private Vector3 moveVector = Vector3.Zero;
+        private float amount = 1.0f;
+        public float Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
         #region Constructors
         public boxtest(Game game, string name) 
             : base(game)
@@ -67,14 +73,17 @@ namespace dreidengine
          {
              if (flagMovable)
              {
+                 moveVector = Vector3.Zero;
                  if (((Game1)this.Game).Keysp.IsKeyDown(Keys.W))
-                     Body.Position = new Vector3(Body.Position.X, Body.Position.Y, Body.Position.Z - 1);
+                     moveVector += new Vector3(0, 0, -1);
                  if (((Game1)this.Game).Keysp.IsKeyDown(Keys.S))
-                     Body.Position = new Vector3(Body.Position.X, Body.Position.Y, Body.Position.Z + 1);
+                     moveVector += new Vector3(0, 0, 1);
                  if (((Game1)this.Game).Keysp.IsKeyDown(Keys.A))
-                     Body.Position = new Vector3(Body.Position.X - 1, Body.Position.Y, Body.Position.Z);
+                     moveVector += new Vector3(-1, 0, 0);
                  if (((Game1)this.Game).Keysp.IsKeyDown(Keys.D))
-                     Body.Position = new Vector3(Body.Position.X + 1, Body.Position.Y, Body.Position.Z);
+                     moveVector += new Vector3(1, 0, 0);
+
+                 addToPosition(moveVector * amount);
 
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position), Body.Position.Z);
@@ -82,5 +91,12 @@ namespace dreidengine
 
              base.Update(gameTime);
          }
+
+        private void addToPosition(Vector3 vectorToAdd)
+        {
+            Matrix camRot = Matrix.CreateRotationX(((Game1)(this.Game)).Camera.RotX) * Matrix.CreateRotationY(((Game1)this.Game).Camera.RotY);
+            Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
+            Body.Position += rotVector;
+        }
     }
 }

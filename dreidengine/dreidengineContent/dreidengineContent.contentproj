@@ -83,8 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Checker.bmp">
-      <Name>Checker</Name>
+    <Compile Include="world2.jpg">
+      <Name>world2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
