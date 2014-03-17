@@ -27,6 +27,8 @@ namespace dreidengine
 
         bool flag = true;
 
+        float camStepSize = 0.5f;
+
         SpriteFont font;
         /*
         private Matrix _view;
@@ -88,6 +90,7 @@ namespace dreidengine
 
             _camera = new Camera(this, cambox, 10.0f, 6/8f);
             _camera.Lookat = fallBox.Body.Position;
+            _camera.CameraMode = Camera.CameraModes.THIRD_PERSON;
 
             testBox.Body.Immovable = true;
             fallBox.Body.Immovable = false;
@@ -127,32 +130,39 @@ namespace dreidengine
             keys = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
-            
-            bool lookAtFallingBox = false; // set this to false to control the view with the mouse!
-            if (lookAtFallingBox)
-                _camera.Lookat = fallBox.Body.Position;
 
+            if (keys.IsKeyDown(Keys.F))
+                _camera.CameraMode = dreidengine.Camera.CameraModes.FIRST_PERSON;
+            if (keys.IsKeyDown(Keys.T))
+                _camera.CameraMode = dreidengine.Camera.CameraModes.THIRD_PERSON;
+            if (keys.IsKeyDown(Keys.OemMinus))
+                camStepSize -= 0.1f;
+            if (keys.IsKeyDown(Keys.OemPlus))
+                camStepSize += 0.1f;
+            if (camStepSize <= 0)
+                camStepSize = 0.1f;
+            
             MouseState mouse = Mouse.GetState();
             int x = graphics.PreferredBackBufferWidth / 2;
             int y = graphics.PreferredBackBufferHeight / 2;
             if (mouse.X - x < -2 || keys.IsKeyDown(Keys.Left))
             {
-                _camera.ChangeLook(new Vector3(MathHelper.ToRadians(1.0f), 0, 0));
+                _camera.ChangeLook(new Vector3(0, MathHelper.ToRadians(camStepSize), 0));
                 Mouse.SetPosition(x, mouse.Y);
             }
             if (mouse.X - x > 2 || keys.IsKeyDown(Keys.Right))
             {
-                _camera.ChangeLook(new Vector3(-MathHelper.ToRadians(1.0f), 0, 0));
+                _camera.ChangeLook(new Vector3(0, -MathHelper.ToRadians(camStepSize), 0));
                 Mouse.SetPosition(x, mouse.Y);
             }
             if (mouse.Y - y < -2 || keys.IsKeyDown(Keys.Up))
             {
-                _camera.ChangeLook(new Vector3(0, MathHelper.ToRadians(1.0f), 0));
+                _camera.ChangeLook(new Vector3(MathHelper.ToRadians(camStepSize), 0, 0));
                 Mouse.SetPosition(mouse.X, y);
             }
             if (mouse.Y - y > 2 || keys.IsKeyDown(Keys.Down))
             {
-                _camera.ChangeLook(new Vector3(0, -MathHelper.ToRadians(1.0f), 0));
+                _camera.ChangeLook(new Vector3(-MathHelper.ToRadians(camStepSize), 0, 0));
                 Mouse.SetPosition(mouse.X, y);
             }
 
@@ -170,7 +180,9 @@ namespace dreidengine
             //flag = (flag) ? false : true;
             spriteBatch.Begin();
             //spriteBatch.DrawString(font, fallBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red);
-            spriteBatch.DrawString(font, _camera.Lookat.ToString(), new Vector2(50, 50), Color.Red); 
+            Vector3 newpos = _camera.Lookat - _camera.Position;
+            newpos.Normalize();
+            spriteBatch.DrawString(font, "rotX: " + _camera.RotX.ToString() + "\nrotY: " + _camera.RotY.ToString(), new Vector2(50, 50), Color.Red); 
             spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -33,7 +33,17 @@ namespace dreidengine
             get { return _positionOffset; }
             set { _positionOffset = value; }
         }*/
-        private Quaternion rotation;
+        private Matrix rotation;
+        private float rotX;
+        public float RotX
+        {
+            get { return rotX; }
+        }
+        private float rotY;
+        public float RotY
+        {
+            get { return rotY; }
+        }
         private Matrix _view;
         public Matrix View
         {
@@ -49,6 +59,16 @@ namespace dreidengine
         {
             get { return _followDistance; }
             set { _followDistance = value; }
+        }
+        public enum CameraModes
+        {
+            FIRST_PERSON, THIRD_PERSON
+        }
+        private CameraModes _cameraMode;
+        public CameraModes CameraMode
+        {
+            get { return _cameraMode; }
+            set { _cameraMode = value; }
         }
 
         public Camera(Game game, RenderableObject followObject, float followDistance, float aspectRatio)
@@ -66,38 +86,53 @@ namespace dreidengine
             this.nearClip = nearClip;
             this.farClip = farClip;
 
+            rotation = followObject.Body.Orientation;
+
             _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
         }
 
         public override void Update(GameTime gameTime)
         {
-            Vector3 campos = new Vector3(0, 0, 0);
-
-            Vector3 camup = Vector3.Up;
-            camup = Vector3.Transform(camup, followObject.Body.Orientation);
-
-            //rotation = Quaternion.Lerp(rotation, objrot, 0.5f);
-
-            Matrix lookatFromObj = Matrix.CreateLookAt(followObject.Body.Position, _lookat, camup);
-            Vector3 scale;
-            Quaternion rot;
-            Vector3 trans;
-            lookatFromObj.Decompose(out scale, out rot, out trans);
-            rotation = Quaternion.Lerp(rotation, rot, 0.5f);
-            Vector3 followVector = new Vector3(0.0f, 0.0f, _followDistance);
-            followVector = Vector3.Transform(followVector, rotation);
-            campos = followObject.Body.Position + new Vector3(-followVector.X, ((_lookat.Z < 0) ? -followVector.Y : followVector.Y), followVector.Z);
-            _view = Matrix.CreateLookAt(campos, _lookat, camup);
-            _position = campos;
+            if (_cameraMode == CameraModes.FIRST_PERSON)
+            {
+                Vector3 camRef = new Vector3(0, 0, -1);
+                Vector3 objHeadOffset = new Vector3(0, 5.0f, 0);
+                Matrix rotMat = rotation;
+                Vector3 headOffset = Vector3.Transform(objHeadOffset, rotMat);
+                _position = followObject.Body.Position + headOffset;
+                Vector3 transRef = Vector3.Transform(camRef, rotMat);
+                _lookat = transRef + _position;
+                _view = Matrix.CreateLookAt(_position, _lookat, followObject.Body.Orientation.Up);
+            }
+            else if (_cameraMode == CameraModes.THIRD_PERSON)
+            {
+                Vector3 thirdPRef = new Vector3(0, 10.0f, 20.0f);
+                Matrix rotMat = rotation;
+                Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
+                _position = transRef + followObject.Body.Position;
+                _view = Matrix.CreateLookAt(_position, followObject.Body.Position, followObject.Body.Orientation.Up);
+            }
 
             base.Update(gameTime);
         }
 
         public void ChangeLook(Vector3 angles)
         {
-            Quaternion newlook = Quaternion.CreateFromYawPitchRoll(angles.X, angles.Y, angles.Z);
-            newlook.Normalize();
-            _lookat = Vector3.Transform(_lookat, newlook);
+            if (_cameraMode == CameraModes.FIRST_PERSON || _cameraMode == CameraModes.THIRD_PERSON)
+            {
+                rotX += angles.X;
+                rotY += angles.Y;
+                //if (rotX >= Math.PI * 15 / 16)
+                //    rotX = (float)(Math.PI-Math.PI/16);
+                //if (rotX < -Math.PI * 15 / 16)
+                //    rotX = (float)(-Math.PI + Math.PI / 16);
+                //if (rotY > Math.PI * 15 / 16)
+                //    rotY = (float)(Math.PI - Math.PI / 16);
+                //if (rotY < -Math.PI * 15 / 16)
+                //    rotY = (float)(-Math.PI + Math.PI / 16);
+                Matrix newRot = Matrix.CreateRotationX(rotX) * Matrix.CreateRotationY(rotY) * followObject.Body.Orientation;
+                rotation = Matrix.Lerp(rotation, newRot, 0.5f);
+            }
         }
     }
 }
