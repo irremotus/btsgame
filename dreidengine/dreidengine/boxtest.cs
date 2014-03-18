@@ -73,15 +73,22 @@ namespace dreidengine
          {
              if (flagMovable)
              {
+                 KeyboardState keys = ((Game1)this.Game).Keysp;
+                 
                  moveVector = Vector3.Zero;
-                 if (((Game1)this.Game).Keysp.IsKeyDown(Keys.W))
+                 if (keys.IsKeyDown(Keys.W))
                      moveVector += new Vector3(0, 0, -1);
-                 if (((Game1)this.Game).Keysp.IsKeyDown(Keys.S))
+                 if (keys.IsKeyDown(Keys.S))
                      moveVector += new Vector3(0, 0, 1);
-                 if (((Game1)this.Game).Keysp.IsKeyDown(Keys.A))
+                 if (keys.IsKeyDown(Keys.A))
                      moveVector += new Vector3(-1, 0, 0);
-                 if (((Game1)this.Game).Keysp.IsKeyDown(Keys.D))
+                 if (keys.IsKeyDown(Keys.D))
                      moveVector += new Vector3(1, 0, 0);
+
+                 if (keys.IsKeyDown(Keys.Up))
+                     amount += 0.1f;
+                 if (keys.IsKeyDown(Keys.Down))
+                     amount -= 0.1f;
 
                  addToPosition(moveVector * amount);
 
