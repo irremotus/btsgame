@@ -96,7 +96,10 @@ namespace dreidengine
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
 
                  if (flagMovable == true)
-                     Body.Velocity = Vector3.Zero;
+                 {
+                     Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
+                     Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
+                 }
              }
                
              base.Update(gameTime);
