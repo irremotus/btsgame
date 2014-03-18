@@ -125,22 +125,22 @@ namespace dreidengine
             if (keys.IsKeyDown(Keys.OemMinus))
                 _stepSize -= 0.1f;
 
-            if (mouse.X - x < -2 || keys.IsKeyDown(Keys.Left))
+            if (mouse.X - x < -2)
             {
                 this.ChangeLook(new Vector3(0, MathHelper.ToRadians(_stepSize), 0));
                 Mouse.SetPosition(x, mouse.Y);
             }
-            if (mouse.X - x > 2 || keys.IsKeyDown(Keys.Right))
+            if (mouse.X - x > 2)
             {
                 this.ChangeLook(new Vector3(0, -MathHelper.ToRadians(_stepSize), 0));
                 Mouse.SetPosition(x, mouse.Y);
             }
-            if (mouse.Y - y < -2 || keys.IsKeyDown(Keys.Up))
+            if (mouse.Y - y < -2)
             {
                 this.ChangeLook(new Vector3(MathHelper.ToRadians(_stepSize), 0, 0));
                 Mouse.SetPosition(mouse.X, y);
             }
-            if (mouse.Y - y > 2 || keys.IsKeyDown(Keys.Down))
+            if (mouse.Y - y > 2)
             {
                 this.ChangeLook(new Vector3(-MathHelper.ToRadians(_stepSize), 0, 0));
                 Mouse.SetPosition(mouse.X, y);
