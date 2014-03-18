@@ -43,7 +43,11 @@ namespace dreidengine
             get { return _positionOffset; }
             set { _positionOffset = value; }
         }*/
-        private Matrix rotation;
+        private Matrix _rotation;
+        public Matrix Rotation
+        {
+            get { return _rotation; }
+        }
         private float rotX;
         public float RotX
         {
@@ -97,7 +101,7 @@ namespace dreidengine
             this.nearClip = nearClip;
             this.farClip = farClip;
 
-            rotation = followObject.Body.Orientation;
+            _rotation = followObject.Body.Orientation;
 
             _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
         }
@@ -146,7 +150,7 @@ namespace dreidengine
             {
                 Vector3 camRef = new Vector3(0, 0, -1);
                 Vector3 objHeadOffset = new Vector3(0, 5.0f, 0);
-                Matrix rotMat = rotation;
+                Matrix rotMat = _rotation;
                 Vector3 headOffset = Vector3.Transform(objHeadOffset, rotMat);
                 _position = followObject.Body.Position + headOffset;
                 Vector3 transRef = Vector3.Transform(camRef, rotMat);
@@ -158,7 +162,7 @@ namespace dreidengine
             else if (_cameraMode == CameraModes.THIRD_PERSON)
             {
                 Vector3 thirdPRef = new Vector3(0, 10.0f, 20.0f);
-                Matrix rotMat = rotation;
+                Matrix rotMat = _rotation;
                 Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
                 _position = transRef + followObject.Body.Position;
                 //Vector3 camup = followObject.Body.Orientation.Up;
@@ -184,7 +188,7 @@ namespace dreidengine
                 //if (rotY < -Math.PI * 15 / 16)
                 //    rotY = (float)(-Math.PI + Math.PI / 16);
                 Matrix newRot = Matrix.CreateRotationX(rotX) * Matrix.CreateRotationY(rotY) * followObject.Body.Orientation;
-                rotation = Matrix.Lerp(rotation, newRot, 0.5f);
+                _rotation = Matrix.Lerp(_rotation, newRot, 0.5f);
             }
         }
     }
