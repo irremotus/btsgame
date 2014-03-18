@@ -97,11 +97,10 @@ namespace dreidengine
 
         private void addToPosition(Vector3 vectorToAdd)
         {
-            Matrix camRot = Matrix.CreateRotationX(((Game1)(this.Game)).Camera.RotX) * Matrix.CreateRotationY(((Game1)this.Game).Camera.RotY);
+            //Matrix camRot = Matrix.CreateRotationX(((Game1)(this.Game)).Camera.RotX) * Matrix.CreateRotationY(((Game1)this.Game).Camera.RotY);
+            Matrix camRot = ((Game1)this.Game).Camera.Rotation;
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
-            //Body.Position += rotVector;
-            //Body.ApplyBodyImpulse(rotVector);
-            Body.Velocity += rotVector;
+            Body.Position += rotVector;
         }
     }
 }
