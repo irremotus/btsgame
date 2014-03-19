@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using JigLibX.Physics;
 using JigLibX.Geometry;
 using JigLibX.Collision;
+using System.Windows;
 
 namespace dreidengine
 {
@@ -66,6 +67,7 @@ namespace dreidengine
              flagMovable = movable;
              Rotation = rotation;
              setBody(position);
+             this.Skin.callbackFn += new CollisionCallbackFn(handleCollisionDetection);
          }
         #endregion
 
@@ -95,11 +97,8 @@ namespace dreidengine
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
 
-                 if (flagMovable == true)
-                 {
-                     Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
-                     Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
-                 }
+                 Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
+                 Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
              }
                
              base.Update(gameTime);
@@ -111,6 +110,27 @@ namespace dreidengine
             Matrix camRot = ((Game1)this.Game).Camera.Rotation;
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
             Body.Position += rotVector;
+        }
+
+        public static bool handleCollisionDetection(CollisionSkin owner, CollisionSkin collidee)
+        {
+            // here is handled what happens if your Object collides with another special Object (= OtherObject)
+            if (owner.Owner is Body && collidee.Owner is Body)
+            {
+                // YourObject hits OtherObject ( or vice versa) and Collision is processed
+                //owner.Owner.Position -= owner.Owner.Velocity;
+                Vector3 newvec = owner.Owner.Position - collidee.Owner.Position;
+                collidee.Owner.ApplyBodyImpulse(newvec * 1000);
+                //System.Windows.Forms.MessageBox.Show("Test");
+                return true;
+            }
+            //else if (collidee.Equals(GhostObject.Skin))
+            //{
+            //    // this time you'll be able to walk through Ghost-like object
+            //    return false;
+            //}
+            // all other collisions will be handled by physicengine
+            return true;
         }
     }
 }
