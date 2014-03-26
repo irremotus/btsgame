@@ -6695,7 +6695,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "skydome.jpg"
-		RelativeFilename: "C:\Documents and Settings\Doug Turner\Desktop\skydome.jpg"
+		RelativeFilename: "skydome.jpg"
 	}
 	Texture: "Texture::skydome_jpg", "TextureVideoClip" {
 		Type: "TextureVideoClip"
