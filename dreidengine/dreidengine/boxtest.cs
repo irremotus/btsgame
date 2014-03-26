@@ -20,12 +20,15 @@ namespace dreidengine
     {
         private bool flagMovable = false;
         private Vector3 moveVector = Vector3.Zero;
+        private Vector3 oldPosition;
         private float amount = 1.0f;
         public float Amount
         {
             get { return amount; }
             set { amount = value; }
         }
+
+
         #region Constructors
         public boxtest(Game game, string name) 
             : base(game)
@@ -100,7 +103,11 @@ namespace dreidengine
                  Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
                  Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
              }
-               
+
+             if (!((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
+                 Body.Position = oldPosition;
+
+             oldPosition = Body.Position;   
              base.Update(gameTime);
          }
 
