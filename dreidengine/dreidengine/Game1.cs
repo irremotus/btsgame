@@ -88,6 +88,8 @@ namespace dreidengine
             testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
 
+            SkyDome sky = new SkyDome(this, "skydome", 50f);
+
             cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
 
             List<boxtest> boxes = new List<boxtest>();
@@ -116,7 +118,9 @@ namespace dreidengine
             testBox.Body.Immovable = false;
             fallBox.Body.Immovable = false;
             cambox.Body.Immovable = true;
+            sky.Body.Immovable = true;
 
+            Components.Add(sky);
             Components.Add(testBox);
             Components.Add(fallBox);
             Components.Add(cambox);
