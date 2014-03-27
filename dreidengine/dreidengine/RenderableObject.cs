@@ -140,7 +140,7 @@ namespace dreidengine
             RasterizerState rasterizerState = new RasterizerState();
             rasterizerState.FillMode = FillMode.Solid;
             rasterizerState.CullMode = (isSky) ? CullMode.CullClockwiseFace : CullMode.CullCounterClockwiseFace;
-            rasterizerState.FillMode = (isSky) ? FillMode.WireFrame : FillMode.Solid;
+           // rasterizerState.FillMode = (isSky) ? FillMode.WireFrame : FillMode.Solid;
             GraphicsDevice.RasterizerState = rasterizerState;
 
            // this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
