@@ -21,7 +21,7 @@ namespace dreidengine
         private bool flagMovable = false;
         private Vector3 moveVector = Vector3.Zero;
         private Vector3 oldPosition;
-        private float amount = 1.0f;
+        private float amount = 50.0f;
         public float Amount
         {
             get { return amount; }
@@ -70,7 +70,6 @@ namespace dreidengine
              flagMovable = movable;
              Rotation = rotation;
              setBody(position);
-             this.Skin.callbackFn += new CollisionCallbackFn(handleCollisionDetection);
          }
         #endregion
 
@@ -89,13 +88,12 @@ namespace dreidengine
                      moveVector += new Vector3(-1, 0, 0);
                  if (keys.IsKeyDown(Keys.D))
                      moveVector += new Vector3(1, 0, 0);
-
-                 if (keys.IsKeyDown(Keys.Up))
+                                  if (keys.IsKeyDown(Keys.Up))
                      amount += 0.1f;
                  if (keys.IsKeyDown(Keys.Down))
                      amount -= 0.1f;
 
-                 addToPosition(moveVector * amount);
+                 addToVelocity(moveVector * amount);
 
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
@@ -107,37 +105,16 @@ namespace dreidengine
              if (!((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                  Body.Position = oldPosition;
 
-             oldPosition = Body.Position;   
+             oldPosition = Body.Position;
+              
              base.Update(gameTime);
          }
 
-        private void addToPosition(Vector3 vectorToAdd)
+        private void addToVelocity(Vector3 vectorToAdd)
         {
-            //Matrix camRot = Matrix.CreateRotationX(((Game1)(this.Game)).Camera.RotX) * Matrix.CreateRotationY(((Game1)this.Game).Camera.RotY);
             Matrix camRot = ((Game1)this.Game).Camera.Rotation;
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
-            Body.Position += rotVector;
-        }
-
-        public static bool handleCollisionDetection(CollisionSkin owner, CollisionSkin collidee)
-        {
-            // here is handled what happens if your Object collides with another special Object (= OtherObject)
-            if (owner.Owner is Body && collidee.Owner is Body)
-            {
-                // YourObject hits OtherObject ( or vice versa) and Collision is processed
-                //owner.Owner.Position -= owner.Owner.Velocity;
-                Vector3 newvec = owner.Owner.Position - collidee.Owner.Position;
-                collidee.Owner.ApplyBodyImpulse(newvec * 1000);
-                //System.Windows.Forms.MessageBox.Show("Test");
-                return true;
-            }
-            //else if (collidee.Equals(GhostObject.Skin))
-            //{
-            //    // this time you'll be able to walk through Ghost-like object
-            //    return false;
-            //}
-            // all other collisions will be handled by physicengine
-            return true;
+            Body.Velocity = rotVector;
         }
     }
 }
