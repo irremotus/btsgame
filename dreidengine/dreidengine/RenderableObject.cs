@@ -18,12 +18,6 @@ namespace dreidengine
         private Vector3 rotation; //rotations radians stored in respective vector values
         private Matrix rotMatrix;
         private Box collisionPrimitive;
-        private bool isSky = false;
-
-        public bool IsSky
-        {
-            set { isSky = value; }
-        }
 
         public Vector3 Scale
         {
@@ -134,14 +128,6 @@ namespace dreidengine
         {
             Game1 game = (Game1)Game;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-
-
-
-            RasterizerState rasterizerState = new RasterizerState();
-            rasterizerState.FillMode = FillMode.Solid;
-            rasterizerState.CullMode = (isSky) ? CullMode.CullClockwiseFace : CullMode.CullCounterClockwiseFace;
-           // rasterizerState.FillMode = (isSky) ? FillMode.WireFrame : FillMode.Solid;
-            GraphicsDevice.RasterizerState = rasterizerState;
 
            // this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;

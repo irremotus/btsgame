@@ -97,7 +97,7 @@ namespace dreidengine
             testBox.Body.Immovable = false;
             fallBox.Body.Immovable = false;
             cambox.Body.Immovable = true;
-            sky.Body.Immovable = true;
+   
 
             Components.Add(sky);
             Components.Add(testBox);
