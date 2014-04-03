@@ -39,16 +39,9 @@ namespace dreidengine
             get { return oldKeys; }
         }
  
-
         boxtest testBox, fallBox, cambox;
-        boxtest b1, b2;
-
-
-        bool flag = true;
 
         SpriteFont font;
-
-        SampleGrid grid;
 
         HeightmapObject heightmapObj;
         public HeightmapObject HeightMapObj
@@ -78,13 +71,6 @@ namespace dreidengine
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
-            grid = new SampleGrid();
-            grid.GridColor = Color.LimeGreen;
-            grid.GridScale = 1.0f;
-            grid.GridSize = 32;
-
-            grid.WorldMatrix = Matrix.Identity;
-
             testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
 
@@ -104,13 +90,6 @@ namespace dreidengine
                 Components.Add(box);
             }
 
-            //b1 = new boxtest(this, "box", new Vector3(0, 0, 0), Vector3.One, true);
-            //b1.Amount = 0.05f;
-            //b2 = new boxtest(this, "box", new Vector3(0, 10.0f, 0), Vector3.One);
-
-            //Components.Add(b1);
-            //Components.Add(b2);
-
             _camera = new Camera(this, testBox, 10.0f, 6/8f);
             _camera.Lookat = testBox.Body.Position;
             _camera.CameraMode = Camera.CameraModes.THIRD_PERSON;
@@ -118,7 +97,7 @@ namespace dreidengine
             testBox.Body.Immovable = false;
             fallBox.Body.Immovable = false;
             cambox.Body.Immovable = true;
-            sky.Body.Immovable = true;
+   
 
             Components.Add(sky);
             Components.Add(testBox);
@@ -138,7 +117,6 @@ namespace dreidengine
         
         protected override void LoadContent()
         {
-            grid.LoadGraphicsContent(graphics.GraphicsDevice);
             terrainModel = Content.Load<Model>("terrain");
             heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
             
@@ -159,9 +137,6 @@ namespace dreidengine
         {
             keys = Keyboard.GetState();
 
-            grid.ViewMatrix = Camera.View;
-            grid.ProjectionMatrix = Camera.Projection;
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
 
@@ -176,8 +151,8 @@ namespace dreidengine
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-            GraphicsDevice.Clear((flag) ? Color.Black : Color.Red);
-            grid.Draw();
+            GraphicsDevice.Clear(Color.Black);
+            //grid.Draw();
             spriteBatch.Begin();
        
             //spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
