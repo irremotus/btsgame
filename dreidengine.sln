@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dreidengine", "dreidengine\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dreidengineContent", "dreidengine\dreidengineContent\dreidengineContent.contentproj", "{8308AD9D-3A23-4A9E-805D-1FEC4EFA61E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeightmapProcessor", "..\..\..\Downloads\JigLibX 0.3.1\JigLibX 0.3.1\HeightmapProcessor\HeightmapProcessor\HeightmapProcessor.csproj", "{C77F18AB-7EC8-4F87-A88F-3506CABE701A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeightmapProcessor", "dreidengine\HeightmapProcessor\HeightmapProcessor\HeightmapProcessor.csproj", "{C77F18AB-7EC8-4F87-A88F-3506CABE701A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
