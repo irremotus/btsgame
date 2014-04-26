@@ -17,7 +17,7 @@ namespace dreidengine
     public struct HUD
     {
         public Vector2 Position;
-        public Vector2 Scale;
+        //public Vector2 Scale;
         public float Health;
         public int ammo;
     };
@@ -37,7 +37,7 @@ namespace dreidengine
         {
             overlay.Health = 100;
             overlay.ammo = 10;
-            overlay.Position = new Vector2(0, 0);
+            overlay.Position = new Vector2(100, 193);
             //overlay.Scale = new Vector2(10, 20);
         }
 
@@ -55,7 +55,7 @@ namespace dreidengine
 
         private void DrawOverlay()
         {
-            spriteBatch.Draw(overlayTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, 100, 100), Color.White);
+            spriteBatch.Draw(overlayTexture, new Microsoft.Xna.Framework.Rectangle(0, 20, 100, 100), Color.White);
         }
 
 
