@@ -53,7 +53,7 @@ namespace dreidengine
 
 
             Vector3 campos = ((Game1)Game).Camera.Position;
-            Body.Position = campos + 5 * ((Game1)Game).Camera.
+            Body.Position = campos + 5 * ((Game1)Game).Camera.Position;
             
 
 

@@ -23,10 +23,11 @@ namespace dreidengine
             return gameInstance;
         }
 
+
         Character c1;
         public Character C1
         {
-            get { return C1; }
+            get { return c1; }
         }
 
         PhysicsSystem world;
@@ -95,7 +96,7 @@ namespace dreidengine
             PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
             Knife knife = new Knife(this, new Vector3(17, -15, 10));
-            Overlay HUD = new Overlay(this, GraphicsDevice);
+            Overlay hud = new Overlay(this, GraphicsDevice);
 
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
@@ -108,11 +109,11 @@ namespace dreidengine
             SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
             introduction.DrawOrder = 500;
 
-            HUD.DrawOrder = 1;
+            hud.DrawOrder = 1;
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);
-            Components.Add(HUD);
+            Components.Add(hud);
 
             Components.Add(pistol);
             Components.Add(machine);

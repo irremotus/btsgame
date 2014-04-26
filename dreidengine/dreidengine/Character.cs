@@ -20,12 +20,12 @@ namespace dreidengine
     {
         List<Weapon> weapons;
         Weapon curWeapon;
+
         public Weapon CurWeapon
         {
             get { return curWeapon; }
         }
         KeyboardState ks, kold;
-
         
         public Character(Game game, Vector3 pos, Vector3 scale)
             : base(game, "box", pos, scale, true)
@@ -37,7 +37,6 @@ namespace dreidengine
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
 
             ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Tab))
@@ -69,6 +68,12 @@ namespace dreidengine
             //    Console.WriteLine(w.ToString());
             //}
             //Console.WriteLine("\n");
+        }
+
+        public int curAmmo(Weapon weapon)
+        {
+            Gun gun = (Gun) curWeapon;
+            return gun.CurAmmo;
         }
 
     }
