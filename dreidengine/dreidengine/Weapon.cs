@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace dreidengine
 {
-    abstract class Weapon : boxtest
+    public abstract class Weapon : boxtest
     {
         protected float fireDelta;
         protected float damage;
@@ -48,13 +48,7 @@ namespace dreidengine
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
-
-
-            Vector3 campos = ((Game1)Game).Camera.Position;
-            Body.Position = campos + 5 * ((Game1)Game).Camera.
-            
+            base.Update(gameTime);         
 
 
             

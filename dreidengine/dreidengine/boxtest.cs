@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace dreidengine
 {
-    class boxtest : DamageableObject
+    public class boxtest : DamageableObject
     {
         private bool flagMovable = false;
         private Vector3 moveVector = Vector3.Zero;

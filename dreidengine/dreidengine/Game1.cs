@@ -24,11 +24,13 @@ namespace dreidengine
             return gameInstance;
         }
 
-        Character c1;
+        private Character c1;
         public Character C1
         {
-            get { return C1; }
+            get { return c1; }
         }
+
+       
 
         PhysicsSystem world;
         public PhysicsSystem World
