@@ -88,26 +88,16 @@ namespace dreidengine
 
             //testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
             testBox = new Character(this, Vector3.Zero, Vector3.One);
-            fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
+            fallBox = new boxtest(this, "box", new Vector3(0, 10, 10), new Vector3(1, 1, 1));
 
             SkyDome sky = new SkyDome(this, "dome", 500f);
 
             Gun pistol = new PistolGun(this, new Vector3(10, 10, 10));
-            boxtest c1 = new boxtest(this, "box", new Vector3(10, 10, 20), new Vector3(1, 1, 1), false);
+            boxtest c1 = new boxtest(this, "box", new Vector3(20, -10, 10), new Vector3(1, 1, 1), false);
 
             //cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
 
-            List<boxtest> boxes = new List<boxtest>();
-            int i = 0;
-            for (i = 0; i < 10; i++)
-            {
-                boxes.Add(new boxtest(this, "box", new Vector3(20, 0, i * 10)));
-            }
-            foreach (boxtest box in boxes)
-            {
-                box.Body.Immovable = false;
-                Components.Add(box);
-            }
+            
 
             _camera = new Camera(this, testBox, 10.0f, 6/8f);
             _camera.Lookat = testBox.Body.Position;

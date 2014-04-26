@@ -28,8 +28,8 @@ namespace dreidengine
             collSys.SegmentIntersect(out dist, out skin, out pos, out normal, seg, pred);
 
             if (skin != null)
-                return false;
-            return true;
+                return true;
+            return false;
         }
 
     }

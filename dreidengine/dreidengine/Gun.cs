@@ -112,9 +112,9 @@ namespace dreidengine
             if (hitObj)
             {
                 Console.WriteLine("hit");
-                RenderableObject obj = ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
-                if (obj.TakesDamage)
-                    obj.CurLife -= damage;
+                //RenderableObject obj = ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
+                //if (obj.TakesDamage)
+                //    obj.CurLife -= damage;
             }
         }
 
