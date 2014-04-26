@@ -99,8 +99,8 @@ namespace dreidengine
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
 
 
-                 Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
-                 //Body.Velocity = new Vector3(Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).X, Body.Velocity.Y, Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).Z);
+                 //Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
+                 Body.Velocity = new Vector3(Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).X, Body.Velocity.Y, Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).Z);
                  //Body.Velocity = new Vector3(0, Body.Velocity.Y, 0);
                  Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
              }

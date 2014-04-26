@@ -12,28 +12,13 @@ namespace dreidengine
 {
     class intro : DrawableGameComponent
     {
-        boxtest b;
         Texture2D blue;
-        bool drawT = false;
 
         public intro(Game game, String waterName)
             : base(game)
         {
-            b = new boxtest(game, "box", new Vector3(0,500, 0), new Vector3(3000, 10, 3000));
-            b.Body.Immovable = true;
-            b.Body.Velocity = Vector3.Zero;
-            b.DrawOrder = 250;
-            //game.Components.Add(b);
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            if (((Game1)this.Game).Camera.Position.Y < 510)
-                drawT = true;
-            else
-                drawT = false;
-            base.Update(gameTime);
-        }
         protected override void LoadContent()
         {
             blue = Game.Content.Load<Texture2D>("blue");

@@ -157,14 +157,12 @@ namespace dreidengine
             foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.Alpha = 0.5f;                   
+                {                 
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = transforms[mesh.ParentBone.Index] * worldMatrix;
                     effect.View = game.Camera.View;
                     effect.Projection = game.Camera.Projection;
-                    
                 }
                 mesh.Draw();
             }
