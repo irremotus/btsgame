@@ -63,7 +63,6 @@ namespace dreidengine
             }
             curWeapon = weapon;
             weapons.Add(curWeapon);
-
             //Console.WriteLine("Weapons:");
             //foreach (RenderableObject w in Game.Components)
             //{

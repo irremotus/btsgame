@@ -127,6 +127,7 @@
     <Compile Include="Gun.cs" />
     <Compile Include="Knife.cs" />
     <Compile Include="MachineGun.cs" />
+    <Compile Include="Overlay.cs" />
     <Compile Include="PistolGun.cs" />
     <Compile Include="RayCollisionPredicate.cs" />
     <Compile Include="debug.cs" />
