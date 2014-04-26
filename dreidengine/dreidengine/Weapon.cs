@@ -50,6 +50,13 @@ namespace dreidengine
         {
             base.Update(gameTime);
 
+
+
+            Vector3 campos = ((Game1)Game).Camera.Position;
+            Body.Position = ((Game1)Game).Camera.View.Forward;
+
+
+            
             float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
 
             lastFireDelta += elapsedTime;

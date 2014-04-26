@@ -20,8 +20,18 @@ namespace dreidengine
     {
         int maxAmmo;
         int curAmmo;
+        public int CurAmmo
+        {
+            get { return curAmmo; }
+            set { curAmmo = value; }
+        }
         int magSize;
         int magCur;
+        public int MagCur
+        {
+            get { return magCur; }
+            set { magCur = value; }
+        }
         float reloadDelta;
         bool reloading;
         float startReloadDelta;
