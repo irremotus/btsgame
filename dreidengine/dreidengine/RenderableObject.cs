@@ -12,6 +12,35 @@ namespace dreidengine
 {
     public class RenderableObject : DrawableGameComponent
     {
+        public class BodyExternalData
+        {
+            RenderableObject renderableObject;
+            public RenderableObject RenderableObject
+            {
+                set { renderableObject = value; }
+                get { return renderableObject; }
+            }
+        }
+
+        float maxLife;
+        public float MaxLife
+        {
+            get { return maxLife; }
+            set { maxLife = value; }
+        }
+        float curLife;
+        public float CurLife
+        {
+            get { return curLife; }
+            set { curLife = value; }
+        }
+        bool takesDamage;
+        public bool TakesDamage
+        {
+            get { return takesDamage; }
+            set { takesDamage = value; }
+        }
+
         private Vector3 position = Vector3.Zero;
         private Vector3 scale = Vector3.One;
         private Model model;
@@ -66,6 +95,14 @@ namespace dreidengine
             _body = new Body();
             _skin = new CollisionSkin(_body);
             _body.CollisionSkin = _skin;
+
+            _body.ExternalData = new BodyExternalData();
+            ((BodyExternalData)_body.ExternalData).RenderableObject = this;
+
+            takesDamage = false;
+            maxLife = 0;
+            curLife = 0;
+
             rotMatrix = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z);
             //Box box = new Box(position, rotMatrix, scale);
             Box box = new Box(position, Matrix.Identity, scale); // rotation is relative to body

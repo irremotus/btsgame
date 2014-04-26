@@ -16,20 +16,12 @@ using System.Windows;
 
 namespace dreidengine
 {
-    class Character : boxtest
+    class MachineGun : Gun
     {
-        public Character(Game game, Vector3 pos, Vector3 scale)
-            : base(game, "box", pos, scale, true)
+        public MachineGun(Game game, Vector3 pos)
+            : base(game, "M9", pos, 50, 2000, 10, 10000, true, 999, 15, 100, 10)
         {
-            
+
         }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            
-        }
-
     }
 }

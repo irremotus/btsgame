@@ -122,6 +122,10 @@
     <Compile Include="boxtest.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="BulletPredicate.cs" />
+    <Compile Include="Gun.cs" />
+    <Compile Include="MachineGun.cs" />
+    <Compile Include="PistolGun.cs" />
     <Compile Include="RayCollisionPredicate.cs" />
     <Compile Include="debug.cs" />
     <Compile Include="GroundPredicate.cs" />

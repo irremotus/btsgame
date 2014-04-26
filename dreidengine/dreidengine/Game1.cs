@@ -87,10 +87,13 @@ namespace dreidengine
 
 
             //testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
-            testBox = new Character(this);
+            testBox = new Character(this, Vector3.Zero, Vector3.One);
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
 
             SkyDome sky = new SkyDome(this, "dome", 500f);
+
+            Gun pistol = new PistolGun(this, new Vector3(10, 10, 10));
+            boxtest c1 = new boxtest(this, "box", new Vector3(10, 10, 20), new Vector3(1, 1, 1), false);
 
             //cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
 
@@ -122,6 +125,9 @@ namespace dreidengine
             //Components.Add(cambox);
             Components.Add(_camera);
             Components.Add(sky);
+
+            Components.Add(pistol);
+            Components.Add(c1);
         }
 
         

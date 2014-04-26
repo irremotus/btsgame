@@ -29,14 +29,29 @@ namespace dreidengine
         bool reloading;
         float startReloadDelta;
         float lastFireDelta;
+        bool automatic;
 
         RayCollision rayColl;
+
+        ButtonState lastLeftState;
         
         
-        public Gun(Game game, string name, Vector3 pos)
+        public Gun(Game game, string name, Vector3 pos, float fireDelta, float reloadDelta, float damage, float range, bool automatic, int maxAmmo, int magSize, int curAmmo, int magCur)
             : base(game, name, pos, Vector3.One, false)
         {
             rayColl = new RayCollision(((Game1)game).World.CollisionSystem);
+
+            this.fireDelta = fireDelta;
+            this.reloadDelta = reloadDelta;
+            this.damage = damage;
+            this.range = range;
+            this.automatic = automatic;
+            this.maxAmmo = maxAmmo;
+            this.magSize = magSize;
+            this.curAmmo = curAmmo;
+            this.magCur = magCur;
+
+            Body.DisableBody();
         }
 
         public override void Update(GameTime gameTime)
@@ -47,8 +62,7 @@ namespace dreidengine
 
             lastFireDelta += elapsedTime;
 
-            KeyboardState keys = ((Game1)this.Game).Keysp;
-
+            MouseState mouse = Mouse.GetState();
 
             // reload stuff
             if (magCur == 0)
@@ -62,9 +76,11 @@ namespace dreidengine
             }
 
 
-            if (keys.IsKeyDown(Keys.Space))
-                if (CanFire())
+            if (mouse.LeftButton == ButtonState.Pressed)
+                if ((automatic || lastLeftState == ButtonState.Released) && CanFire())
                     Fire();
+
+            lastLeftState = mouse.LeftButton;
 
         }
 
@@ -78,6 +94,10 @@ namespace dreidengine
         void Fire()
         {
             lastFireDelta = 0;
+            magCur--;
+            curAmmo--;
+
+            Console.WriteLine(magCur.ToString() + "/" + curAmmo.ToString());
 
             float dist;
             CollisionSkin skin;
@@ -91,18 +111,26 @@ namespace dreidengine
 
             if (hitObj)
             {
-                
+                Console.WriteLine("hit");
+                RenderableObject obj = ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
+                if (obj.TakesDamage)
+                    obj.CurLife -= damage;
             }
         }
 
         void ReloadMag()
         {
-            reloading = true;
-            if (curAmmo > magSize)
-                magCur = magSize;
-            else
-                magCur = curAmmo;
-            curAmmo -= magCur;
+            if (curAmmo > 0)
+            {
+                Console.WriteLine("reloading");
+                reloading = true;
+                startReloadDelta = 0;
+                if (curAmmo > magSize)
+                    magCur = magSize;
+                else
+                    magCur = curAmmo;
+                curAmmo -= magCur;
+            }
         }
 
     }
