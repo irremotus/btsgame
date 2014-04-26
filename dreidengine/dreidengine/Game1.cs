@@ -29,6 +29,7 @@ namespace dreidengine
 
         KeyboardState keys, oldKeys;
 
+        BillBoarding billy;
         
         public KeyboardState Keysp
         {
@@ -76,7 +77,7 @@ namespace dreidengine
 
             SkyDome sky = new SkyDome(this, "dome", 500f);
 
-            cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
+            //cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
 
             List<boxtest> boxes = new List<boxtest>();
             int i = 0;
@@ -96,13 +97,14 @@ namespace dreidengine
 
             testBox.Body.Immovable = false;
             fallBox.Body.Immovable = false;
-            cambox.Body.Immovable = true;
-   
+            //cambox.Body.Immovable = true;
 
+            billy = new BillBoarding(this, "explosionSpriteSheet", new Vector3(0, 0, 20), new Vector2(1, 1), new Vector2(5, 5), 5);
 
+            Components.Add(billy);
             Components.Add(testBox);
             Components.Add(fallBox);
-            Components.Add(cambox);
+            //Components.Add(cambox);
             Components.Add(_camera);
             Components.Add(sky);
         }
