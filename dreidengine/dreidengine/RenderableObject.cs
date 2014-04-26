@@ -75,7 +75,7 @@ namespace dreidengine
             
             //_skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f)); // why 2 primitives?
 
-            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncyRough);
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
 
             Vector3 com = SetMass(1.0f);
 
@@ -130,7 +130,7 @@ namespace dreidengine
             Game1 game = (Game1)Game;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-           // this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
+            this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             this.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
@@ -144,11 +144,13 @@ namespace dreidengine
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
+                    effect.Alpha = 0.5f;                   
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = transforms[mesh.ParentBone.Index] * worldMatrix;
                     effect.View = game.Camera.View;
                     effect.Projection = game.Camera.Projection;
+                    
                 }
                 mesh.Draw();
             }

@@ -25,8 +25,8 @@ namespace HeightmapProcessor
     [ContentProcessor]
     public class TerrainProcessor : ContentProcessor<Texture2DContent, ModelContent>
     {
-        const float terrainScale = 1f;
-        const float terrainBumpiness = 15;
+        const float terrainScale = 5f;
+        const float terrainBumpiness = 60;
         const float texCoordScale = 0.1f;
         const string terrainTexture = "Checker.bmp";
 

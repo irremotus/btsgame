@@ -64,7 +64,8 @@ namespace dreidengine
 
         private void InitializePhyics()
         {
-            intro i = new intro(this, "rand");
+            intro introduction = new intro(this, "cloudMap");
+           
             this.IsMouseVisible = false;
 
             PhysicsSystem world = new PhysicsSystem();
@@ -72,18 +73,22 @@ namespace dreidengine
 
             world.Gravity = new Vector3(0, -400, 0);
 
-            testBox = new boxtest(this, "box", new Vector3(0, 1000,0), new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));          
+            testBox = new boxtest(this, "box", new Vector3(0, 650,0), new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));          
 
-            SkyDome sky = new SkyDome(this, "dome", 500f);
+            //SkyDome sky = new SkyDome(this, "dome", "cloudMap", Vector3.Up * 370 ,Vector3.One * 500f);
+            SkyDome sky2 = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
 
             _camera = new Camera(this, testBox, 10.0f, 6/8f);
             _camera.Lookat = testBox.Body.Position;
             _camera.CameraMode = Camera.CameraModes.FIRST_PERSON;
-            
-            Components.Add(i);
+            introduction.DrawOrder = 500;
+
+
+            Components.Add(introduction);            
             Components.Add(testBox);
             Components.Add(_camera);
-            Components.Add(sky);
+            //Components.Add(sky);
+            Components.Add(sky2);
         }
 
         
@@ -99,7 +104,7 @@ namespace dreidengine
             terrainModel = Content.Load<Model>("terrain");
             heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
             
-            heightmapObj.PhysicsBody.Immovable = false;
+            heightmapObj.PhysicsBody.Immovable = true;
             this.Components.Add(heightmapObj);
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);            
@@ -131,18 +136,7 @@ namespace dreidengine
         {
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.Clear(Color.Black);
-            //grid.Draw();
-            spriteBatch.Begin();
-       
-            //spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
-            spriteBatch.Draw(
 
-            Vector3 newpos = _camera.Lookat - _camera.Position;
-            newpos.Normalize();
-            //spriteBatch.DrawString(font, "rotX: " + _camera.RotX.ToString() + "\nrotY: " + _camera.RotY.ToString(), new Vector2(50, 50), Color.Red); 
-            spriteBatch.DrawString(font, "", new Vector2(50, 50), Color.Red); 
-
-            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

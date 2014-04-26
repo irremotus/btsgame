@@ -12,54 +12,40 @@ namespace dreidengine
 {
     class intro : DrawableGameComponent
     {
-        Texture2D _waterTex;
-        String _waterName;
-        VertexPositionTexture[] vertecies;
-        //Vector3 pos = new Vector3(-100000, 50, -100000);
-        Vector3 pos = new Vector3(0, 0, 20);
-        float s = 100000f;
-        Effect _waterE;
+        boxtest b;
+        Texture2D blue;
+        bool drawT = false;
 
         public intro(Game game, String waterName)
             : base(game)
         {
-            _waterName = waterName;
+            b = new boxtest(game, "box", new Vector3(0,500, 0), new Vector3(3000, 10, 3000));
+            b.Body.Immovable = true;
+            b.Body.Velocity = Vector3.Zero;
+            b.DrawOrder = 250;
+            //game.Components.Add(b);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            if (((Game1)this.Game).Camera.Position.Y < 510)
+                drawT = true;
+            else
+                drawT = false;
+            base.Update(gameTime);
+        }
         protected override void LoadContent()
         {
-            _waterTex = Game.Content.Load<Texture2D>(_waterName);
-            _waterE = Game.Content.Load<Effect>("waterPaneEffect");
-
-            vertecies = new VertexPositionTexture[6];
-            int i = 0;
-
-            vertecies[i++] = new VertexPositionTexture(pos, new Vector2(0, 0));
-            vertecies[i++] = new VertexPositionTexture(pos, new Vector2(s, 0));
-            vertecies[i++] = new VertexPositionTexture(pos, new Vector2(s, s));
-
-            vertecies[i++] = new VertexPositionTexture(pos, new Vector2(0, 0));
-            vertecies[i++] = new VertexPositionTexture(pos, new Vector2(s, s));
-            vertecies[i++] = new VertexPositionTexture(pos, new Vector2(0, s));
-
-
+            blue = Game.Content.Load<Texture2D>("blue");
             base.LoadContent();
         }
-
         public override void Draw(GameTime gameTime)
         {
-            _waterE.CurrentTechnique = _waterE.Techniques["TexturedNoShading"];
-            _waterE.Parameters["xWorld"].SetValue(Matrix.Identity);
-            _waterE.Parameters["xView"].SetValue(((Game1)this.Game).Camera.View);
-            _waterE.Parameters["xProjection"].SetValue(((Game1)this.Game).Camera.Projection);
-            _waterE.Parameters["xTexture"].SetValue(_waterTex);
-            
-            foreach (EffectPass pass in _waterE.CurrentTechnique.Passes)
-            {
-                pass.Apply();
-                Game.GraphicsDevice.DrawUserPrimitives<VertexPositionTexture>(Microsoft.Xna.Framework.Graphics.PrimitiveType.TriangleList, vertecies, 0, 2, VertexPositionTexture.VertexDeclaration);
-            }
-         
+            SpriteBatch sb = new SpriteBatch(Game.GraphicsDevice);
+            sb.Begin();
+            sb.Draw(blue, new Microsoft.Xna.Framework.Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White * 0.4f);
+            sb.End();
+
             base.Draw(gameTime);
         }
     }
