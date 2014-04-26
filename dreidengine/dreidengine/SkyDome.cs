@@ -11,23 +11,25 @@ namespace dreidengine
     class SkyDome : DrawableGameComponent
     {
         string name;
-        float scale;
+        Vector3 scale;
         Vector3 position;
         private Model skyDome;
         private Texture2D cloudMap;
         private Effect skyEffect;
+        string texName;
 
-        public SkyDome(Game1 game, string name, float scale)
+        public SkyDome(Game1 game, string name, string textureName, Vector3 pos, Vector3 scale)
             : base(game)
         {
             this.name = name;
             this.scale = scale;
-            position = Vector3.Zero;
+            position = pos;
+            texName = textureName;
         }
         protected override void LoadContent()
         {
             skyDome = Game.Content.Load<Model>(name);
-            cloudMap = Game.Content.Load<Texture2D>("cloudMap");
+            cloudMap = Game.Content.Load<Texture2D>(texName);
             skyEffect = Game.Content.Load<Effect>("sky");
             skyDome.Meshes[0].MeshParts[0].Effect = skyEffect.Clone();
             base.LoadContent();
@@ -44,7 +46,7 @@ namespace dreidengine
             skyDome.CopyAbsoluteBoneTransformsTo(modelTransforms);
             if (cloudMap == null)
                 return;
-            Matrix wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(this.scale) * Matrix.CreateTranslation(((Game1)this.Game).Camera.Position);
+            Matrix wMatrix = Matrix.CreateScale(this.scale) * Matrix.CreateTranslation(position);// *Matrix.CreateTranslation(((Game1)this.Game).Camera.Position);
             foreach (ModelMesh mesh in skyDome.Meshes)
             {
                 foreach (Effect currentEffect in mesh.Effects)

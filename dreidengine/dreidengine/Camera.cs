@@ -115,10 +115,10 @@ namespace dreidengine
 
             KeyboardState keys = ((Game1)this.Game).Keysp;
 
-            //if (keys.IsKeyDown(Keys.F))
-            //    _cameraMode = dreidengine.Camera.CameraModes.FIRST_PERSON;
-            //if (keys.IsKeyDown(Keys.T))
-            //    _cameraMode = dreidengine.Camera.CameraModes.THIRD_PERSON;
+            if (keys.IsKeyDown(Keys.F))
+                _cameraMode = dreidengine.Camera.CameraModes.FIRST_PERSON;
+            if (keys.IsKeyDown(Keys.T))
+                _cameraMode = dreidengine.Camera.CameraModes.THIRD_PERSON;
 
             if (keys.IsKeyDown(Keys.OemPlus))
                 _stepSize += 0.1f;

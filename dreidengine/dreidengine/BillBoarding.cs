@@ -26,6 +26,7 @@ namespace dreidengine
         int w, h, ele, index = 0;
         float _aSp;
         float _deltaT;
+        Vector3 rot = Vector3.Up;
 
         public BillBoarding(Game game, String texName, Vector3 pos, Vector2 size)
             : base(game)
@@ -34,6 +35,12 @@ namespace dreidengine
             _texName = texName;
             _size = size;
             _xy = Vector2.Zero;
+        }
+
+        public BillBoarding(Game game, String texName, Vector3 pos, Vector2 size, Vector3 rot)
+            : this(game, texName, pos, size)
+        {
+            this.rot = rot;
         }
 
         public BillBoarding(Game game, String texName, Vector3 pos, Vector2 size, Vector2 xy, float time)
@@ -117,7 +124,7 @@ namespace dreidengine
             bbEffect.Parameters["xView"].SetValue(((Game1)this.Game).Camera.View);
             bbEffect.Parameters["xProjection"].SetValue(((Game1)this.Game).Camera.Projection);
             bbEffect.Parameters["xCamPos"].SetValue(((Game1)this.Game).Camera.Position);
-            bbEffect.Parameters["xAllowedRotDir"].SetValue(new Vector3(0, 1, 0));
+            bbEffect.Parameters["xAllowedRotDir"].SetValue(rot);
             bbEffect.Parameters["xBillboardTexture"].SetValue(_tex);
             
           

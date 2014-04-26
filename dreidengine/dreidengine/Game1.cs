@@ -41,8 +41,6 @@ namespace dreidengine
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
-
-        BillBoarding billy;
         
         public KeyboardState Keysp
         {
@@ -78,46 +76,49 @@ namespace dreidengine
         }
 
         private void InitializePhyics()
-        {            
-
+        {
             this.IsMouseVisible = false;
-
             world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
-
-            SkyDome sky = new SkyDome(this, "dome", 500f);
+            world.Gravity = new Vector3(0, -400, 0);
 
             PistolGun pistol = new PistolGun(this, new Vector3(10, 10, 10));
             MachineGun machine = new MachineGun(this, new Vector3(10, 10, 20));
+
+            intro introduction = new intro(this, "cloudMap");
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -10, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
             b1.CurLife = 100;
 
-            Character c1 = new Character(this, Vector3.Zero, Vector3.One);
+            Components.Add(pistol);
+            Components.Add(machine);
+            Components.Add(b1);
+            
+
+            Character c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
+            Components.Add(c1);
             c1.PickUpWeapon(pistol);
             c1.PickUpWeapon(machine);
+            
             
 
             _camera = new Camera(this, c1, 10.0f, 6/8f);
             _camera.Lookat = c1.Body.Position;
             _camera.CameraMode = Camera.CameraModes.FIRST_PERSON;
 
-            billy = new BillBoarding(this, "explosionSpriteSheet", new Vector3(0, 0, 20), new Vector2(1, 1), new Vector2(5, 5), 5);
+            SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
+            introduction.DrawOrder = 500;
 
-            Components.Add(billy);
+            Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);
 
-            Components.Add(pistol);
-            Components.Add(machine);
-            Components.Add(b1);
-            Components.Add(c1);
+            
         }
 
         
         protected override void Initialize()
         {
-
             this.IsMouseVisible = false;
             base.Initialize();
         }
@@ -128,8 +129,8 @@ namespace dreidengine
             terrainModel = Content.Load<Model>("terrain");
             heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
             
-            heightmapObj.PhysicsBody.Immovable = false;
-            this.Components.Add(heightmapObj);
+            heightmapObj.PhysicsBody.Immovable = true;
+            Components.Add(heightmapObj);
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);            
         }
@@ -161,18 +162,7 @@ namespace dreidengine
         {
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.Clear(Color.Black);
-            //grid.Draw();
-            spriteBatch.Begin();
-       
-            //spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
 
-
-            Vector3 newpos = _camera.Lookat - _camera.Position;
-            newpos.Normalize();
-            //spriteBatch.DrawString(font, "rotX: " + _camera.RotX.ToString() + "\nrotY: " + _camera.RotY.ToString(), new Vector2(50, 50), Color.Red); 
-            spriteBatch.DrawString(font, "", new Vector2(50, 50), Color.Red); 
-
-            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
