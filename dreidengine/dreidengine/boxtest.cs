@@ -27,8 +27,6 @@ namespace dreidengine
             get { return amount; }
             set { amount = value; }
         }
-
-
         #region Constructors
         public boxtest(Game game, string name) 
             : base(game)

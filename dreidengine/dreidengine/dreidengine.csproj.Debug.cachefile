@@ -1,13 +1,12 @@
 Content\box.xnb
-Content\cone.xnb
 Content\cone2.xnb
-Content\skydome.xnb
 Content\SpriteFont1.xnb
 Content\terrain.xnb
 Content\world2.xnb
 Content\cloudMap.xnb
 Content\dome.xnb
-Content\skydome_0.xnb
+Content\sky.xnb
 Content\Checker_0.xnb
 Content\cloudMap_0.xnb
-Content\sky.xnb
+Content\Bitmap1.xnb
+Content\overlay.xnb
