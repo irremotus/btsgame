@@ -23,6 +23,12 @@ namespace dreidengine
             return gameInstance;
         }
 
+        Character c1;
+        public Character C1
+        {
+            get { return C1; }
+        }
+
         PhysicsSystem world;
         public PhysicsSystem World
         {
@@ -84,7 +90,7 @@ namespace dreidengine
 
             intro introduction = new intro(this, "cloudMap");
             
-            Character c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
+            c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
 
             PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
