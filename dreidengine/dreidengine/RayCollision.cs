@@ -11,7 +11,7 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class RayCollision
+    public class RayCollision
     {
         CollisionSystem collSys;
 

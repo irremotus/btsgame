@@ -10,7 +10,7 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class DamageableObject : RenderableObject
+    public class DamageableObject : RenderableObject
     {
         float maxLife;
         public float MaxLife

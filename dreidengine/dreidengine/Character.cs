@@ -16,12 +16,16 @@ using System.Windows;
 
 namespace dreidengine
 {
-    class Character : boxtest
+    public class Character : boxtest
     {
         List<Weapon> weapons;
         Weapon curWeapon;
+<<<<<<< HEAD
 
         public Weapon CurWeapon
+=======
+        Weapon CurWeapon
+>>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
         {
             get { return curWeapon; }
         }

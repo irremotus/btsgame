@@ -17,18 +17,25 @@ namespace dreidengine
   
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        Random r = new Random();
         static Game1 gameInstance;
         public static Game1 GetInstance()
         {
             return gameInstance;
         }
 
+<<<<<<< HEAD
 
         Character c1;
+=======
+        private Character c1;
+>>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
         public Character C1
         {
             get { return c1; }
         }
+
+       
 
         PhysicsSystem world;
         public PhysicsSystem World
@@ -109,7 +116,18 @@ namespace dreidengine
             SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
             introduction.DrawOrder = 500;
 
+<<<<<<< HEAD
             hud.DrawOrder = 1;
+=======
+            squid s;
+
+            for (int i = 0; i < 10; i++)
+            {
+                s = new squid(this, "cone2",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector3.One, 50, 50);
+                Components.Add(s);
+            }
+
+>>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);
