@@ -13,6 +13,7 @@ namespace dreidengine
     class squid : enemy
     {
         Random r = new Random();
+        int prevCol = 0;
         public squid(Game game, String modelName, Vector3 pos, Vector3 scale, int maxHP, int minHP)
             : base(game, modelName, pos, scale, maxHP, minHP)
         {
@@ -32,7 +33,17 @@ namespace dreidengine
             Body.ApplyBodyAngImpulse(new Vector3(0f, 0f, 0.1f));
             if (Vector3.Distance(Body.Position, ((Game1)this.Game).Camera.Position) < 10)
             {
-                
+                if (prevCol == 0)
+                {
+                    ((Game1)this.Game).C1.CurLife -= 20;
+                    prevCol++;
+                }
+                else
+                {
+                    prevCol++;
+                    if (prevCol == 300)
+                        prevCol = 0;
+                }
             }
             base.Update(gameTime);
         }
