@@ -17,6 +17,19 @@ namespace dreidengine
   
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        static Game1 gameInstance;
+        public static Game1 GetInstance()
+        {
+            return gameInstance;
+        }
+
+        PhysicsSystem world;
+        public PhysicsSystem World
+        {
+            get { return world; }
+        }
+
+        RayCollision rayColl;
 
         Model terrainModel;
         
@@ -69,10 +82,12 @@ namespace dreidengine
 
             this.IsMouseVisible = false;
 
-            PhysicsSystem world = new PhysicsSystem();
+            world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
-            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
+
+            //testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
+            testBox = new Character(this);
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
 
             SkyDome sky = new SkyDome(this, "dome", 500f);
@@ -93,7 +108,7 @@ namespace dreidengine
 
             _camera = new Camera(this, testBox, 10.0f, 6/8f);
             _camera.Lookat = testBox.Body.Position;
-            _camera.CameraMode = Camera.CameraModes.THIRD_PERSON;
+            _camera.CameraMode = Camera.CameraModes.FIRST_PERSON;
 
             testBox.Body.Immovable = false;
             fallBox.Body.Immovable = false;
@@ -144,6 +159,7 @@ namespace dreidengine
                 this.Exit();
 
             float timeStep = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+            
             PhysicsSystem.CurrentPhysicsSystem.Integrate(timeStep);
 
             oldKeys = keys;
