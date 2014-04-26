@@ -132,6 +132,7 @@
     <Compile Include="GroundPredicate.cs" />
     <Compile Include="HeightMapInfo.cs" />
     <Compile Include="HeightmapObject.cs" />
+    <Compile Include="intro.cs" />
     <Compile Include="PhysicObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

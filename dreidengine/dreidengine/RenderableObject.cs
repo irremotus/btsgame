@@ -52,6 +52,7 @@ namespace dreidengine
         {
             set { _modelName = value; }
         }
+        
 
         private Body _body;
         public Body Body
@@ -143,7 +144,7 @@ namespace dreidengine
             Game1 game = (Game1)Game;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-           // this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
+            this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             this.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
@@ -157,11 +158,13 @@ namespace dreidengine
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
+                    effect.Alpha = 0.5f;                   
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = transforms[mesh.ParentBone.Index] * worldMatrix;
                     effect.View = game.Camera.View;
                     effect.Projection = game.Camera.Projection;
+                    
                 }
                 mesh.Draw();
             }

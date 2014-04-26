@@ -20,15 +20,12 @@ namespace dreidengine
     {
         public Character(Game game, Vector3 pos, Vector3 scale)
             : base(game, "box", pos, scale, true)
-        {
-            
+        {            
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
-            
+            base.Update(gameTime);      
         }
 
     }
