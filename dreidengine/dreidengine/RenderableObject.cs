@@ -22,25 +22,6 @@ namespace dreidengine
             }
         }
 
-        float maxLife;
-        public float MaxLife
-        {
-            get { return maxLife; }
-            set { maxLife = value; }
-        }
-        float curLife;
-        public float CurLife
-        {
-            get { return curLife; }
-            set { curLife = value; }
-        }
-        bool takesDamage;
-        public bool TakesDamage
-        {
-            get { return takesDamage; }
-            set { takesDamage = value; }
-        }
-
         private Vector3 position = Vector3.Zero;
         private Vector3 scale = Vector3.One;
         private Model model;
@@ -98,10 +79,6 @@ namespace dreidengine
 
             _body.ExternalData = new BodyExternalData();
             ((BodyExternalData)_body.ExternalData).RenderableObject = this;
-
-            takesDamage = false;
-            maxLife = 0;
-            curLife = 0;
 
             rotMatrix = Matrix.CreateRotationX(rotation.X) * Matrix.CreateRotationY(rotation.Y) * Matrix.CreateRotationZ(rotation.Z);
             //Box box = new Box(position, rotMatrix, scale);

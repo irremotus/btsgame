@@ -51,7 +51,7 @@ namespace dreidengine
             this.curAmmo = curAmmo;
             this.magCur = magCur;
 
-            Body.DisableBody();
+            //Body.DisableBody();
         }
 
         public override void Update(GameTime gameTime)
@@ -107,14 +107,15 @@ namespace dreidengine
             CollisionSkinPredicate1 pred = new BulletPredicate();
 
             bool hitObj = false;
-            hitObj = rayColl.CastRay(out dist, out skin, out pos, out normal, Body.Position, Body.Orientation.Forward * range, pred);
+            hitObj = rayColl.CastRay(out dist, out skin, out pos, out normal, Body.Position, Body.Orientation.Right * range, pred);
 
             if (hitObj)
             {
-                Console.WriteLine("hit");
-                //RenderableObject obj = ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
-                //if (obj.TakesDamage)
-                //    obj.CurLife -= damage;
+                Console.WriteLine("hit " + ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject.ToString());
+                DamageableObject obj = (DamageableObject)((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
+                if (obj.TakesDamage)
+                    obj.CurLife -= damage;
+                Console.WriteLine(obj.CurLife.ToString());
             }
         }
 

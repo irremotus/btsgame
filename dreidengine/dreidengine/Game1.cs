@@ -52,8 +52,6 @@ namespace dreidengine
         {
             get { return oldKeys; }
         }
- 
-        boxtest testBox, fallBox, cambox;
 
         SpriteFont font;
 
@@ -74,6 +72,8 @@ namespace dreidengine
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            gameInstance = this;
+
             InitializePhyics();
         }
 
@@ -85,38 +85,28 @@ namespace dreidengine
             world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
-
-            //testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
-            testBox = new Character(this, Vector3.Zero, Vector3.One);
-            fallBox = new boxtest(this, "box", new Vector3(0, 10, 10), new Vector3(1, 1, 1));
-
             SkyDome sky = new SkyDome(this, "dome", 500f);
 
             Gun pistol = new PistolGun(this, new Vector3(10, 10, 10));
-            boxtest c1 = new boxtest(this, "box", new Vector3(20, -10, 10), new Vector3(1, 1, 1), false);
+            boxtest b1 = new boxtest(this, "box", new Vector3(20, -10, 10), new Vector3(1, 1, 1), false);
+            b1.TakesDamage = true;
+            b1.CurLife = 100;
 
-            //cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
-
+            Character c1 = new Character(this, Vector3.Zero, Vector3.One);
             
 
-            _camera = new Camera(this, testBox, 10.0f, 6/8f);
-            _camera.Lookat = testBox.Body.Position;
+            _camera = new Camera(this, c1, 10.0f, 6/8f);
+            _camera.Lookat = c1.Body.Position;
             _camera.CameraMode = Camera.CameraModes.FIRST_PERSON;
-
-            testBox.Body.Immovable = false;
-            fallBox.Body.Immovable = false;
-            //cambox.Body.Immovable = true;
 
             billy = new BillBoarding(this, "explosionSpriteSheet", new Vector3(0, 0, 20), new Vector2(1, 1), new Vector2(5, 5), 5);
 
             Components.Add(billy);
-            Components.Add(testBox);
-            Components.Add(fallBox);
-            //Components.Add(cambox);
             Components.Add(_camera);
             Components.Add(sky);
 
             Components.Add(pistol);
+            Components.Add(b1);
             Components.Add(c1);
         }
 

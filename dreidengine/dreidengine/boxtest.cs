@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace dreidengine
 {
-    class boxtest : RenderableObject
+    class boxtest : DamageableObject
     {
         private bool flagMovable = false;
         private Vector3 moveVector = Vector3.Zero;
@@ -52,7 +52,7 @@ namespace dreidengine
         }
 
          public boxtest(Game game, string name, Vector3 position, Vector3 scale, bool movable)
-            : base(game)
+            : base(game, 100, 100)
         {
             ModelName = name;
             Position = position;

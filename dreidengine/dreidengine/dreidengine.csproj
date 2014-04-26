@@ -123,6 +123,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="BulletPredicate.cs" />
+    <Compile Include="DamageableObject.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="MachineGun.cs" />
     <Compile Include="PistolGun.cs" />
