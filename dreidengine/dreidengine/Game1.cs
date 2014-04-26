@@ -82,25 +82,17 @@ namespace dreidengine
             world.CollisionSystem = new CollisionSystemSAP();
             world.Gravity = new Vector3(0, -400, 0);
 
-            PistolGun pistol = new PistolGun(this, new Vector3(10, 10, 10));
-            MachineGun machine = new MachineGun(this, new Vector3(10, 10, 20));
-
             intro introduction = new intro(this, "cloudMap");
-            boxtest b1 = new boxtest(this, "box", new Vector3(20, -10, 10), new Vector3(1, 1, 1), false);
+            
+            Character c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
+
+            PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
+            MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
+            Knife knife = new Knife(this, new Vector3(17, -15, 10));
+
+            boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
             b1.CurLife = 100;
-
-            Components.Add(pistol);
-            Components.Add(machine);
-            Components.Add(b1);
-            
-
-            Character c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
-            Components.Add(c1);
-            c1.PickUpWeapon(pistol);
-            c1.PickUpWeapon(machine);
-            
-            
 
             _camera = new Camera(this, c1, 10.0f, 6/8f);
             _camera.Lookat = c1.Body.Position;
@@ -113,7 +105,15 @@ namespace dreidengine
             Components.Add(_camera);
             Components.Add(sky);
 
-            
+            Components.Add(pistol);
+            Components.Add(machine);
+            Components.Add(knife);
+            Components.Add(b1);
+            Components.Add(c1);
+
+            c1.PickUpWeapon(pistol);
+            c1.PickUpWeapon(machine);
+            c1.PickUpWeapon(knife);
         }
 
         

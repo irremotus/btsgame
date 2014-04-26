@@ -125,6 +125,7 @@
     <Compile Include="BulletPredicate.cs" />
     <Compile Include="DamageableObject.cs" />
     <Compile Include="Gun.cs" />
+    <Compile Include="Knife.cs" />
     <Compile Include="MachineGun.cs" />
     <Compile Include="PistolGun.cs" />
     <Compile Include="RayCollisionPredicate.cs" />

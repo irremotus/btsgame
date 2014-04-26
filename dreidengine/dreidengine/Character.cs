@@ -27,6 +27,7 @@ namespace dreidengine
             : base(game, "box", pos, scale, true)
         {
             weapons = new List<Weapon>();
+            curWeapon = null;
         }
 
         public override void Update(GameTime gameTime)
@@ -39,11 +40,12 @@ namespace dreidengine
             {
                 if (!kold.IsKeyDown(Keys.Tab))
                 {
-                    curWeapon.Active = false;
-                    curWeapon = weapons.First();
-                    curWeapon.Active = true;
+                    curWeapon.Deactivate();
                     weapons.Remove(curWeapon);
                     weapons.Add(curWeapon);
+                    curWeapon = weapons.First();
+                    curWeapon.Activate();
+                    Console.WriteLine("CW: " + curWeapon.ToString());
                 }
             }
             kold = ks;
@@ -51,9 +53,19 @@ namespace dreidengine
 
         public void PickUpWeapon(Weapon weapon)
         {
-            weapon.Active = true;
+            if (curWeapon != null)
+            {
+                curWeapon.Deactivate();
+            }
             curWeapon = weapon;
-            weapons.Add(weapon);
+            weapons.Add(curWeapon);
+
+            //Console.WriteLine("Weapons:");
+            //foreach (RenderableObject w in Game.Components)
+            //{
+            //    Console.WriteLine(w.ToString());
+            //}
+            //Console.WriteLine("\n");
         }
 
     }

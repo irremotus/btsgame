@@ -159,8 +159,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="M9.fbx">
-      <Name>M9</Name>
+    <Compile Include="Knife.fbx">
+      <Name>Knife</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="m9.fbx">
+      <Name>m9</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>

@@ -27,8 +27,8 @@ namespace dreidengine
         float startReloadDelta;
         
 
-        public Gun(Game game, string name, Vector3 pos, float fireDelta, float reloadDelta, float damage, float range, bool automatic, int maxAmmo, int magSize, int curAmmo, int magCur)
-            : base(game, name, pos, fireDelta, damage, range, automatic)
+        public Gun(Game game, string name, Vector3 pos, Vector3 rot, float fireDelta, float reloadDelta, float damage, float range, bool automatic, int maxAmmo, int magSize, int curAmmo, int magCur)
+            : base(game, name, pos, rot, fireDelta, damage, range, automatic)
         {
             this.reloadDelta = reloadDelta;
             this.maxAmmo = maxAmmo;
@@ -43,35 +43,31 @@ namespace dreidengine
         {
             base.Update(gameTime);
 
-            if (active)
+            float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
+
+
+            // reload stuff
+            if (magCur == 0)
+                ReloadMag();
+            if (reloading)
             {
-                float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
-
-
-                // reload stuff
-                if (magCur == 0)
-                    ReloadMag();
-                if (reloading)
-                {
-                    if (startReloadDelta < reloadDelta)
-                        startReloadDelta += elapsedTime;
-                    else
-                        reloading = false;
-                }
+                if (startReloadDelta < reloadDelta)
+                    startReloadDelta += elapsedTime;
+                else
+                    reloading = false;
             }
 
         }
 
         protected override bool CanFire()
         {
-            if (lastFireDelta > fireDelta && magCur > 0 && !reloading)
+            if (magCur > 0 && !reloading)
                 return true;
             return false;
         }
 
         protected override void Fire()
         {
-            lastFireDelta = 0;
             magCur--;
             curAmmo--;
 

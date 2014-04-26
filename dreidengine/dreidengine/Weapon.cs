@@ -24,49 +24,59 @@ namespace dreidengine
         protected bool automatic;
         protected float lastFireDelta;
 
-        protected bool active;
-        public bool Active
-        {
-            get { return active; }
-            set { active = value; Console.WriteLine(this.GetType().ToString() + " is " + active.ToString()); }
-        }
-
         protected RayCollision rayColl;
 
         protected ButtonState lastLeftState;
 
 
-        public Weapon(Game game, string name, Vector3 pos, float fireDelta, float damage, float range, bool automatic)
-            : base(game, name, pos, Vector3.One, false)
+        public Weapon(Game game, string name, Vector3 pos, Vector3 rot, float fireDelta, float damage, float range, bool automatic)
+            : base(game, name, pos, Vector3.One, false, rot)
         {
             rayColl = new RayCollision(((Game1)game).World.CollisionSystem);
 
-            active = false;
+            Deactivate();
             
             this.fireDelta = fireDelta;
             this.damage = damage;
             this.range = range;
             this.automatic = automatic;
             lastFireDelta = 0;
+
+            Body.Immovable = true;
+            Body.DisableBody();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (active)
+            float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
+
+            lastFireDelta += elapsedTime;
+
+            MouseState mouse = Mouse.GetState();
+            if (mouse.LeftButton == ButtonState.Pressed)
             {
-                float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
-
-                lastFireDelta += elapsedTime;
-
-                MouseState mouse = Mouse.GetState();
-                if (mouse.LeftButton == ButtonState.Pressed)
-                    if ((automatic || lastLeftState == ButtonState.Released) && CanFire())
-                        Fire();
-
-                lastLeftState = mouse.LeftButton;
+                if ((automatic || lastLeftState == ButtonState.Released) && lastFireDelta > fireDelta && CanFire())
+                {
+                    lastFireDelta = 0;
+                    Fire();
+                }
             }
+
+            lastLeftState = mouse.LeftButton;
+        }
+
+        public void Activate()
+        {
+            Enabled = true;
+            Game.Components.Add(this);
+        }
+
+        public void Deactivate()
+        {
+            Enabled = false;
+            Game.Components.Remove(this);
         }
 
         protected abstract bool CanFire();
