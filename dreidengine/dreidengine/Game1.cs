@@ -68,8 +68,7 @@ namespace dreidengine
         }
 
         private void InitializePhyics()
-        {            
-
+        {
             this.IsMouseVisible = false;
 
             PhysicsSystem world = new PhysicsSystem();
@@ -78,8 +77,7 @@ namespace dreidengine
             testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
             fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
             SkyDome sky = new SkyDome(this, "dome", 500f);
-            HUD = new Overlay(this, GraphicsDevice, 20, 10);
-            
+            Overlay HUD = new Overlay(this, GraphicsDevice, 30, 1);
 
             cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
 
@@ -104,17 +102,19 @@ namespace dreidengine
             cambox.Body.Immovable = true;
 
 
-
+            HUD.DrawOrder = 10000;
             Components.Add(testBox);
             Components.Add(fallBox);
             Components.Add(cambox);
             Components.Add(_camera);
             Components.Add(sky);
             Components.Add(HUD);
-
         }
 
-        
+        public void InitHUD()
+        {
+
+        }
         protected override void Initialize()
         {
 
@@ -132,14 +132,7 @@ namespace dreidengine
             this.Components.Add(heightmapObj);
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
         }
-
-        private void InitHUD()
-        {
-
-        }
-
         
         protected override void UnloadContent()
         {

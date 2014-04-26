@@ -27,7 +27,7 @@ namespace dreidengine
         Texture2D overlayTexture;
         HUD overlay;
         SpriteBatch spriteBatch;
-
+        SpriteFont font;
         public Overlay(Game game, GraphicsDevice graphicsDevice, int width, int height):base(game)
         {
 
@@ -46,24 +46,32 @@ namespace dreidengine
             Game1 game = (Game1)Game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
 
-            
+            InitHUD();
             base.Draw(gameTime);
             spriteBatch.Begin();
             DrawOverlay();
+            DrawText();
             spriteBatch.End();
         }
 
         private void DrawOverlay()
         {
-            spriteBatch.Draw(overlayTexture, new Microsoft.Xna.Framework.Rectangle(0, 20, 100, 100), Color.White);
+            spriteBatch.Draw(overlayTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, 115, 50), Color.White);
         }
 
+        private void DrawText()
+        {
+            spriteBatch.DrawString(font, "" + overlay.ammo, new Vector2(80, 25), Color.Black);
+        }
 
         protected override void LoadContent()
         {
             overlayTexture = Game.Content.Load<Texture2D>("overlay");
+            font = Game.Content.Load<SpriteFont>("Arial");
             base.LoadContent();
         }
 
+
+        public GameTime gameTime { get; set; }
     }
 }
