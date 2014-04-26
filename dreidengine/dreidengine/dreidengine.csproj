@@ -102,6 +102,8 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Private>False</Private>
@@ -124,6 +126,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="BulletPredicate.cs" />
     <Compile Include="DamageableObject.cs" />
+    <Compile Include="enemy.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="Knife.cs" />
     <Compile Include="MachineGun.cs" />
@@ -142,6 +145,7 @@
     <Compile Include="RenderableObject.cs" />
     <Compile Include="SampleGrid.cs" />
     <Compile Include="SkyDome.cs" />
+    <Compile Include="squid.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>

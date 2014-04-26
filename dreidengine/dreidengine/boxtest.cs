@@ -61,6 +61,16 @@ namespace dreidengine
             setBody(position);
         }
 
+         public boxtest(Game game, string name, Vector3 position, Vector3 scale, bool movable, int maxHP, int minHP)
+             : base(game, maxHP, minHP)
+         {
+             ModelName = name;
+             Position = position;
+             Scale = scale;
+             flagMovable = movable;
+             setBody(position);
+         }
+
          public boxtest(Game game, string name, Vector3 position, Vector3 scale, bool movable, Vector3 rotation)
              : base(game)
          {

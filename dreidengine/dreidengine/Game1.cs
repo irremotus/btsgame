@@ -17,6 +17,7 @@ namespace dreidengine
   
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        Random r = new Random();
         static Game1 gameInstance;
         public static Game1 GetInstance()
         {
@@ -106,6 +107,14 @@ namespace dreidengine
 
             SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
             introduction.DrawOrder = 500;
+
+            squid s;
+
+            for (int i = 0; i < 10; i++)
+            {
+                s = new squid(this, "cone2",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector3.One, 50, 50);
+                Components.Add(s);
+            }
 
             Components.Add(introduction);            
             Components.Add(_camera);

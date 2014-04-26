@@ -27,7 +27,6 @@ namespace dreidengine
         private Model model;
         private Vector3 rotation; //rotations radians stored in respective vector values
         private Matrix rotMatrix;
-        private Box collisionPrimitive;
 
         public Vector3 Scale
         {
