@@ -105,6 +105,8 @@ namespace dreidengine
                  Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
              }
 
+             Body.Orientation = Matrix.CreateFromYawPitchRoll(0, 0, 0);
+
              if (!((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                  Body.Position = oldPosition;
 

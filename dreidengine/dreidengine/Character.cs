@@ -20,6 +20,10 @@ namespace dreidengine
     {
         List<Weapon> weapons;
         Weapon curWeapon;
+        public Weapon CurWeapon
+        {
+            get { return curWeapon; }
+        }
         KeyboardState ks, kold;
 
         

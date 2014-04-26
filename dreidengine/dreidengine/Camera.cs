@@ -151,6 +151,7 @@ namespace dreidengine
                 Vector3 camRef = new Vector3(0, 0, -1);
                 Vector3 objHeadOffset = new Vector3(0, 5.0f, 0);
                 Matrix rotMat = _rotation;
+                //Matrix rotMat = followObject.Body.Orientation;
                 Vector3 headOffset = Vector3.Transform(objHeadOffset, rotMat);
                 _position = followObject.Body.Position + headOffset;
                 Vector3 transRef = Vector3.Transform(camRef, rotMat);
