@@ -41,8 +41,8 @@ namespace dreidengine
             : base(game)
         {
             takesDamage = false;
-            this.maxLife = 0;
-            this.curLife = 0;
+            this.maxLife = 1;
+            this.curLife = 1;
             alive = true;
         }
 
