@@ -63,6 +63,7 @@ namespace dreidengine
             {
                 Console.WriteLine("died");
                 alive = false;
+                Game1.GetInstance().World.RemoveBody(this.Body);
                 Game1.GetInstance().Components.Remove(this);
             }
         }

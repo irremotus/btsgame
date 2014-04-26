@@ -16,11 +16,8 @@ using System.Windows;
 
 namespace dreidengine
 {
-    class Gun : boxtest
+    class Gun : Weapon
     {
-        float fireDelta;
-        float damage;
-        float range;
         int maxAmmo;
         int curAmmo;
         int magSize;
@@ -28,24 +25,12 @@ namespace dreidengine
         float reloadDelta;
         bool reloading;
         float startReloadDelta;
-        float lastFireDelta;
-        bool automatic;
-
-        RayCollision rayColl;
-
-        ButtonState lastLeftState;
         
-        
+
         public Gun(Game game, string name, Vector3 pos, float fireDelta, float reloadDelta, float damage, float range, bool automatic, int maxAmmo, int magSize, int curAmmo, int magCur)
-            : base(game, name, pos, Vector3.One, false)
+            : base(game, name, pos, fireDelta, damage, range, automatic)
         {
-            rayColl = new RayCollision(((Game1)game).World.CollisionSystem);
-
-            this.fireDelta = fireDelta;
             this.reloadDelta = reloadDelta;
-            this.damage = damage;
-            this.range = range;
-            this.automatic = automatic;
             this.maxAmmo = maxAmmo;
             this.magSize = magSize;
             this.curAmmo = curAmmo;
@@ -58,40 +43,33 @@ namespace dreidengine
         {
             base.Update(gameTime);
 
-            float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
-
-            lastFireDelta += elapsedTime;
-
-            MouseState mouse = Mouse.GetState();
-
-            // reload stuff
-            if (magCur == 0)
-                ReloadMag();
-            if (reloading)
+            if (active)
             {
-                if (startReloadDelta < reloadDelta)
-                    startReloadDelta += elapsedTime;
-                else
-                    reloading = false;
+                float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
+
+
+                // reload stuff
+                if (magCur == 0)
+                    ReloadMag();
+                if (reloading)
+                {
+                    if (startReloadDelta < reloadDelta)
+                        startReloadDelta += elapsedTime;
+                    else
+                        reloading = false;
+                }
             }
-
-
-            if (mouse.LeftButton == ButtonState.Pressed)
-                if ((automatic || lastLeftState == ButtonState.Released) && CanFire())
-                    Fire();
-
-            lastLeftState = mouse.LeftButton;
 
         }
 
-        bool CanFire()
+        protected override bool CanFire()
         {
             if (lastFireDelta > fireDelta && magCur > 0 && !reloading)
                 return true;
             return false;
         }
 
-        void Fire()
+        protected override void Fire()
         {
             lastFireDelta = 0;
             magCur--;

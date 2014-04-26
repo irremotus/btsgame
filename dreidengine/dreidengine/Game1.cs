@@ -87,12 +87,15 @@ namespace dreidengine
 
             SkyDome sky = new SkyDome(this, "dome", 500f);
 
-            Gun pistol = new PistolGun(this, new Vector3(10, 10, 10));
+            PistolGun pistol = new PistolGun(this, new Vector3(10, 10, 10));
+            MachineGun machine = new MachineGun(this, new Vector3(10, 10, 20));
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -10, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
             b1.CurLife = 100;
 
             Character c1 = new Character(this, Vector3.Zero, Vector3.One);
+            c1.PickUpWeapon(pistol);
+            c1.PickUpWeapon(machine);
             
 
             _camera = new Camera(this, c1, 10.0f, 6/8f);
@@ -106,6 +109,7 @@ namespace dreidengine
             Components.Add(sky);
 
             Components.Add(pistol);
+            Components.Add(machine);
             Components.Add(b1);
             Components.Add(c1);
         }

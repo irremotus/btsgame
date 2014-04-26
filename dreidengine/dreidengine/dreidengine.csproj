@@ -140,6 +140,7 @@
     <Compile Include="RenderableObject.cs" />
     <Compile Include="SampleGrid.cs" />
     <Compile Include="SkyDome.cs" />
+    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
