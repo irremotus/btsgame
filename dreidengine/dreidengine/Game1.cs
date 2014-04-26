@@ -28,8 +28,6 @@ namespace dreidengine
         SpriteBatch spriteBatch;
 
         KeyboardState keys, oldKeys;
-
-        BillBoarding billy;
         
         public KeyboardState Keysp
         {
@@ -39,8 +37,8 @@ namespace dreidengine
         {
             get { return oldKeys; }
         }
- 
-        boxtest testBox, fallBox, cambox;
+
+        boxtest testBox;
 
         SpriteFont font;
 
@@ -65,46 +63,25 @@ namespace dreidengine
         }
 
         private void InitializePhyics()
-        {            
-
+        {
+            intro i = new intro(this, "rand");
             this.IsMouseVisible = false;
 
             PhysicsSystem world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
 
-            testBox = new boxtest(this, "box", Vector3.Zero, new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));
-            fallBox = new boxtest(this, "box", new Vector3(0, 10, 0), new Vector3(1, 1, 1));
+            world.Gravity = new Vector3(0, -400, 0);
+
+            testBox = new boxtest(this, "box", new Vector3(0, 1000,0), new Vector3(1, 1, 1), true, new Vector3(0, 0, 0));          
 
             SkyDome sky = new SkyDome(this, "dome", 500f);
 
-            //cambox = new boxtest(this, "cone2", new Vector3(0, 0, 20));
-
-            List<boxtest> boxes = new List<boxtest>();
-            int i = 0;
-            for (i = 0; i < 10; i++)
-            {
-                boxes.Add(new boxtest(this, "box", new Vector3(20, 0, i * 10)));
-            }
-            foreach (boxtest box in boxes)
-            {
-                box.Body.Immovable = false;
-                Components.Add(box);
-            }
-
             _camera = new Camera(this, testBox, 10.0f, 6/8f);
             _camera.Lookat = testBox.Body.Position;
-            _camera.CameraMode = Camera.CameraModes.THIRD_PERSON;
-
-            testBox.Body.Immovable = false;
-            fallBox.Body.Immovable = false;
-            //cambox.Body.Immovable = true;
-
-            billy = new BillBoarding(this, "explosionSpriteSheet", new Vector3(0, 0, 20), new Vector2(1, 1), new Vector2(5, 5), 5);
-
-            Components.Add(billy);
+            _camera.CameraMode = Camera.CameraModes.FIRST_PERSON;
+            
+            Components.Add(i);
             Components.Add(testBox);
-            Components.Add(fallBox);
-            //Components.Add(cambox);
             Components.Add(_camera);
             Components.Add(sky);
         }
@@ -112,7 +89,6 @@ namespace dreidengine
         
         protected override void Initialize()
         {
-
             this.IsMouseVisible = false;
             base.Initialize();
         }
@@ -159,7 +135,7 @@ namespace dreidengine
             spriteBatch.Begin();
        
             //spriteBatch.DrawString(font, testBox.Body.Position.ToString(), new Vector2(50, 50), Color.Red); 
-
+            spriteBatch.Draw(
 
             Vector3 newpos = _camera.Lookat - _camera.Position;
             newpos.Normalize();

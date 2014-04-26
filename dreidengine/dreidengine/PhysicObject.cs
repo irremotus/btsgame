@@ -97,15 +97,15 @@ namespace dreidengine
                         effect.Projection = camera.Projection;
 
                         ApplyEffects(effect);
-
+                        
                         //if (!this.PhysicsBody.IsActive)
                         //    effect.Alpha = 0.4f;
                         //else
                         //    effect.Alpha = 1.0f;
 
 
-                        effect.EnableDefaultLighting();
-                        effect.PreferPerPixelLighting = true;
+                        //effect.EnableDefaultLighting();
+                        //effect.PreferPerPixelLighting = true;
                     }
                     mesh.Draw();
                 }

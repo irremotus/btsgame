@@ -42,6 +42,7 @@ namespace dreidengine
         {
             set { _modelName = value; }
         }
+        
 
         private Body _body;
         public Body Body
@@ -74,7 +75,7 @@ namespace dreidengine
             
             //_skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f)); // why 2 primitives?
 
-            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
+            _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncyRough);
 
             Vector3 com = SetMass(1.0f);
 
