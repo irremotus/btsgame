@@ -15,7 +15,11 @@ namespace dreidengine
     {
 
 
-        private RenderableObject followObject; // for RenderableObject 
+        RenderableObject followObject; // for RenderableObject
+        public RenderableObject FollowObject
+        {
+            get { return followObject; }
+        }
 
         private float aspectRatio;
         private float nearClip;

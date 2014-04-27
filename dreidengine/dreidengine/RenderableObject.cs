@@ -26,7 +26,10 @@ namespace dreidengine
         private Vector3 scale = Vector3.One;
         private Model model;
         private Vector3 rotation; //rotations radians stored in respective vector values
+        
         private Matrix rotMatrix;
+        public Matrix ROTmatrix { get { return rotMatrix; } set { rotMatrix = value; } }
+        private Box collisionPrimitive;
 
         public Vector3 Scale
         {

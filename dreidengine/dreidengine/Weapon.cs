@@ -48,16 +48,13 @@ namespace dreidengine
 
         public override void Update(GameTime gameTime)
         {
-
-
-
-            Vector3 campos = ((Game1)Game).Camera.Position;
-            Body.Position = campos + 5 * ((Game1)Game).Camera.Position;
-            
             base.Update(gameTime);         
 
-
-
+            Vector3 thirdPRef = new Vector3(0, 5.0f, -5.0f);
+            Matrix rotMat = ((Game1)this.Game).Camera.Rotation;
+            Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
+            Body.SetOrientation(Matrix.CreateFromYawPitchRoll(Rotation.X, Rotation.Y, Rotation.Z) * rotMat);
+            Body.Position = transRef + ((Game1)this.Game).Camera.FollowObject.Body.Position;
             
             float elapsedTime = (float)gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerMillisecond;
 
