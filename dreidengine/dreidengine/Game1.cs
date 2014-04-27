@@ -100,6 +100,7 @@ namespace dreidengine
             Knife knife = new Knife(this, new Vector3(17, -15, 10));
 
             Overlay hud = new Overlay(this, GraphicsDevice);
+            Overlay crosshair = new Overlay(this, GraphicsDevice);
 
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
@@ -112,8 +113,6 @@ namespace dreidengine
             SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
             introduction.DrawOrder = 500;
 
-            hud.DrawOrder = 2;
-
             squid s;
 
             for (int i = 0; i < 10; i++)
@@ -122,11 +121,14 @@ namespace dreidengine
                 Components.Add(s);
             }
 
+            hud.DrawOrder = 2;
+            crosshair.DrawOrder = 2;
 
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);
             Components.Add(hud);
+            Components.Add(crosshair);
 
             Components.Add(pistol);
             Components.Add(machine);

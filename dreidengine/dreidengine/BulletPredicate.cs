@@ -20,7 +20,6 @@ namespace dreidengine
                 Console.WriteLine("checking "+((RenderableObject.BodyExternalData)skin0.Owner.ExternalData).RenderableObject.ToString());
                 return true;
             }
-                
             return false;
         }
     }

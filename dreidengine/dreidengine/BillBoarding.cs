@@ -28,6 +28,7 @@ namespace dreidengine
         float _deltaT;
         Vector3 rot = Vector3.Up;
 
+
         public BillBoarding(Game game, String texName, Vector3 pos, Vector2 size)
             : base(game)
         {
@@ -126,7 +127,8 @@ namespace dreidengine
             bbEffect.Parameters["xCamPos"].SetValue(((Game1)this.Game).Camera.Position);
             bbEffect.Parameters["xAllowedRotDir"].SetValue(rot);
             bbEffect.Parameters["xBillboardTexture"].SetValue(_tex);
-            
+
+
           
             foreach (EffectPass pass in bbEffect.CurrentTechnique.Passes)
             {
