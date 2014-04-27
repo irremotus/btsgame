@@ -48,17 +48,14 @@ namespace dreidengine
 
         public override void Update(GameTime gameTime)
         {
-<<<<<<< HEAD
-            base.Update(gameTime);
 
 
 
             Vector3 campos = ((Game1)Game).Camera.Position;
             Body.Position = campos + 5 * ((Game1)Game).Camera.Position;
             
-=======
             base.Update(gameTime);         
->>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
+
 
 
             

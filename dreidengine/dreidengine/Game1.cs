@@ -24,12 +24,7 @@ namespace dreidengine
             return gameInstance;
         }
 
-<<<<<<< HEAD
-
-        Character c1;
-=======
         private Character c1;
->>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
         public Character C1
         {
             get { return c1; }
@@ -103,6 +98,7 @@ namespace dreidengine
             PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
             Knife knife = new Knife(this, new Vector3(17, -15, 10));
+
             Overlay hud = new Overlay(this, GraphicsDevice);
 
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
@@ -116,9 +112,8 @@ namespace dreidengine
             SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
             introduction.DrawOrder = 500;
 
-<<<<<<< HEAD
-            hud.DrawOrder = 1;
-=======
+            hud.DrawOrder = 2;
+
             squid s;
 
             for (int i = 0; i < 10; i++)
@@ -127,7 +122,7 @@ namespace dreidengine
                 Components.Add(s);
             }
 
->>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
+
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);

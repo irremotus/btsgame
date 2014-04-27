@@ -49,11 +49,6 @@ namespace dreidengine
             //Body.DisableBody();
         }
 
-        public Gun()
-        {
-            // TODO: Complete member initialization
-        }
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

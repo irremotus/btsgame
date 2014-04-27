@@ -20,12 +20,9 @@ namespace dreidengine
     {
         List<Weapon> weapons;
         Weapon curWeapon;
-<<<<<<< HEAD
+
 
         public Weapon CurWeapon
-=======
-        Weapon CurWeapon
->>>>>>> a4b0fe46e8647912ec4133a12ff0d61b4af9af85
         {
             get { return curWeapon; }
         }
@@ -74,11 +71,11 @@ namespace dreidengine
             //Console.WriteLine("\n");
         }
 
-        public int curAmmo(Weapon weapon)
+        /*public int curAmmo()
         {
-            Gun gun = (Gun) curWeapon;
-            return gun.CurAmmo;
-        }
+            Gun gun = CurWeapon.
+            return ((Gun)gun).CurAmmo;
+        }*/
 
     }
 }
