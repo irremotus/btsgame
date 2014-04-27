@@ -70,7 +70,7 @@ namespace dreidengine
         {
             spriteBatch.Draw(overlayAmmo, new Microsoft.Xna.Framework.Rectangle(0, 0, (int) 100, 50), Color.White);
             spriteBatch.Draw(overlayHealth, rectange, Color.White);
-            spriteBatch.Draw(overlayCrosshair, new Microsoft.Xna.Framework.Rectangle(10, 10, (int)100, 50), Color.White);
+            spriteBatch.Draw(overlayCrosshair, new Microsoft.Xna.Framework.Rectangle(((Game1)Game).Graphics.PreferredBackBufferWidth / 2, ((Game1)Game).Graphics.PreferredBackBufferHeight / 2, 35, 35), Color.White);
         }
 
         private void DrawText()
