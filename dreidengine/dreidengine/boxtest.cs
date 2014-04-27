@@ -21,7 +21,7 @@ namespace dreidengine
         private bool flagMovable = false;
         private Vector3 moveVector = Vector3.Zero;
         private Vector3 oldPosition;
-        private float amount = 50.0f;
+        private float amount = 30.0f;
         public float Amount
         {
             get { return amount; }
@@ -129,7 +129,9 @@ namespace dreidengine
         {
             Matrix camRot = ((Game1)this.Game).Camera.Rotation;
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
-            //Body.Velocity += rotVector;
+            
+            //Body.Velocity += new Vector3(rotVector.X, Body.Velocity.Y, rotVector.Z);
+            //Body.LimitVel();
             Body.Velocity = new Vector3(rotVector.X, Body.Velocity.Y, rotVector.Z);
         }
     }

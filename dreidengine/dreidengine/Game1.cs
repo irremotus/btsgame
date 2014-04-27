@@ -38,8 +38,6 @@ namespace dreidengine
             get { return world; }
         }
 
-        RayCollision rayColl;
-
         Model terrainModel;
         
         GraphicsDeviceManager graphics;
@@ -93,7 +91,7 @@ namespace dreidengine
 
             intro introduction = new intro(this, "cloudMap");
             
-            c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
+            c1 = new Character(this, new Vector3(0, 650, 40), Vector3.One);
 
             PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
@@ -106,6 +104,8 @@ namespace dreidengine
             b1.TakesDamage = true;
             b1.CurLife = 100;
 
+            Room room = new Room(this, Vector3.Down * 63, Vector3.One);
+
             _camera = new Camera(this, c1, 10.0f, 6/8f);
             _camera.Lookat = c1.Body.Position;
             _camera.CameraMode = Camera.CameraModes.FIRST_PERSON;
@@ -115,7 +115,7 @@ namespace dreidengine
 
             squid s;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 0; i++)
             {
                 s = new squid(this, "cone2",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector3.One, 50, 50);
                 Components.Add(s);
@@ -135,6 +135,8 @@ namespace dreidengine
             Components.Add(knife);
             Components.Add(b1);
             Components.Add(c1);
+
+            Components.Add(room);
 
             c1.PickUpWeapon(pistol);
             c1.PickUpWeapon(machine);

@@ -18,6 +18,7 @@ namespace dreidengine
             if (true)
             {
                 return true;
+                //THIS IS HORRIBLE
             }
             return false;
         }
