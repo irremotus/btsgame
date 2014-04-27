@@ -24,6 +24,8 @@ namespace dreidengine
         protected bool automatic;
         protected float lastFireDelta;
 
+        protected Vector3 carryPos;
+
         protected RayCollision rayColl;
 
         protected ButtonState lastLeftState;
@@ -50,7 +52,7 @@ namespace dreidengine
         {
             base.Update(gameTime);         
 
-            Vector3 thirdPRef = new Vector3(0, 5.0f, -5.0f);
+            Vector3 thirdPRef = new Vector3(0, 4.5f, -1.0f) + carryPos;
             Matrix rotMat = ((Game1)this.Game).Camera.Rotation;
             Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
             Body.SetOrientation(Matrix.CreateFromYawPitchRoll(Rotation.X, Rotation.Y, Rotation.Z) * rotMat);
