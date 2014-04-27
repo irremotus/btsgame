@@ -102,7 +102,7 @@ namespace dreidengine
             Overlay hud = new Overlay(this, GraphicsDevice);
             Overlay crosshair = new Overlay(this, GraphicsDevice);
 
-            boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
+            boxtest b1 = new boxtest(this, "box", new Vector3(0, 10, 20), new Vector3(10, 10, 10), false);
             b1.TakesDamage = true;
             b1.CurLife = 100;
 

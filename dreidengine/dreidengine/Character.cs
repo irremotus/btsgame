@@ -21,6 +21,8 @@ namespace dreidengine
         List<Weapon> weapons;
         Weapon curWeapon;
 
+        RayCollision rayColl;
+
 
         public Weapon CurWeapon
         {
@@ -33,12 +35,43 @@ namespace dreidengine
         {
             weapons = new List<Weapon>();
             curWeapon = null;
+            rayColl = new RayCollision(((Game1)game).World.CollisionSystem); ;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
+            UpdateWeapons();
+
+
+        }
+
+        public void CheckCollisions()
+        {
+            float dist;
+            CollisionSkin skin;
+            Vector3 pos;
+            Vector3 normal;
+
+            CollisionSkinPredicate1 pred = new CollisionPredicate();
+
+            bool hitObj = false;
+
+            Vector3 delta = Body.Velocity;
+            delta.Normalize();
+            delta *= 5.0f;
+            hitObj = rayColl.CastRay(out dist, out skin, out pos, out normal, Body.Position, delta, pred);
+
+            if (hitObj)
+            {
+                Console.WriteLine("knifed " + ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject.ToString());
+                Console.WriteLine(dist.ToString() + " away from " + skin.ToString());
+            }
+        }
+
+        public void UpdateWeapons()
+        {
             ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Tab))
             {
