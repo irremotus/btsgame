@@ -12,7 +12,6 @@ namespace dreidengine
 {
     class RenderLab
     {
-        boxtest[] pieces;
 
         public RenderLab(Game game, Game1 Game)
         {

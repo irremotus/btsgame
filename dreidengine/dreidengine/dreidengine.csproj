@@ -147,6 +147,7 @@
     <Compile Include="Room.cs" />
     <Compile Include="SampleGrid.cs" />
     <Compile Include="SkyDome.cs" />
+    <Compile Include="spheretest.cs" />
     <Compile Include="squid.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>

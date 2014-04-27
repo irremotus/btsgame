@@ -39,8 +39,6 @@ namespace dreidengine
             get { return world; }
         }
 
-        RayCollision rayColl;
-
         Model terrainModel;
         
         GraphicsDeviceManager graphics;
@@ -114,13 +112,14 @@ namespace dreidengine
             introduction.DrawOrder = 500;
             
 
-            /*squid s;
-
-            for (int i = 0; i < 10; i++)
+            //squid s;
+            spheretest st;
+            for (int i = 1; i < 9; i++)
             {
-                s = new squid(this, "cone2",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector3.One, 50, 50);
-                Components.Add(s);
-            }*/
+                Vector3 rand = new Vector3(r.Next(-500, 500), 0, r.Next(-500, 500));
+               // s = new squid(this, "squiddles",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector2.One, new Vector2(4,1), 50);
+                st = new spheretest(this, "ballz/s"+i.ToString(), new Vector3(rand.X, 0, rand.Z), Vector3.One*2, Color.White);
+            }
 
             Components.Add(introduction);            
             Components.Add(_camera);

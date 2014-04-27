@@ -14,6 +14,7 @@ namespace dreidengine
     class BillBoarding : DrawableGameComponent
     {
         Vector3 _pos;
+        public Vector3 Position { get { return _pos; } set { _pos = value; createBillBoardVerticies(); } }
         String _texName;
         Texture2D _tex;
         VertexBuffer billBuf;
@@ -98,7 +99,7 @@ namespace dreidengine
             base.Update(gameTime);
         }
 
-        private void createBillBoardVerticies()
+        public void createBillBoardVerticies()
         {
             _billVerticies = new VertexPositionTexture[6];
 

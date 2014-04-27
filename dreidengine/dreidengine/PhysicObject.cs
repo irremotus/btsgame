@@ -118,7 +118,6 @@ namespace dreidengine
            // base.Draw(gameTime);
         }
 
-        VertexPositionColor[] wf;
 
     }
 }

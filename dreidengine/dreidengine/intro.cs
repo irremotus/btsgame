@@ -28,7 +28,7 @@ namespace dreidengine
         {
             SpriteBatch sb = new SpriteBatch(Game.GraphicsDevice);
             sb.Begin();
-            sb.Draw(blue, new Microsoft.Xna.Framework.Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White * 0.4f);
+            //sb.Draw(blue, new Microsoft.Xna.Framework.Rectangle(0, 0, Game.GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White * 0.4f);
             sb.End();
 
             base.Draw(gameTime);
