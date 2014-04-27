@@ -19,9 +19,9 @@ namespace dreidengine
     class Knife : Weapon
     {
         public Knife(Game game, Vector3 pos)
-            : base(game, "Knife", pos, new Vector3(MathHelper.PiOver4, 0, 0), 500, 20, 5, false)
+            : base(game, "Knife", pos, new Vector3(MathHelper.PiOver2 + 0.9f, MathHelper.PiOver2 - 0.8f, MathHelper.PiOver4 + 1.3f), 500, 20, 10, false)
         {
-
+            carryPos = new Vector3(-0.3f, 0.0f, -1.5f);
         }
 
         protected override bool CanFire()

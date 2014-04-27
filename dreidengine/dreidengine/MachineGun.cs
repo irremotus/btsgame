@@ -19,7 +19,7 @@ namespace dreidengine
     class MachineGun : Gun
     {
         public MachineGun(Game game, Vector3 pos)
-            : base(game, "M16", pos, new Vector3(-MathHelper.PiOver2 + 0.10f, 0, -0.25f), 50, 2000, 10, 10000, true, 999, 15, 100, 10)
+            : base(game, "M16", pos, new Vector3(-MathHelper.PiOver2 + 0.10f, 0, -0.25f), 50, 2000, 10, 10000, true, 999, 15, 1000, 100)
         {
             carryPos = new Vector3(0.1f, 0, -0.35f);
         }

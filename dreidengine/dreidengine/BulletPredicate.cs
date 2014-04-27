@@ -15,12 +15,13 @@ namespace dreidengine
     {
         public override bool ConsiderSkin(CollisionSkin skin0)
         {
-            if (skin0.Owner != null && ((RenderableObject.BodyExternalData)skin0.Owner.ExternalData).RenderableObject.GetType() != typeof(PistolGun))
+            if (skin0.Owner != null)
             {
-                Console.WriteLine("checking "+((RenderableObject.BodyExternalData)skin0.Owner.ExternalData).RenderableObject.ToString());
+                Console.WriteLine("checking collision");
                 return true;
             }
             return false;
         }
+
     }
 }

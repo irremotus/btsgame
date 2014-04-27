@@ -95,11 +95,15 @@ namespace dreidengine
 
             if (hitObj)
             {
-                Console.WriteLine("hit " + ((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject.ToString());
-                DamageableObject obj = (DamageableObject)((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
-                if (obj.TakesDamage)
-                    obj.CurLife -= damage;
-                Console.WriteLine(obj.CurLife.ToString());
+                Console.WriteLine("hit");
+                if (skin.Owner.ExternalData != null)
+                {
+                    DamageableObject obj = (DamageableObject)((RenderableObject.BodyExternalData)skin.Owner.ExternalData).RenderableObject;
+                    if (obj.TakesDamage)
+                        obj.CurLife -= damage;
+                    Console.WriteLine(obj.CurLife.ToString());
+                }
+                
             }
         }
 
