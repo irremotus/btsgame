@@ -40,9 +40,9 @@ namespace dreidengine
             // skin) is just a dummy. But the base class shoudl know where to
             // draw the model.
             body.MoveTo(new Vector3(shift.X,0,shift.Y), Matrix.Identity);
-            HeightmapProcessor.HeightMapInfoContent hmic = (HeightmapProcessor.HeightMapInfoContent)model.Tag;
-            float ts = hmic.TerrainScale;
-            collision.AddPrimitive(new Heightmap(field, shift.X, shift.Y, ts, ts), (int)MaterialTable.MaterialID.NotBouncySmooth);//new MaterialProperties(0.7f,0.7f,0.6f));
+            //HeightmapProcessor.HeightMapInfoContent hmic = (HeightmapProcessor.HeightMapInfoContent)model.Tag;
+            //float ts = hmic.TerrainScale;
+            collision.AddPrimitive(new Heightmap(field, shift.X, shift.Y, 5, 5), (int)MaterialTable.MaterialID.NotBouncySmooth);//new MaterialProperties(0.7f,0.7f,0.6f));
 
             PhysicsSystem.CurrentPhysicsSystem.CollisionSystem.AddCollisionSkin(collision);
         }
