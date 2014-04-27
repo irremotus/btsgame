@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -99,7 +100,7 @@ namespace dreidengine
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
             Knife knife = new Knife(this, new Vector3(17, -15, 10));
 
-            Room room = new Room(this, Vector3.Down * 63, Vector3.One);
+            
 
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
@@ -121,7 +122,6 @@ namespace dreidengine
                 Components.Add(s);
             }*/
 
-            Components.Add(room);
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);
@@ -158,6 +158,25 @@ namespace dreidengine
             RasterizerState r = new RasterizerState();
             r.CullMode = CullMode.None;
             GraphicsDevice.RasterizerState = r;
+            string[] names = { "roomModel/CornerRoom.fbx", "roomModel/GeodesicDome", "roomModel/GeodesicDomeOneEntry", "roomModel/GeodesicDomeTwoEntry", "roomModel/SimpleHallway.fbx", "roomModel/SimpleHallwayDoor", "roomModel/SimpleHallwayDoor", "roomModel/SimpleWindowedHallwayDoors" };
+            try
+            {
+                StreamReader sr = new StreamReader("map.mpafd");
+
+                while (true)
+                {
+                    string l = sr.ReadLine();
+                    if (l == null)
+                        break;
+                    int i = Convert.ToInt32(l);
+                    Room rambo = new Room(this, new Vector3((float)Convert.ToDouble(sr.ReadLine()), (float)Convert.ToDouble(sr.ReadLine()), (float)Convert.ToDouble(sr.ReadLine())), new Vector3(1, 2, 1), names[i]);
+                    rambo.Body.Orientation = Matrix.CreateRotationY((float)Convert.ToDouble(sr.ReadLine()));
+
+                    Components.Add(rambo);
+                }
+            }
+            catch { }
+
         }
 
         
