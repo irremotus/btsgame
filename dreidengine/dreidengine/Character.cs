@@ -40,9 +40,9 @@ namespace dreidengine
 
 
             ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Tab))
+            if (ks.IsKeyDown(Keys.O))
             {
-                if (!kold.IsKeyDown(Keys.Tab))
+                if (!kold.IsKeyDown(Keys.O))
                 {
                     curWeapon.Deactivate();
                     weapons.Remove(curWeapon);
@@ -52,6 +52,7 @@ namespace dreidengine
                     Console.WriteLine("CW: " + curWeapon.ToString());
                 }
             }
+            
             kold = ks;
         }
 

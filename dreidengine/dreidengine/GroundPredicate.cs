@@ -18,13 +18,9 @@ namespace dreidengine
             Game1 game = Game1.GetInstance();
             Body ground = game.HeightMapObj.PhysicsBody;
             if (skin0.Owner != null)
-                Console.Write("not null");
-            if (skin0.Owner == ground)
-            {
-                Console.WriteLine("true");
+                return false;
+            else
                 return true;
-            }
-            return false;
         }
     }
 }

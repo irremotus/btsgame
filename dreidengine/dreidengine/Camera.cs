@@ -20,7 +20,7 @@ namespace dreidengine
         private float aspectRatio;
         private float nearClip;
         private float farClip;
-        private float _stepSize = 3.0f;
+        private float _stepSize = 1.0f;
         public float StepSize
         {
             get { return _stepSize; }
@@ -105,7 +105,72 @@ namespace dreidengine
 
             _projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, aspectRatio, nearClip, farClip);
         }
+        public void camUpdate ()
+        {
+          MouseState mouse = Mouse.GetState();
+            GraphicsDeviceManager graphics = ((Game1)this.Game).Graphics;
+            int x = graphics.PreferredBackBufferWidth / 2;
+            int y = graphics.PreferredBackBufferHeight / 2;
 
+            KeyboardState keys = ((Game1)this.Game).Keysp;
+
+            if (keys.IsKeyDown(Keys.F))
+                _cameraMode = dreidengine.Camera.CameraModes.FIRST_PERSON;
+            if (keys.IsKeyDown(Keys.T))
+                _cameraMode = dreidengine.Camera.CameraModes.THIRD_PERSON;
+
+            if (keys.IsKeyDown(Keys.OemPlus))
+                _stepSize += 0.1f;
+            if (keys.IsKeyDown(Keys.OemMinus))
+                _stepSize -= 0.1f;
+
+            if (mouse.X - x < -2)
+            {
+                this.ChangeLook(new Vector3(0, MathHelper.ToRadians(_stepSize), 0));
+                Mouse.SetPosition(x, mouse.Y);
+            }
+            if (mouse.X - x > 2)
+            {
+                this.ChangeLook(new Vector3(0, -MathHelper.ToRadians(_stepSize), 0));
+                Mouse.SetPosition(x, mouse.Y);
+            }
+            if (mouse.Y - y < -2)
+            {
+                this.ChangeLook(new Vector3(MathHelper.ToRadians(_stepSize), 0, 0));
+                Mouse.SetPosition(mouse.X, y);
+            }
+            if (mouse.Y - y > 2)
+            {
+                this.ChangeLook(new Vector3(-MathHelper.ToRadians(_stepSize), 0, 0));
+                Mouse.SetPosition(mouse.X, y);
+            }
+            
+            if (_cameraMode == CameraModes.FIRST_PERSON)
+            {
+                Vector3 camRef = new Vector3(0, 0, -1);
+                Vector3 objHeadOffset = new Vector3(0, 5.0f, 0);
+                Matrix rotMat = _rotation;
+                //Matrix rotMat = followObject.Body.Orientation;
+                Vector3 headOffset = Vector3.Transform(objHeadOffset, rotMat);
+                _position = followObject.Body.Position + headOffset;
+                Vector3 transRef = Vector3.Transform(camRef, rotMat);
+                _lookat = transRef + _position;
+                //Vector3 camup = followObject.Body.Orientation.Up;
+                Vector3 camup = Vector3.Up;
+                _view = Matrix.CreateLookAt(_position, _lookat, camup);
+            }
+            else if (_cameraMode == CameraModes.THIRD_PERSON)
+            {
+                Vector3 thirdPRef = new Vector3(0, 10.0f, 20.0f);
+                Matrix rotMat = _rotation;
+                Vector3 transRef = Vector3.Transform(thirdPRef, rotMat);
+                _position = transRef + followObject.Body.Position;
+                //Vector3 camup = followObject.Body.Orientation.Up;
+                Vector3 camup = Vector3.Up;
+                _view = Matrix.CreateLookAt(_position, followObject.Body.Position, camup);
+            }
+
+        }
         public override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();

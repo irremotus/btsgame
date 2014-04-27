@@ -98,28 +98,34 @@ namespace dreidengine
                      moveVector += new Vector3(-1, 0, 0);
                  if (keys.IsKeyDown(Keys.D))
                      moveVector += new Vector3(1, 0, 0);
-                                  if (keys.IsKeyDown(Keys.Up))
+                 if (keys.IsKeyDown(Keys.Up))
                      amount += 0.1f;
                  if (keys.IsKeyDown(Keys.Down))
                      amount -= 0.1f;
+                 if (keys.IsKeyDown(Keys.Space))
+                     moveVector += new Vector3(0, -1, 0);
 
-                 addToVelocity(moveVector * amount);
+                 //addToVelocity(moveVector * amount);
 
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position) && ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) > Body.Position.Y)
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
 
 
-                 //Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
-                 Body.Velocity = new Vector3(Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).X, Body.Velocity.Y, Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).Z);
-                 //Body.Velocity = new Vector3(0, Body.Velocity.Y, 0);
-                 Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
+                 Matrix camRot = ((Game1)this.Game).Camera.Rotation;
+                 Vector3 rotVector = Vector3.Transform(moveVector * amount, camRot);
+
+                 Body.Velocity = new Vector3(rotVector.X, (keys.IsKeyDown(Keys.Space)) ? amount : 0, rotVector.Z);
+
+                 if (keys.IsKeyUp(Keys.LeftShift) && oldPosition.Y != Body.Position.Y && keys.IsKeyUp(Keys.Space))
+                     Body.Position = new Vector3(Body.Position.X, oldPosition.Y, Body.Position.Z);
+                 
              }
 
              Body.Orientation = Matrix.CreateFromYawPitchRoll(0, 0, 0);
 
              if (!((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position))
                  Body.Position = oldPosition;
-
+            
              oldPosition = Body.Position;
               
              base.Update(gameTime);
@@ -130,7 +136,7 @@ namespace dreidengine
             Matrix camRot = ((Game1)this.Game).Camera.Rotation;
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
             //Body.Velocity += rotVector;
-            Body.Velocity = new Vector3(rotVector.X, Body.Velocity.Y, rotVector.Z);
+            Body.Velocity = new Vector3(rotVector.X, 0, rotVector.Z);
         }
     }
 }

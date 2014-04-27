@@ -39,18 +39,20 @@ namespace dreidengine
         }
 
         protected TriangleMesh triangleMesh;
+        string name;
 
-        public Room(Microsoft.Xna.Framework.Game game, Vector3 position, Vector3 scale)
+        public Room(Microsoft.Xna.Framework.Game game, Vector3 position, Vector3 scale, string modelName)
             : base(game)
         {
             this.position = position;
             this.scale = scale;
+            name = modelName;
         }
 
         protected override void LoadContent()
         {
             
-            model = Game.Content.Load<Model>("roomModels/CornerRoom");
+            model = Game.Content.Load<Model>(name);
 
             body = new Body();
             skin = new CollisionSkin(body);
