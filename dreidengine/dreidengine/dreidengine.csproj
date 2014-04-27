@@ -143,6 +143,8 @@
     <Compile Include="Game1.cs" />
     <Compile Include="RayCollision.cs" />
     <Compile Include="RenderableObject.cs" />
+    <Compile Include="RenderLab.cs" />
+    <Compile Include="Room.cs" />
     <Compile Include="SampleGrid.cs" />
     <Compile Include="SkyDome.cs" />
     <Compile Include="squid.cs" />

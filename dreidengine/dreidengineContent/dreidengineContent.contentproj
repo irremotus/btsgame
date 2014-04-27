@@ -189,6 +189,48 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="roomModels\CornerRoom.fbx">
+      <Name>CornerRoom</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\GeodesicDome.fbx">
+      <Name>GeodesicDome</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\GeodesicDomeOneEntry.fbx">
+      <Name>GeodesicDomeOneEntry</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\GeodesicDomeTwoEntry.fbx">
+      <Name>GeodesicDomeTwoEntry</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\SimpleHallway.fbx">
+      <Name>SimpleHallway</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\SimpleHallwayDoor.fbx">
+      <Name>SimpleHallwayDoor</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\SimpleWindowedHallway.fbx">
+      <Name>SimpleWindowedHallway</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="roomModels\SimpleWindowedHallwayDoors.fbx">
+      <Name>SimpleWindowedHallwayDoors</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

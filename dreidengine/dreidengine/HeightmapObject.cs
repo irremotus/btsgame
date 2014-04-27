@@ -26,6 +26,7 @@ namespace dreidengine
             collision = new CollisionSkin(null);
 
             heightMapInfo = model.Tag as HeightMapInfo;
+            
             Array2D field = new Array2D(heightMapInfo.heights.GetUpperBound(0), heightMapInfo.heights.GetUpperBound(1));
 
             for (int x = 0; x < heightMapInfo.heights.GetUpperBound(0); x++)
@@ -41,7 +42,7 @@ namespace dreidengine
             // draw the model.
             body.MoveTo(new Vector3(shift.X,0,shift.Y), Matrix.Identity);
       
-            collision.AddPrimitive(new Heightmap(field, shift.X, shift.Y, 1, 1), (int)MaterialTable.MaterialID.NotBouncySmooth);//new MaterialProperties(0.7f,0.7f,0.6f));
+            collision.AddPrimitive(new Heightmap(field, shift.X, shift.Y, 5, 5), (int)MaterialTable.MaterialID.NotBouncySmooth);//new MaterialProperties(0.7f,0.7f,0.6f));
 
             PhysicsSystem.CurrentPhysicsSystem.CollisionSystem.AddCollisionSkin(collision);
         }

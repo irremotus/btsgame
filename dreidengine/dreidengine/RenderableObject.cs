@@ -146,8 +146,7 @@ namespace dreidengine
             this.Game.GraphicsDevice.BlendState = BlendState.Opaque;
             this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             this.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
-
-
+            
             Matrix[] transforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(transforms);
 

@@ -90,7 +90,7 @@ namespace dreidengine
             world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
             world.Gravity = new Vector3(0, -400, 0);
-
+            
             intro introduction = new intro(this, "cloudMap");
             
             c1 = new Character(this, new Vector3(0, 650, 0), Vector3.One);
@@ -99,9 +99,11 @@ namespace dreidengine
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
             Knife knife = new Knife(this, new Vector3(17, -15, 10));
 
+            Room room = new Room(this, Vector3.Down * 63, Vector3.One);
+
             boxtest b1 = new boxtest(this, "box", new Vector3(20, -15, 10), new Vector3(1, 1, 1), false);
             b1.TakesDamage = true;
-            b1.CurLife = 100;
+            b1.CurLife = 100;            
 
             _camera = new Camera(this, c1, 10.0f, 6/8f);
             _camera.Lookat = c1.Body.Position;
@@ -109,15 +111,17 @@ namespace dreidengine
 
             SkyDome sky = new SkyDome(this, "dome", "white", Vector3.Up * -150, new Vector3(390, 8500, 390));
             introduction.DrawOrder = 500;
+            
 
-            squid s;
+            /*squid s;
 
             for (int i = 0; i < 10; i++)
             {
                 s = new squid(this, "cone2",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector3.One, 50, 50);
                 Components.Add(s);
-            }
+            }*/
 
+            Components.Add(room);
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);
@@ -148,8 +152,12 @@ namespace dreidengine
             
             heightmapObj.PhysicsBody.Immovable = true;
             Components.Add(heightmapObj);
+            
             font = Content.Load<SpriteFont>("SpriteFont1");
-            spriteBatch = new SpriteBatch(GraphicsDevice);            
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            RasterizerState r = new RasterizerState();
+            r.CullMode = CullMode.None;
+            GraphicsDevice.RasterizerState = r;
         }
 
         
