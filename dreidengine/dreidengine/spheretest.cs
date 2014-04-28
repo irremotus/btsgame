@@ -16,12 +16,14 @@ using System.Windows;
 
 namespace dreidengine
 {
-    class spheretest : DrawableGameComponent
+    public class spheretest : DrawableGameComponent
     {
         Vector3 Position;
         Vector3 Scale;
         string ModelName;
         Model model;
+
+        private int ID;
 
         private CollisionSkin _skin;
         public CollisionSkin Skin
@@ -35,9 +37,10 @@ namespace dreidengine
             get { return _body; }
         }
 
-        public spheretest(Game game, string name, Vector3 position, Vector3 scale, Color c)
+        public spheretest(Game game, string name, Vector3 position, Vector3 scale, int ID)
              : base(game)
          {
+             this.ID = ID;
              ModelName = name;
              Position = position;
              Scale = scale;
@@ -94,7 +97,15 @@ namespace dreidengine
         public override void Update(GameTime gameTime)
         {
             Position.Y = ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Position);
-            Body.Immovable = true;
+            if(gameTime.TotalGameTime.Seconds >= 5)
+                Body.Immovable = true;
+            foreach (squid s in ((Game1)this.Game).sql)
+            {
+                if (s.ID == this.ID && Vector3.Distance(s.Position, this.Position) > this.Scale.X)
+                    ((Game1)this.Game).Components.Remove(s);
+            }
+            
+
             base.Update(gameTime);
         }
 
@@ -125,7 +136,7 @@ namespace dreidengine
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.Alpha = 0.5f;
+                    //effect.Alpha = 0.5f;
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = transforms[mesh.ParentBone.Index] * worldMatrix;

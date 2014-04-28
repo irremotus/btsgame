@@ -60,7 +60,8 @@ namespace dreidengine
         }
 
         SpriteFont font;
-
+        private List<squid> sqlist = new List<squid>();
+        public List<squid> sql { get { return sqlist; } }
         HeightmapObject heightmapObj;
         public HeightmapObject HeightMapObj
         {
@@ -112,13 +113,15 @@ namespace dreidengine
             introduction.DrawOrder = 500;
             
 
-            //squid s;
+            squid s;
             spheretest st;
+            for(int j = 0; j < 10; j++)
             for (int i = 1; i < 9; i++)
             {
-                Vector3 rand = new Vector3(r.Next(-500, 500), 0, r.Next(-500, 500));
-               // s = new squid(this, "squiddles",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector2.One, new Vector2(4,1), 50);
-                st = new spheretest(this, "ballz/s"+i.ToString(), new Vector3(rand.X, 0, rand.Z), Vector3.One*2, Color.White);
+                Vector3 rand = new Vector3(r.Next(-250, 250), 0, r.Next(-250, 250));
+                s = new squid(this, "sq"+i.ToString(),new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector2.One, new Vector2(4,1), 50, i);
+                sql.Add(s);
+                st = new spheretest(this, "ballz/s"+i.ToString(), new Vector3(rand.X, 0, rand.Z), Vector3.One*2, i);
             }
 
             Components.Add(introduction);            

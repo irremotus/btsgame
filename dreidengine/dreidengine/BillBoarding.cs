@@ -11,7 +11,7 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class BillBoarding : DrawableGameComponent
+    public class BillBoarding : DrawableGameComponent
     {
         Vector3 _pos;
         public Vector3 Position { get { return _pos; } set { _pos = value; createBillBoardVerticies(); } }
