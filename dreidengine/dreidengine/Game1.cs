@@ -114,6 +114,8 @@ namespace dreidengine
             introduction.DrawOrder = 500;
 
             squid s;
+            BillBoarding billy = new BillBoarding(this, "explosionSpriteSheet", new Vector3(0,-40,0), Vector2.One, new Vector2(5, 5), 50f);
+            Components.Add(billy);
 
             for (int i = 0; i < 0; i++)
             {
