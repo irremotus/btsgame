@@ -130,7 +130,7 @@ namespace dreidengine
 
             hud.DrawOrder = 2;
             crosshair.DrawOrder = 2;
-
+            Components.Add(_navMesh);
             Components.Add(introduction);            
             Components.Add(_camera);
             Components.Add(sky);

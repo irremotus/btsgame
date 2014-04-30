@@ -108,6 +108,8 @@ namespace dreidengine
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position) && ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) > Body.Position.Y)
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
 
+                 Console.WriteLine("Heihgt black = " + ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position).ToString());
+
 
                  //Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
                  Body.Velocity = new Vector3(Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).X, Body.Velocity.Y, Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f).Z);
@@ -117,7 +119,7 @@ namespace dreidengine
 
              Body.Orientation = Matrix.CreateFromYawPitchRoll(0, 0, 0);
 
-             if (!((Game1)this.Game).navMesh.HMI.IsOnHeightmap(Body.Position))
+             if (!((Game1)this.Game).navMesh.HMI.IsOnHeightmap(Body.Position) || ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position) == -60)
                  Body.Position = oldPosition;
 
              oldPosition = Body.Position;
@@ -130,8 +132,6 @@ namespace dreidengine
             Matrix camRot = ((Game1)this.Game).Camera.Rotation;
             Vector3 rotVector = Vector3.Transform(vectorToAdd, camRot);
             
-            //Body.Velocity += new Vector3(rotVector.X, Body.Velocity.Y, rotVector.Z);
-            //Body.LimitVel();
             Body.Velocity = new Vector3(rotVector.X, Body.Velocity.Y, rotVector.Z);
         }
     }
