@@ -21,8 +21,6 @@ namespace dreidengine
         protected Vector3 position;
         protected Vector3 scale;
 
-        protected Texture2D collisionTexture;
-
         protected Model model;
 
         protected Body body;
@@ -99,7 +97,6 @@ namespace dreidengine
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.Texture = collisionTexture;      // Assign the texture 
                     effect.TextureEnabled = false;           // Enable drawing the texture 
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;

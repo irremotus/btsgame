@@ -182,7 +182,6 @@ namespace dreidengine
         }
 
         int index = 0;
-        bool oldState = false;
         Room rtoadd;
         MouseState om;
         float rotaaaaa;
@@ -225,9 +224,9 @@ namespace dreidengine
                     if(keys.IsKeyDown(Keys.R) && oldKeys.IsKeyUp(Keys.R)) 
                         rtoadd.Body.SetOrientation(Matrix.CreateRotationY(rotaaaaa = (rotaaaaa == 2 * (float)Math.PI) ? 0 : rotaaaaa + ((float)Math.PI /2)));
                 }
-                oldState = true;
+
             }
-            oldState = false;
+
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keys.IsKeyDown(Keys.Escape))
                 this.Exit();
