@@ -131,6 +131,7 @@
     <Compile Include="Gun.cs" />
     <Compile Include="Knife.cs" />
     <Compile Include="MachineGun.cs" />
+    <Compile Include="NavMesh.cs" />
     <Compile Include="Overlay.cs" />
     <Compile Include="PistolGun.cs" />
     <Compile Include="RayCollisionPredicate.cs" />
@@ -159,6 +160,7 @@
     <ProjectReference Include="..\dreidengineContent\dreidengineContent.contentproj">
       <Name>dreidengineContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{8308AD9D-3A23-4A9E-805D-1FEC4EFA61E2}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
