@@ -60,6 +60,9 @@ namespace dreidengine
 
         SpriteFont font;
 
+        NavMesh _navMesh;
+        public NavMesh navMesh { get { return _navMesh; } }
+
         HeightmapObject heightmapObj;
         public HeightmapObject HeightMapObj
         {
@@ -92,6 +95,8 @@ namespace dreidengine
             intro introduction = new intro(this, "cloudMap");
             
             c1 = new Character(this, new Vector3(0, 650, 40), Vector3.One);
+
+            _navMesh = new NavMesh(this, "navMesh");
 
             PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));

@@ -11,7 +11,7 @@ using JigLibX.Collision;
 
 namespace dreidengine
 {
-    class NavMesh : DrawableGameComponent
+    public class NavMesh : DrawableGameComponent
     {
         Model navMeshModel;
         private string navMeshName;
