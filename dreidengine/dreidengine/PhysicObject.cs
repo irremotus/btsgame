@@ -65,7 +65,7 @@ namespace dreidengine
         public abstract void ApplyEffects(BasicEffect effect);
         public override void Draw(GameTime gameTime)
         {
-            if (model != null)
+            if (model != null && false)
             {
                 if (boneTransforms == null || boneCount != model.Bones.Count)
                 {
