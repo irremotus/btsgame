@@ -88,8 +88,8 @@ namespace dreidengine
             Box box = new Box(position, Matrix.Identity, scale); // rotation is relative to body
  
             //collisionPrimitive = new Box(position, rotMatrix, scale);
-            
-            //_skin.AddPrimitive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f)); // why 2 primitives?
+    
+            //_skin.AddPrimit        ive(collisionPrimitive, new MaterialProperties(0.8f, 0.8f, 0.7f)); // why 2 primitives?
 
             _skin.AddPrimitive(box, (int)MaterialTable.MaterialID.NotBouncySmooth);
 
@@ -97,9 +97,7 @@ namespace dreidengine
 
             _body.MoveTo(position, rotMatrix);
             _skin.ApplyLocalTransform(new JigLibX.Math.Transform(-com, Matrix.Identity));
-            _body.EnableBody();
-            //PhysicsSystem.CurrentPhysicsSystem.CollisionSystem.AddCollisionSkin(_skin);
-                    
+            _body.EnableBody();             
         }
 
 
