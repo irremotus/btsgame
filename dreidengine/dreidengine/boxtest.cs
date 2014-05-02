@@ -108,7 +108,7 @@ namespace dreidengine
                  if (((Game1)this.Game).HeightMapObj.HMI.IsOnHeightmap(Body.Position) && ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) > Body.Position.Y)
                      Body.Position = new Vector3(Body.Position.X, ((Game1)this.Game).HeightMapObj.HMI.GetHeight(Body.Position) + Scale.Y /2, Body.Position.Z);
 
-                 Console.WriteLine("Heihgt black = " + ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position).ToString());
+                 //Console.WriteLine("Heihgt black = " + ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position).ToString());
 
 
                  //Body.Velocity = Vector3.Lerp(Body.Velocity, Vector3.Zero, 0.4f);
@@ -116,7 +116,7 @@ namespace dreidengine
                  //Body.Velocity = new Vector3(0, Body.Velocity.Y, 0);
                  Body.AngularVelocity = Vector3.Lerp(Body.AngularVelocity, Vector3.Zero, 0.1f);
              }
-
+             Console.WriteLine(Body.Position.ToString());
              Body.Orientation = Matrix.CreateFromYawPitchRoll(0, 0, 0);
 
              if (!((Game1)this.Game).navMesh.HMI.IsOnHeightmap(Body.Position) || ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position) <-20)
