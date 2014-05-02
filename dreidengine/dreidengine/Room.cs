@@ -54,7 +54,7 @@ namespace dreidengine
         {
             
             model = Game.Content.Load<Model>(modelName);
-
+            
             body = new Body();
             skin = new CollisionSkin(body);
 
