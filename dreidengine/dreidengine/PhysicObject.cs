@@ -81,7 +81,7 @@ namespace dreidengine
                 this.Game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
                 this.Game.GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
                 Camera camera = ((Game1)this.Game).Camera;
-                //this.Game.GraphicsDevice.RasterizerState = r;
+                this.Game.GraphicsDevice.RasterizerState = r;
                 foreach (ModelMesh mesh in model.Meshes)
                 {
                     foreach (BasicEffect effect in mesh.Effects)
