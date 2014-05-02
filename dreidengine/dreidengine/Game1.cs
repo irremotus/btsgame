@@ -91,6 +91,8 @@ namespace dreidengine
             InitializePhyics();
         }
 
+        Texture2D navMeshTexture;
+
         private void InitializePhyics()
         {
             roomList = new List<rmStruct>();
@@ -173,9 +175,19 @@ namespace dreidengine
             RasterizerState r = new RasterizerState();
             r.CullMode = CullMode.None;
             GraphicsDevice.RasterizerState = r;
+            navMeshTexture = new Texture2D(GraphicsDevice, 257, 257);
+            Color[] c= new Color[257*257];
+            for(int i = 0; i < 257*257; i++)
+            {
+                c[i] = Color.White;
+            }
+            navMeshTexture.SetData<Color>(c);
+            Stream stream = File.Create("navMesh.jpg");
+            navMeshTexture.SaveAsJpeg(stream, 257, 257);
+            stream.Dispose();
         }
 
-        
+
         protected override void UnloadContent()
         {
                         
@@ -199,30 +211,49 @@ namespace dreidengine
 
             if (keys.IsKeyDown(Keys.Tab) && oldKeys.IsKeyUp(Keys.Tab))
                 index = (index == room.Length - 1) ? 0 : index + 1;
-            Console.WriteLine(index.ToString() + " "+namesshit[index]);
-            if(m.LeftButton == ButtonState.Pressed)
+
+            if (m.LeftButton == ButtonState.Pressed)
             {
-            //    Camera.camUpdate();
-            //    Draw(gameTime);
+                //    Camera.camUpdate();
+                //    Draw(gameTime);
                 RayCollision ray = new RayCollision(World.CollisionSystem);
                 GroundPredicate gp = new GroundPredicate();
                 if (ray.CastRay(out distance, out skin, out pos, out norm, Camera.Position, Vector3.Normalize((Camera.Lookat - Camera.Position)) * 500f, gp))
                 {
                     if (om.LeftButton == ButtonState.Released)
                     {
-                        rtoadd = new Room(this, new Vector3(pos.X, HeightMapObj.HMI.GetHeight(pos), pos.Z), new Vector3(1,2,1), namesshit[index]);
+                        rtoadd = new Room(this, new Vector3(pos.X, HeightMapObj.HMI.GetHeight(pos), pos.Z), new Vector3(1, 2, 1), namesshit[index]);
                         rotaaaaa = 0 * (float)Math.PI;
-                         Components.Add(rtoadd);
-                         rmStruct s;
-                         s.r = rtoadd;
-                         s.id = index;
-                         s.rot = rotaaaaa; ;
-                        
+                        Components.Add(rtoadd);
+                        rmStruct s;
+                        s.r = rtoadd;
+                        s.id = index;
+                        s.rot = rotaaaaa;
+                        int size_of_model = ((int)rtoadd.MODEL.Meshes[0].BoundingSphere.Radius * 2 / 5);
+                        Color[] colorField = new Color[size_of_model * size_of_model];
+
+                        for (int i = 0; i < colorField.Length; i++)
+                            colorField[i] = Color.White;
+
+                        for (int i = 0; i < size_of_model; i++)
+                            colorField[i] = Color.Black;
+                        for (int i = 0; i < colorField.Length; i += size_of_model)
+                            colorField[i] = Color.Black;
+                        for (int i = size_of_model - 1; i < colorField.Length; i += size_of_model)
+                            colorField[i] = Color.Black;
+                        for (int i = colorField.Length - size_of_model; i < colorField.Length; i++)
+                            colorField[i] = Color.Black;
+
+                        int x = ((int)rtoadd.Body.Position.X + 257 * 5 / 2) / 5;
+                        int y = ((int)rtoadd.Body.Position.Y + 257 * 5 / 2) / 5;
+
+                        navMeshTexture.SetData<Color>(0, new Microsoft.Xna.Framework.Rectangle(x, y, size_of_model, size_of_model), colorField, 0, colorField.Length);
+
                         roomList.Add(s);
                     }
                     rtoadd.Body.Position = new Vector3(pos.X, HeightMapObj.HMI.GetHeight(pos), pos.Z);
-                    if(keys.IsKeyDown(Keys.R) && oldKeys.IsKeyUp(Keys.R)) 
-                        rtoadd.Body.SetOrientation(Matrix.CreateRotationY(rotaaaaa = (rotaaaaa == 2 * (float)Math.PI) ? 0 : rotaaaaa + ((float)Math.PI /2)));
+                    if (keys.IsKeyDown(Keys.R) && oldKeys.IsKeyUp(Keys.R))
+                        rtoadd.Body.SetOrientation(Matrix.CreateRotationY(rotaaaaa = (rotaaaaa == 2 * (float)Math.PI) ? 0 : rotaaaaa + ((float)Math.PI / 2)));
                 }
 
             }
@@ -234,7 +265,10 @@ namespace dreidengine
 
             if (keys.IsKeyDown(Keys.Space) && oldKeys.IsKeyUp(Keys.Space))
             {
+                Stream s = File.Create("navMeshHOPE.jpg");
+                navMeshTexture.SaveAsJpeg(s, 257, 257);
                 StreamWriter sw = new StreamWriter("map.mpafd");
+                s.Dispose();
                 foreach (rmStruct r in roomList)
                 {
                     sw.WriteLine(r.id.ToString());

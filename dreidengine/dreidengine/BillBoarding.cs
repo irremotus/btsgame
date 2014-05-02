@@ -51,7 +51,7 @@ namespace dreidengine
             _size = size;
             _xy = xy;
             _aSp = time;
-        }
+        }//this times two ^2
 
         protected override void LoadContent()
         {

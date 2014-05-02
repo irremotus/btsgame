@@ -21,6 +21,8 @@ namespace dreidengine
         protected Vector3 position;
         protected Vector3 scale;
 
+        public Model MODEL
+        { get { return model; } }
         protected Model model;
 
         protected Body body;
