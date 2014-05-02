@@ -119,7 +119,7 @@ namespace dreidengine
 
              Body.Orientation = Matrix.CreateFromYawPitchRoll(0, 0, 0);
 
-             if (!((Game1)this.Game).navMesh.HMI.IsOnHeightmap(Body.Position) || ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position) == -60)
+             if (!((Game1)this.Game).navMesh.HMI.IsOnHeightmap(Body.Position) || ((Game1)this.Game).navMesh.HMI.GetHeight(Body.Position) < 0)
                  Body.Position = oldPosition;
 
              oldPosition = Body.Position;

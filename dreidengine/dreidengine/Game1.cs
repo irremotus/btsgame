@@ -89,6 +89,7 @@ namespace dreidengine
         private void InitializePhyics()
         {
             this.IsMouseVisible = false;
+
             world = new PhysicsSystem();
             world.CollisionSystem = new CollisionSystemSAP();
             world.Gravity = new Vector3(0, -400, 0);
@@ -97,7 +98,7 @@ namespace dreidengine
             
             c1 = new Character(this, new Vector3(0, 650, 40), Vector3.One);
 
-            _navMesh = new NavMesh(this, "navMesh");
+            _navMesh = new NavMesh(this, "navMeshHOPE");
 
             PistolGun pistol = new PistolGun(this, new Vector3(19, -15, 10));
             MachineGun machine = new MachineGun(this, new Vector3(20, -15, 20));
@@ -128,6 +129,25 @@ namespace dreidengine
                 s = new squid(this, "cone2",new Vector3(r.Next(-500,500), r.Next(0,800), r.Next(-500,500)), Vector3.One, 50, 50);
                 Components.Add(s);
             }
+            string[] names = { "roomModels/CornerRoom", "roomModels/GeodesicDome", "roomModels/GeodesicDomeOneEntry", "roomModels/GeodesicDomeTwoEntry", "roomModels/SimpleHallway.fbx", "roomModels/SimpleHallwayDoor", "roomModels/SimpleHallwayDoor", "roomModels/SimpleWindowedHallwayDoors" };
+            try
+            {
+                StreamReader sr = new StreamReader("map.mpafd");
+
+                while (true)
+                {
+                    string l = sr.ReadLine();
+                    if (l == null)
+                        break;
+                    int i = Convert.ToInt32(l);
+                    Room rambo = new Room(this, new Vector3((float)Convert.ToDouble(sr.ReadLine()), (float)Convert.ToDouble(sr.ReadLine()), (float)Convert.ToDouble(sr.ReadLine())), new Vector3(1, 2, 1), names[i]);
+                    sr.ReadLine();
+                    //rambo.Body.Orientation = Matrix.CreateRotationY((float)Convert.ToDouble(sr.ReadLine()));
+
+                    Components.Add(rambo);
+                }
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
 
             hud.DrawOrder = 2;
             crosshair.DrawOrder = 2;
@@ -159,6 +179,7 @@ namespace dreidengine
         
         protected override void LoadContent()
         {
+            Model m = Content.Load<Model>("roomModels/CornerRoom");
             terrainModel = Content.Load<Model>("terrain");
             heightmapObj = new HeightmapObject(this, terrainModel, Vector2.Zero);
             
@@ -166,24 +187,7 @@ namespace dreidengine
             Components.Add(heightmapObj);
             font = Content.Load<SpriteFont>("SpriteFont1");
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            string[] names = { "roomModel/CornerRoom.fbx", "roomModel/GeodesicDome", "roomModel/GeodesicDomeOneEntry", "roomModel/GeodesicDomeTwoEntry", "roomModel/SimpleHallway.fbx", "roomModel/SimpleHallwayDoor", "roomModel/SimpleHallwayDoor", "roomModel/SimpleWindowedHallwayDoors" };
-            try
-            {
-                StreamReader sr = new StreamReader("map.mpafd");
-
-                while (true)
-                {
-                    string l = sr.ReadLine();
-                    if (l == null)
-                        break;
-                    int i = Convert.ToInt32(l);
-                    Room rambo = new Room(this, new Vector3((float)Convert.ToDouble(sr.ReadLine()), (float)Convert.ToDouble(sr.ReadLine()), (float)Convert.ToDouble(sr.ReadLine())), new Vector3(1, 2, 1), names[i]);
-                    rambo.Body.Orientation = Matrix.CreateRotationY((float)Convert.ToDouble(sr.ReadLine()));
-
-                    Components.Add(rambo);
-                }
-            }
-            catch { }
+            
         }
 
         
