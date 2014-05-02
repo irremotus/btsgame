@@ -245,7 +245,7 @@ namespace dreidengine
                             colorField[i] = Color.Black;
 
                         int x = ((int)rtoadd.Body.Position.X + 257 * 5 / 2) / 5 -size_of_model / 2;
-                        int y = ((int)rtoadd.Body.Position.Y + 257 * 5 / 2) / 5 +size_of_model / 2;
+                        int y = ((int)rtoadd.Body.Position.Y + 257 * 5 / 2) / 5;// +size_of_model / 2;
 
                         navMeshTexture.SetData<Color>(0, new Microsoft.Xna.Framework.Rectangle(x, y, size_of_model, size_of_model), colorField, 0, colorField.Length);
 
